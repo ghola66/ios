@@ -15,6 +15,8 @@
 #define SEARCH_TIMEOUT 60
 #define BUS_ERROR @"An unexpected error has occurred. Please contact the BUS for assistance if this issue persists."
 
+#define XPIRE_MSG @">Please enter your userid and password.<"
+
 @property NSURLSessionConfiguration *sessionConfig;
 @property NSURLSession *session;
 @property BOOL isLogin;

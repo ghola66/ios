@@ -123,11 +123,13 @@
                         retval.error = [error localizedDescription];
                     }
                 } else {
-                    NSRange range = [taskHelper.responseString rangeOfString:BUS_ERROR
-                                     ];
+                    NSRange range = [taskHelper.responseString rangeOfString:BUS_ERROR];
                     if(range.location != NSNotFound) {
                         retval.error = BUS_ERROR;
-                    } else {
+                    } else if([taskHelper.responseString rangeOfString:XPIRE_MSG].location != NSNotFound) {
+                        retval.error = @"Session expired. Please login again";
+                    }
+                    else {
                         retval.error = [[NSString alloc] initWithFormat:@"Invalid Server Response:\n%@", taskHelper.responseString];
                     }
                 }

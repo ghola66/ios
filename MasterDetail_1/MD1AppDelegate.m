@@ -7,12 +7,16 @@
 //
 
 #import "MD1AppDelegate.h"
+#import "MD1SimonSessionHelper.h"
+
+MD1SimonSessionHelper *g_SimonSession;
 
 @implementation MD1AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    g_SimonSession = [[MD1SimonSessionHelper alloc] init];
     return YES;
 }
 							

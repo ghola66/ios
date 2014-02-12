@@ -230,7 +230,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <rect key="frame" x="203" y="230" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="4tt-06-Rn5" id="P8y-Vw-ZeR"/>
@@ -501,6 +501,53 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="656" y="-1698"/>
         </scene>
+        <!--Process Inquery View Controller - Inquiry-->
+        <scene sceneID="FeK-dR-mxr">
+            <objects>
+                <viewController id="JvY-1E-zmM" customClass="MD1ProcessInqueryViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bEQ-Sq-NbV"/>
+                        <viewControllerLayoutGuide type="bottom" id="A5C-6q-hS2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oLX-Pa-hFK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ptp-bf-OpN">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="JvY-1E-zmM" id="Hul-cJ-T69"/>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Inquiry" id="rK1-xA-FFO">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="1Kr-CW-4V4">
+                            <connections>
+                                <segue destination="CF2-kH-xXx" kind="unwind" unwindAction="unwindToProcess:" id="Rv7-uT-D6J"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Submit" id="VgT-Dc-30L">
+                            <connections>
+                                <segue destination="CF2-kH-xXx" kind="unwind" unwindAction="unwindToProcess:" id="KPe-bu-QtZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="inquery" destination="Ptp-bf-OpN" id="EvQ-9R-b4M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Voe-4y-Mjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="CF2-kH-xXx" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2214" y="-1698"/>
+        </scene>
         <!--Process View Controller - Process-->
         <scene sceneID="EQD-DL-JYJ">
             <objects>
@@ -518,13 +565,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="State" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOF-dy-FCA">
-                                            <rect key="frame" x="20" y="11" width="96" height="21"/>
+                                            <rect key="frame" x="20" y="11" width="131" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Completed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixN-hR-UXl">
-                                            <rect key="frame" x="132" y="11" width="168" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Completed" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixN-hR-UXl">
+                                            <rect key="frame" x="151" y="11" width="149" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
@@ -543,6 +590,15 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <outlet property="delegate" destination="B03-Is-vWb" id="TcG-qm-2c8"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="j6L-LV-rGy"/>
+                        <barButtonItem title="Inquire" id="z8H-34-Ins">
+                            <connections>
+                                <segue destination="b82-nK-nKi" kind="modal" id="ntX-Ud-EQu"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="FdZ-CK-5d8"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Process" id="zMb-XZ-rJ5">
                         <barButtonItem key="rightBarButtonItem" title="Home" id="fQH-YR-AMZ">
                             <connections>
@@ -573,6 +629,28 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hd9-O0-DMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1239" y="-1698"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jyn-Y0-2dI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b82-nK-nKi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qUa-g7-Sg0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="WBg-9O-EYD">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="JvY-1E-zmM" kind="relationship" relationship="rootViewController" id="0tJ-qH-8Cd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xfr-XX-wuX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1688" y="-1698"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

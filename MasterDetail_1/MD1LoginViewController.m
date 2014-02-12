@@ -13,8 +13,10 @@ MD1SimonSessionHelper *g_SimonSession;
 
 @interface MD1LoginViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextField *userid;
-@property (weak, nonatomic) IBOutlet UITextField *password;
+@property (strong, nonatomic) IBOutlet UITextField *userid;
+@property (strong, nonatomic) IBOutlet UITextField *password;
+@property (strong, nonatomic) NSString *dataFilePath;
+
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
 @property (weak, nonatomic) IBOutlet UIButton *go;
 
@@ -38,6 +40,26 @@ MD1SimonSessionHelper *g_SimonSession;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.logo.image  = [UIImage imageNamed:@"guardian-logo.gif"];
+    
+    {
+        NSFileManager *filemgr;
+        NSString *docsDir;
+        NSArray *dirPaths;
+        filemgr = [NSFileManager defaultManager];
+        // Get the documents directory
+        dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        docsDir = dirPaths[0];
+        // Build the path to the data file
+        _dataFilePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"guardian.archive"]];
+        // Check if the file already exists
+        if ([filemgr fileExistsAtPath: _dataFilePath]){
+            NSMutableArray *dataArray;
+            dataArray = [NSKeyedUnarchiver
+                         unarchiveObjectWithFile: _dataFilePath];
+            _userid.text = dataArray[0];
+            _password.text = dataArray[1];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -95,8 +117,61 @@ MD1SimonSessionHelper *g_SimonSession;
             // prevent segue from occurring
             return NO;
         }
+        
+        {
+            NSMutableArray *dataArray;
+            dataArray = [[NSMutableArray alloc] init];
+            [dataArray addObject:_userid.text];
+            [dataArray addObject:_password.text];
+            [NSKeyedArchiver archiveRootObject:dataArray toFile:_dataFilePath];
+        }
+        
+        {
+            MD1SimonResponse *response = [g_SimonSession getStaticData];
+            if (response.error) {
+                UIAlertView *notPermitted = [[UIAlertView alloc]
+                                             initWithTitle:@"Error"
+                                             message:response.error
+                                             delegate:nil
+                                             cancelButtonTitle:@"OK"
+                                             otherButtonTitles:nil];
+                
+                // shows alert to user
+                [notPermitted show];
+                
+                // prevent segue from occurring
+                return NO;
+            }
+            
+            {
+                NSObject *jsonOut = response.data;
+                NSDictionary *jsonDic = (NSDictionary *)jsonOut;
+                NSDictionary *resultset = [jsonDic objectForKey:@"resultset"];
+                NSArray *RGOs = [resultset objectForKey:@"RGOs"];
+                NSArray *salesReps = [resultset objectForKey:@"salesReps"];
+                
+                for(int i = 0; i < RGOs.count; i++)
+                {
+                    NSDictionary *rgo = RGOs[i];
+                    NSArray *allKeys = [rgo allKeys];
+                    NSString *key = allKeys[0];
+                    NSString *value = rgo[key];
+                    g_SimonSession.RGOs[i] = [[NSString alloc] initWithFormat:@"%@ - %@", key, value];
+                }
+                
+                for(int i = 0; i < salesReps.count; i++)
+                {
+                    NSDictionary *sr = salesReps[i];
+                    NSArray *allKeys = [sr allKeys];
+                    NSString *key = allKeys[0];
+                    NSString *value = sr[key];
+                    g_SimonSession.salesReps[i] = [[NSString alloc] initWithFormat:@"%@ - %@", key, value];
+                }
+            }
+        }
+
     }
-    
+
     // by default perform the segue transition
     return YES;
 }

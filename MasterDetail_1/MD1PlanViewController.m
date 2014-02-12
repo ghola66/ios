@@ -59,7 +59,7 @@
     self.planTitleOrder[3] = @"RGO";
     self.planTitleOrder[4] = @"Sales Rep";
     self.planTitleOrder[5] = @"SSA";
-    self.planTitleOrder[6] = @"Team";
+    self.planTitleOrder[6] = @"Onboarding Specialist";
     self.planTitleOrder[7] = @"Total Eligible Lives";
 }
 

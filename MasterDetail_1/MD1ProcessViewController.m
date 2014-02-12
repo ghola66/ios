@@ -48,13 +48,17 @@
     self.processInfoOrder[4] = CSD_CASE_START_DT;
     self.processInfoOrder[5] = CSD_TERM_DT;
     
+    
     self.processTitleOrder = [[NSMutableArray alloc] init];
     self.processTitleOrder[0] = @"Process ID";
     self.processTitleOrder[1] = @"Process";
-    self.processTitleOrder[2] = @"Owner";
+    self.processTitleOrder[2] = @"Onboarding Specialist";
     self.processTitleOrder[3] = @"Status";
     self.processTitleOrder[4] = @"Initiated";
     self.processTitleOrder[5] = @"Completed";
+    self.processTitleOrder[6] = @"Tasks";
+    self.processTitleOrder[7] = @"  Risk Assumed";
+    self.processTitleOrder[8] = @"  eBooks Delivered";
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,7 +83,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.processData count];
+    return [self.processData count] + 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -92,8 +96,26 @@
     if(indexPath.row == 0) {
         NSNumber *caseNr = self.processData[self.processInfoOrder[indexPath.row]];
         cell.valueLabel.text = [[NSString alloc] initWithFormat:@"%@", caseNr];
-    } else {
+    } else if (indexPath.row <= 5) {
         cell.valueLabel.text = self.processData[self.processInfoOrder[indexPath.row]];
+    } else {
+        switch(indexPath.row) {
+            case 6: {
+                cell.valueLabel.text = @"Status";
+                [cell setBackgroundColor:[UIColor colorWithRed:.8 green:.8 blue:.8 alpha:1]];
+                break;
+            }
+            case 7: {
+                cell.valueLabel.text = @"";
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                break;
+            }
+            case 8: {
+                cell.valueLabel.text = @"";
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                break;
+            }
+        }
     }
     
     return cell;
@@ -149,6 +171,9 @@
 }
 
  */
+
+- (IBAction) unwindToProcess: (UIStoryboardSegue *)segue {
+}
 
 - (IBAction)home:(id)sender {
     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];

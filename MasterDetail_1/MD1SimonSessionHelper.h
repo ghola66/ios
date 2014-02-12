@@ -25,10 +25,15 @@
 @property NSString *pkmsloginForm;
 @property NSString *junctionAndSimon;
 @property NSString *searchAction;
+@property NSString *staticDataAction;
+
+@property NSMutableArray *RGOs;
+@property NSMutableArray *salesReps;
 
 - (BOOL) defaultSessionConfiguration;
 - (BOOL) delegateFreeSession;
 - (MD1SimonResponse *) login:(NSString *) userid password:(NSString *) password;
 - (MD1SimonResponse *) search:(NSString *)json;
+- (MD1SimonResponse *) getStaticData;
 
 @end

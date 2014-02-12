@@ -30,8 +30,8 @@ MD1SimonSessionHelper *g_SimonSession;
 @property (weak, nonatomic) IBOutlet UITextField *planholder;
 @property (weak, nonatomic) IBOutlet UISwitch *matchAnywhere;
 
-@property (nonatomic) NSArray *RGOs;
-@property (nonatomic) NSArray *salesReps;
+@property (nonatomic) NSMutableArray *RGOs;
+@property (nonatomic) NSMutableArray *salesReps;
 
 - (IBAction)home:(id)sender;
 - (IBAction)datePickerChanged:(id)sender;
@@ -54,10 +54,18 @@ MD1SimonSessionHelper *g_SimonSession;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.RGOs = @[@"Please Select RGO...", @"001", @"002", @"010", @"100", @"400"];
+    self.RGOs = [[NSMutableArray alloc] init];
+    self.RGOs[0] = @"Please Select RGO...";
+    for(int i = 0; i < g_SimonSession.RGOs.count; i++){
+        self.RGOs[i+1] = g_SimonSession.RGOs[i];
+    }
     self.RGO.hidden = YES;
     
-    self.salesReps = @[@"Please Select Sales Rep...", @"0354", @"0474", @"4100"];
+    self.salesReps = [[NSMutableArray alloc] init];
+    self.salesReps[0] = @"Please Select Sales Rep...";
+    for(int i = 0; i < g_SimonSession.salesReps.count; i++){
+        self.salesReps[i+1] = g_SimonSession.salesReps[i];
+    }
     self.salesRep.hidden = YES;
     
     self.from.hidden = YES;
@@ -165,11 +173,19 @@ MD1SimonSessionHelper *g_SimonSession;
       inComponent:(NSInteger)component
 {
     if([pickerView isEqual:self.RGO]) {
-        NSString *rgo = self.RGOs[row];
-        self.RGOtext.text = rgo;
+        if(row > 0) {
+            NSString *rgo = self.RGOs[row];
+            self.RGOtext.text = rgo;
+        } else {
+            self.RGOtext.text = @"";
+        }
     } else if ([pickerView isEqual:self.salesRep]) {
-        NSString *salesRep = self.salesReps[row];
-        self.salesRepText.text = salesRep;
+        if(row > 0) {
+            NSString *salesRep = self.salesReps[row];
+            self.salesRepText.text = salesRep;
+        } else {
+            self.salesRepText.text = @"";
+        }
     } else {
         return;
     }
@@ -189,7 +205,9 @@ MD1SimonSessionHelper *g_SimonSession;
     self.planNumber.text = @"";
     self.planholder.text = @"";
     self.matchAnywhere.on = NO;
+    [self.salesRep selectRow:0 inComponent:0 animated:NO];
     self.salesRepText.text = @"";
+    [self.RGO selectRow:0 inComponent:0 animated:NO];
     self.RGOtext.text = @"";
     self.fromText.text = @"";
     self.toText.text = @"";
@@ -218,10 +236,16 @@ MD1SimonSessionHelper *g_SimonSession;
            jsonIn[@"isPHMatch"] = @"true";
         }
         if([self.salesRepText.text length] > 0) {
-            jsonIn[CSD_SALES_REP_CD] = self.salesRepText.text;
+            NSRange range = [self.salesRepText.text rangeOfString:@" - "];
+            if(range.location != NSNotFound) {
+                jsonIn[CSD_SALES_REP_CD] = [self.salesRepText.text substringToIndex:range.location];
+            }
         }
         if([self.RGOtext.text length] > 0) {
-            jsonIn[CSD_RGO_CD] = self.RGOtext.text;
+            NSRange range = [self.RGOtext.text rangeOfString:@" - "];
+            if(range.location != NSNotFound) {
+                jsonIn[CSD_RGO_CD] = [self.RGOtext.text substringToIndex:range.location];
+            }
         }
         if([self.fromText.text length] > 0) {
             jsonIn[@"dateFrom"] = self.fromText.text;

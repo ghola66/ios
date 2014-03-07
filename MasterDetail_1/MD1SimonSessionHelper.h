@@ -20,12 +20,14 @@
 @property NSURLSessionConfiguration *sessionConfig;
 @property NSURLSession *session;
 @property BOOL isLogin;
+@property BOOL isRefresh;
 @property NSString *env;
 @property NSString *domain;
 @property NSString *pkmsloginForm;
 @property NSString *junctionAndSimon;
 @property NSString *searchAction;
 @property NSString *staticDataAction;
+@property NSString *submitInquiryAction;
 
 @property NSMutableArray *RGOs;
 @property NSMutableArray *salesReps;
@@ -35,5 +37,6 @@
 - (MD1SimonResponse *) login:(NSString *) userid password:(NSString *) password;
 - (MD1SimonResponse *) search:(NSString *)json;
 - (MD1SimonResponse *) getStaticData;
+- (MD1SimonResponse *) submitInquiry:(UIView *) topView;
 
 @end

@@ -54,13 +54,13 @@
     
     self.planTitleOrder = [[NSMutableArray alloc] init];
     self.planTitleOrder[0] = @"Plan #";
-    self.planTitleOrder[1] = @"Planholder";
-    self.planTitleOrder[2] = @"Situs State";
-    self.planTitleOrder[3] = @"RGO";
-    self.planTitleOrder[4] = @"Sales Rep";
-    self.planTitleOrder[5] = @"SSA";
-    self.planTitleOrder[6] = @"Onboarding Specialist";
-    self.planTitleOrder[7] = @"Total Eligible Lives";
+    self.planTitleOrder[1] = @"Plan Name:";
+    self.planTitleOrder[2] = @"State:";
+    self.planTitleOrder[3] = @"RGO:";
+    self.planTitleOrder[4] = @"Sales Rep:";
+    self.planTitleOrder[5] = @"SSA:";
+    self.planTitleOrder[6] = @"Onboarder:";
+    self.planTitleOrder[7] = @"Lives:";
 }
 
 - (void)didReceiveMemoryWarning
@@ -131,6 +131,7 @@
     }
 }
 
+/*
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *sectionTitle;
@@ -143,7 +144,7 @@
         }
         case 1:
         {
-            sectionTitle = @"Process";
+            sectionTitle = @"Process        Status";
             break;
         }
         case 2:
@@ -159,6 +160,7 @@
     }
     return sectionTitle;
 }
+*/
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -251,14 +253,23 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    MD1PlanCell *cell = sender;
-    UITableView *table = (UITableView *)cell.superview.superview;
-    NSIndexPath *indexPath = [table indexPathForCell:cell];
-    NSDictionary *row = self.processesData[indexPath.row];
+    if([[segue destinationViewController] isKindOfClass:[MD1ProcessViewController class]]) {
+        MD1PlanCell *cell = sender;
+        UITableView *table = (UITableView *)cell.superview.superview;
+        NSIndexPath *indexPath = [table indexPathForCell:cell];
+        NSDictionary *row = self.processesData[indexPath.row];
+        
+        MD1ProcessViewController *targetvc =[segue destinationViewController];
+        [targetvc segueData:row];
+    } else {
+    }
     
-    MD1ProcessViewController *targetvc =[segue destinationViewController];
-    [targetvc segueData:row];
-    
+}
+
+- (IBAction) unwindToPlan: (UIStoryboardSegue *)segue {
+    if(YES) {
+        
+    }
 }
 
 

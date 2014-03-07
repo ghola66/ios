@@ -42,6 +42,11 @@
 {
     MD1AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     UIView *topView = appDelegate.window.rootViewController.view;
+    [self startSync:session request:request data:data wait:wait view:topView];
+}
+
+- (void) startSync:(NSURLSession *) session request:(NSMutableURLRequest *) request data:(NSData *) data wait:(int) wait view:(UIView *) topView
+{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:topView animated:YES];
     hud.labelText = @"Network Activity";
     
@@ -58,4 +63,5 @@
     }
     [MBProgressHUD hideHUDForView:topView animated:YES];
 }
+
 @end

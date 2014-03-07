@@ -23,5 +23,6 @@
 
 - (void) start:(NSURLSession *) session request:(NSMutableURLRequest *) request data:(NSData *) data;
 - (void) startSync:(NSURLSession *) session request:(NSMutableURLRequest *) request data:(NSData *) data wait:(int) wait;
+- (void) startSync:(NSURLSession *) session request:(NSMutableURLRequest *) request data:(NSData *) data wait:(int) wait view:(UIView *) view;
 
 @end

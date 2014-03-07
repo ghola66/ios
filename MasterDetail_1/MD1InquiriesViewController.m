@@ -1,23 +1,22 @@
 //
-//  MD1PlansViewController.m
-//  MasterDetail_1
+//  MD1InquiriesViewController.m
+//  Workflow
 //
-//  Created by Dmitry Oreshkin on 1/31/14.
+//  Created by Dmitry Oreshkin on 2/27/14.
 //  Copyright (c) 2014 Dmitry Oreshkin. All rights reserved.
 //
 
-#import "MD1CaseSearchData.h"
-#import "MD1PlansCell.h"
-#import "MD1PlansViewController.h"
-#import "MD1PlanViewController.h"
+#import "MD1InquiriesCell.h"
+#import "MD1InquiriesViewController.h"
 
-@interface MD1PlansViewController ()
+@interface MD1InquiriesViewController ()
 
-- (IBAction)home:(id)sender;
+
+- (IBAction)done:(id)sender;
 
 @end
 
-@implementation MD1PlansViewController
+@implementation MD1InquiriesViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -37,6 +36,9 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.inquiries = [[NSMutableArray alloc] init];
+    self.inquiries[0] = @"2-7RTWC5";
+    self.inquiries[1] = @"3-8CWTR7";
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,7 +62,7 @@
     if(section == 0 ) {
         retval = 1;
     } else {
-        retval = [self.resultset count];
+        retval = [self.inquiries count];
     }
     return retval;
 }
@@ -70,53 +72,27 @@
     static NSString *cellIdentifier;
     
     if(indexPath.section == 0 ) {
-        cellIdentifier = @"PlansHeader";
+        cellIdentifier = @"InquiriesHeader";
     } else {
-        cellIdentifier = @"PlansData";
+        cellIdentifier = @"InquiriesData";
     }
     
-    MD1PlansCell *cell = (MD1PlansCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    MD1InquiriesCell *cell = (MD1InquiriesCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     if(indexPath.section == 0 ) {
-        cell.numberLabel.text = @"Plan #";
-        cell.phNameLabel.text = @"Plan Name";
+        cell.numberLabel.text = @"Reference #";
+        cell.sentLabel.text = @"Sent on";
     } else {
-        NSDictionary  *row = self.resultset[indexPath.row];
+        NSString  *row = self.inquiries[indexPath.row];
         
-        NSDictionary *jCSD = row[CSD_JSON];
-        NSString *plnNr = (NSString *)jCSD[CSD_PLN_NR];
-        NSString *phName = (NSString *)jCSD[CSD_PHD_NM];
-        
-        cell.numberLabel.text = plnNr;
-        cell.phNameLabel.text = phName;
+        cell.numberLabel.text = row;
+        cell.sentLabel.text = @"01/01/2014";
     }
     
     return cell;
 }
 
-- (IBAction)home:(id)sender {
-    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
-}
-
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
-{
-    if ([identifier isEqualToString:@"ShowPlan"]) {
-    }
-    return YES;
-}
-
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    MD1PlansCell *cell = sender;
-    UITableView *table = (UITableView *)cell.superview.superview;
-    NSIndexPath *indexPath = [table indexPathForCell:cell];
-    NSDictionary  *row = self.resultset[indexPath.row];
-    
-    NSDictionary *jCSD = row[CSD_JSON];
-    MD1PlanViewController *targetvc =[segue destinationViewController];
-    [targetvc segueData:jCSD];
-}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -167,5 +143,10 @@
 }
 
  */
+
+- (IBAction)done:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

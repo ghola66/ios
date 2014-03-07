@@ -50,12 +50,12 @@
     
     
     self.processTitleOrder = [[NSMutableArray alloc] init];
-    self.processTitleOrder[0] = @"Process ID";
-    self.processTitleOrder[1] = @"Process";
-    self.processTitleOrder[2] = @"Onboarding Specialist";
-    self.processTitleOrder[3] = @"Status";
-    self.processTitleOrder[4] = @"Initiated";
-    self.processTitleOrder[5] = @"Completed";
+    self.processTitleOrder[0] = @"Process ID:";
+    self.processTitleOrder[1] = @"Process:";
+    self.processTitleOrder[2] = @"Onboarder:";
+    self.processTitleOrder[3] = @"Status:";
+    self.processTitleOrder[4] = @"Initiated:";
+    self.processTitleOrder[5] = @"Completed:";
     self.processTitleOrder[6] = @"Tasks";
     self.processTitleOrder[7] = @"  Risk Assumed";
     self.processTitleOrder[8] = @"  eBooks Delivered";
@@ -102,7 +102,7 @@
         switch(indexPath.row) {
             case 6: {
                 cell.valueLabel.text = @"Status";
-                [cell setBackgroundColor:[UIColor colorWithRed:.8 green:.8 blue:.8 alpha:1]];
+                [cell setBackgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1]];
                 break;
             }
             case 7: {
@@ -173,6 +173,9 @@
  */
 
 - (IBAction) unwindToProcess: (UIStoryboardSegue *)segue {
+    if(YES) {
+    
+    }
 }
 
 - (IBAction)home:(id)sender {

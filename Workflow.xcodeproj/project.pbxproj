@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83066E3518BFC9AB0069797F /* MD1InquiriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83066E3418BFC9AB0069797F /* MD1InquiriesViewController.m */; };
+		83066E3818BFD5F20069797F /* MD1InquiriesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83066E3718BFD5F20069797F /* MD1InquiriesCell.m */; };
+		83066E3B18BFDD690069797F /* MD1InquiryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83066E3A18BFDD690069797F /* MD1InquiryViewController.m */; };
+		83066E3E18C0E8B90069797F /* GCPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83066E3D18C0E8B90069797F /* GCPlaceholderTextView.m */; };
 		8364B104189202A8007A6B41 /* MD1SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364B103189202A8007A6B41 /* MD1SearchViewController.m */; };
 		8364B10718920380007A6B41 /* MD1NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364B10618920380007A6B41 /* MD1NavigationController.m */; };
 		8364B10A1899815D007A6B41 /* MD1SimonSessionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364B1091899815D007A6B41 /* MD1SimonSessionHelper.m */; };
@@ -50,6 +54,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		83066E3318BFC9AB0069797F /* MD1InquiriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD1InquiriesViewController.h; sourceTree = "<group>"; };
+		83066E3418BFC9AB0069797F /* MD1InquiriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD1InquiriesViewController.m; sourceTree = "<group>"; };
+		83066E3618BFD5F20069797F /* MD1InquiriesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD1InquiriesCell.h; sourceTree = "<group>"; };
+		83066E3718BFD5F20069797F /* MD1InquiriesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD1InquiriesCell.m; sourceTree = "<group>"; };
+		83066E3918BFDD690069797F /* MD1InquiryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD1InquiryViewController.h; sourceTree = "<group>"; };
+		83066E3A18BFDD690069797F /* MD1InquiryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD1InquiryViewController.m; sourceTree = "<group>"; };
+		83066E3C18C0E8B90069797F /* GCPlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPlaceholderTextView.h; sourceTree = "<group>"; };
+		83066E3D18C0E8B90069797F /* GCPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPlaceholderTextView.m; sourceTree = "<group>"; };
 		8364B102189202A8007A6B41 /* MD1SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD1SearchViewController.h; sourceTree = "<group>"; };
 		8364B103189202A8007A6B41 /* MD1SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD1SearchViewController.m; sourceTree = "<group>"; };
 		8364B10518920380007A6B41 /* MD1NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD1NavigationController.h; sourceTree = "<group>"; };
@@ -67,21 +79,21 @@
 		8364B117189F1079007A6B41 /* MD1PlansCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD1PlansCell.m; sourceTree = "<group>"; };
 		8364B11918A140E0007A6B41 /* MD1SimonResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD1SimonResponse.h; sourceTree = "<group>"; };
 		8364B11A18A140E0007A6B41 /* MD1SimonResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD1SimonResponse.m; sourceTree = "<group>"; };
-		836D06ED188EF45D005BD8C7 /* MasterDetail_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MasterDetail_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		836D06ED188EF45D005BD8C7 /* Workflow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Workflow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		836D06F0188EF45D005BD8C7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		836D06F2188EF45D005BD8C7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		836D06F4188EF45D005BD8C7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		836D06F8188EF45D005BD8C7 /* MasterDetail_1-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MasterDetail_1-Info.plist"; sourceTree = "<group>"; };
+		836D06F8188EF45D005BD8C7 /* Workflow-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Workflow-Info.plist"; sourceTree = "<group>"; };
 		836D06FA188EF45D005BD8C7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		836D06FC188EF45D005BD8C7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		836D06FE188EF45D005BD8C7 /* MasterDetail_1-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MasterDetail_1-Prefix.pch"; sourceTree = "<group>"; };
+		836D06FE188EF45D005BD8C7 /* Workflow-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Workflow-Prefix.pch"; sourceTree = "<group>"; };
 		836D06FF188EF45D005BD8C7 /* MD1AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MD1AppDelegate.h; sourceTree = "<group>"; };
 		836D0700188EF45D005BD8C7 /* MD1AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MD1AppDelegate.m; sourceTree = "<group>"; };
 		836D0703188EF45D005BD8C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		836D070B188EF45D005BD8C7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		836D0711188EF45D005BD8C7 /* MasterDetail_1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MasterDetail_1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		836D0711188EF45D005BD8C7 /* WorkflowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkflowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		836D0712188EF45D005BD8C7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		836D071A188EF45D005BD8C7 /* MasterDetail_1Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MasterDetail_1Tests-Info.plist"; sourceTree = "<group>"; };
+		836D071A188EF45D005BD8C7 /* WorkflowTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WorkflowTests-Info.plist"; sourceTree = "<group>"; };
 		836D071C188EF45D005BD8C7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		836D071E188EF45D005BD8C7 /* MasterDetail_1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterDetail_1Tests.m; sourceTree = "<group>"; };
 		836D074E18916195005BD8C7 /* MD1LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD1LoginViewController.h; sourceTree = "<group>"; };
@@ -139,8 +151,8 @@
 		836D06EE188EF45D005BD8C7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				836D06ED188EF45D005BD8C7 /* MasterDetail_1.app */,
-				836D0711188EF45D005BD8C7 /* MasterDetail_1Tests.xctest */,
+				836D06ED188EF45D005BD8C7 /* Workflow.app */,
+				836D0711188EF45D005BD8C7 /* WorkflowTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -159,44 +171,52 @@
 		836D06F6188EF45D005BD8C7 /* MasterDetail_1 */ = {
 			isa = PBXGroup;
 			children = (
-				83BAC29018A3D34E0088BF29 /* MD1CaseSearchData.h */,
-				83BAC29118A3D34E0088BF29 /* MD1CaseSearchData.m */,
-				8364B10F189C32BB007A6B41 /* MBProgressHUD.m */,
+				8364B114189F0F82007A6B41 /* guardian-logo.gif */,
+				83066E3C18C0E8B90069797F /* GCPlaceholderTextView.h */,
 				8364B10E189C328C007A6B41 /* MBProgressHUD.h */,
 				836D06FF188EF45D005BD8C7 /* MD1AppDelegate.h */,
-				836D0700188EF45D005BD8C7 /* MD1AppDelegate.m */,
-				836D0702188EF45D005BD8C7 /* Main.storyboard */,
-				83BAC28A18A339CD0088BF29 /* MD1ProcessesCell.h */,
-				83BAC28B18A339CD0088BF29 /* MD1ProcessesCell.m */,
-				83BAC28718A339840088BF29 /* MD1PlanCell.h */,
-				83BAC28818A339840088BF29 /* MD1PlanCell.m */,
-				83BAC28418A32BA30088BF29 /* MD1PlanViewController.h */,
-				83BAC28518A32BA30088BF29 /* MD1PlanViewController.m */,
-				8364B114189F0F82007A6B41 /* guardian-logo.gif */,
-				8364B111189C50C6007A6B41 /* MD1PlansViewController.h */,
-				8364B112189C50C6007A6B41 /* MD1PlansViewController.m */,
-				836D070B188EF45D005BD8C7 /* Images.xcassets */,
-				836D06F7188EF45D005BD8C7 /* Supporting Files */,
+				83BAC29018A3D34E0088BF29 /* MD1CaseSearchData.h */,
+				83066E3618BFD5F20069797F /* MD1InquiriesCell.h */,
+				83066E3318BFC9AB0069797F /* MD1InquiriesViewController.h */,
+				83066E3918BFDD690069797F /* MD1InquiryViewController.h */,
 				836D074E18916195005BD8C7 /* MD1LoginViewController.h */,
-				836D074F18916195005BD8C7 /* MD1LoginViewController.m */,
-				8364B102189202A8007A6B41 /* MD1SearchViewController.h */,
-				8364B103189202A8007A6B41 /* MD1SearchViewController.m */,
 				8364B10518920380007A6B41 /* MD1NavigationController.h */,
-				8364B10618920380007A6B41 /* MD1NavigationController.m */,
-				8364B1081899815D007A6B41 /* MD1SimonSessionHelper.h */,
-				8364B1091899815D007A6B41 /* MD1SimonSessionHelper.m */,
-				8364B10B1899AC20007A6B41 /* MD1SimonTaskHelper.h */,
-				8364B10C1899AC20007A6B41 /* MD1SimonTaskHelper.m */,
+				83BAC28718A339840088BF29 /* MD1PlanCell.h */,
 				8364B116189F1079007A6B41 /* MD1PlansCell.h */,
-				8364B117189F1079007A6B41 /* MD1PlansCell.m */,
-				8364B11918A140E0007A6B41 /* MD1SimonResponse.h */,
-				8364B11A18A140E0007A6B41 /* MD1SimonResponse.m */,
-				83BAC28D18A34AAF0088BF29 /* MD1ProcessViewController.h */,
-				83BAC28E18A34AAF0088BF29 /* MD1ProcessViewController.m */,
+				8364B111189C50C6007A6B41 /* MD1PlansViewController.h */,
+				83BAC28418A32BA30088BF29 /* MD1PlanViewController.h */,
 				83BAC29318A428670088BF29 /* MD1ProcessCell.h */,
-				83BAC29418A428670088BF29 /* MD1ProcessCell.m */,
+				83BAC28A18A339CD0088BF29 /* MD1ProcessesCell.h */,
 				83CC52F218A9716A00F40AEA /* MD1ProcessInqueryViewController.h */,
+				83BAC28D18A34AAF0088BF29 /* MD1ProcessViewController.h */,
+				8364B102189202A8007A6B41 /* MD1SearchViewController.h */,
+				8364B11918A140E0007A6B41 /* MD1SimonResponse.h */,
+				8364B1081899815D007A6B41 /* MD1SimonSessionHelper.h */,
+				8364B10B1899AC20007A6B41 /* MD1SimonTaskHelper.h */,
+				83066E3D18C0E8B90069797F /* GCPlaceholderTextView.m */,
+				8364B10F189C32BB007A6B41 /* MBProgressHUD.m */,
+				836D0700188EF45D005BD8C7 /* MD1AppDelegate.m */,
+				83BAC29118A3D34E0088BF29 /* MD1CaseSearchData.m */,
+				83066E3718BFD5F20069797F /* MD1InquiriesCell.m */,
+				83066E3418BFC9AB0069797F /* MD1InquiriesViewController.m */,
+				83066E3A18BFDD690069797F /* MD1InquiryViewController.m */,
+				836D074F18916195005BD8C7 /* MD1LoginViewController.m */,
+				8364B10618920380007A6B41 /* MD1NavigationController.m */,
+				83BAC28818A339840088BF29 /* MD1PlanCell.m */,
+				8364B117189F1079007A6B41 /* MD1PlansCell.m */,
+				8364B112189C50C6007A6B41 /* MD1PlansViewController.m */,
+				83BAC28518A32BA30088BF29 /* MD1PlanViewController.m */,
+				83BAC29418A428670088BF29 /* MD1ProcessCell.m */,
+				83BAC28B18A339CD0088BF29 /* MD1ProcessesCell.m */,
 				83CC52F318A9716A00F40AEA /* MD1ProcessInqueryViewController.m */,
+				83BAC28E18A34AAF0088BF29 /* MD1ProcessViewController.m */,
+				8364B103189202A8007A6B41 /* MD1SearchViewController.m */,
+				8364B11A18A140E0007A6B41 /* MD1SimonResponse.m */,
+				8364B1091899815D007A6B41 /* MD1SimonSessionHelper.m */,
+				8364B10C1899AC20007A6B41 /* MD1SimonTaskHelper.m */,
+				836D070B188EF45D005BD8C7 /* Images.xcassets */,
+				836D0702188EF45D005BD8C7 /* Main.storyboard */,
+				836D06F7188EF45D005BD8C7 /* Supporting Files */,
 			);
 			path = MasterDetail_1;
 			sourceTree = "<group>";
@@ -204,10 +224,10 @@
 		836D06F7188EF45D005BD8C7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				836D06F8188EF45D005BD8C7 /* MasterDetail_1-Info.plist */,
+				836D06F8188EF45D005BD8C7 /* Workflow-Info.plist */,
 				836D06F9188EF45D005BD8C7 /* InfoPlist.strings */,
 				836D06FC188EF45D005BD8C7 /* main.m */,
-				836D06FE188EF45D005BD8C7 /* MasterDetail_1-Prefix.pch */,
+				836D06FE188EF45D005BD8C7 /* Workflow-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -224,7 +244,7 @@
 		836D0719188EF45D005BD8C7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				836D071A188EF45D005BD8C7 /* MasterDetail_1Tests-Info.plist */,
+				836D071A188EF45D005BD8C7 /* WorkflowTests-Info.plist */,
 				836D071B188EF45D005BD8C7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -233,9 +253,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		836D06EC188EF45D005BD8C7 /* MasterDetail_1 */ = {
+		836D06EC188EF45D005BD8C7 /* Workflow */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 836D0722188EF45D005BD8C7 /* Build configuration list for PBXNativeTarget "MasterDetail_1" */;
+			buildConfigurationList = 836D0722188EF45D005BD8C7 /* Build configuration list for PBXNativeTarget "Workflow" */;
 			buildPhases = (
 				836D06E9188EF45D005BD8C7 /* Sources */,
 				836D06EA188EF45D005BD8C7 /* Frameworks */,
@@ -245,14 +265,14 @@
 			);
 			dependencies = (
 			);
-			name = MasterDetail_1;
+			name = Workflow;
 			productName = MasterDetail_1;
-			productReference = 836D06ED188EF45D005BD8C7 /* MasterDetail_1.app */;
+			productReference = 836D06ED188EF45D005BD8C7 /* Workflow.app */;
 			productType = "com.apple.product-type.application";
 		};
-		836D0710188EF45D005BD8C7 /* MasterDetail_1Tests */ = {
+		836D0710188EF45D005BD8C7 /* WorkflowTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 836D0725188EF45D005BD8C7 /* Build configuration list for PBXNativeTarget "MasterDetail_1Tests" */;
+			buildConfigurationList = 836D0725188EF45D005BD8C7 /* Build configuration list for PBXNativeTarget "WorkflowTests" */;
 			buildPhases = (
 				836D070D188EF45D005BD8C7 /* Sources */,
 				836D070E188EF45D005BD8C7 /* Frameworks */,
@@ -263,9 +283,9 @@
 			dependencies = (
 				836D0717188EF45D005BD8C7 /* PBXTargetDependency */,
 			);
-			name = MasterDetail_1Tests;
+			name = WorkflowTests;
 			productName = MasterDetail_1Tests;
-			productReference = 836D0711188EF45D005BD8C7 /* MasterDetail_1Tests.xctest */;
+			productReference = 836D0711188EF45D005BD8C7 /* WorkflowTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -286,7 +306,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 836D06E8188EF45D005BD8C7 /* Build configuration list for PBXProject "MasterDetail_1" */;
+			buildConfigurationList = 836D06E8188EF45D005BD8C7 /* Build configuration list for PBXProject "Workflow" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -299,8 +319,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				836D06EC188EF45D005BD8C7 /* MasterDetail_1 */,
-				836D0710188EF45D005BD8C7 /* MasterDetail_1Tests */,
+				836D06EC188EF45D005BD8C7 /* Workflow */,
+				836D0710188EF45D005BD8C7 /* WorkflowTests */,
 			);
 		};
 /* End PBXProject section */
@@ -332,14 +352,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83066E3818BFD5F20069797F /* MD1InquiriesCell.m in Sources */,
 				836D06FD188EF45D005BD8C7 /* main.m in Sources */,
 				836D0701188EF45D005BD8C7 /* MD1AppDelegate.m in Sources */,
 				8364B10A1899815D007A6B41 /* MD1SimonSessionHelper.m in Sources */,
 				83CC52F418A9716A00F40AEA /* MD1ProcessInqueryViewController.m in Sources */,
 				8364B118189F1079007A6B41 /* MD1PlansCell.m in Sources */,
+				83066E3518BFC9AB0069797F /* MD1InquiriesViewController.m in Sources */,
 				836D075018916195005BD8C7 /* MD1LoginViewController.m in Sources */,
+				83066E3B18BFDD690069797F /* MD1InquiryViewController.m in Sources */,
 				8364B11B18A140E0007A6B41 /* MD1SimonResponse.m in Sources */,
 				8364B10718920380007A6B41 /* MD1NavigationController.m in Sources */,
+				83066E3E18C0E8B90069797F /* GCPlaceholderTextView.m in Sources */,
 				8364B10D1899AC20007A6B41 /* MD1SimonTaskHelper.m in Sources */,
 				83BAC29518A428670088BF29 /* MD1ProcessCell.m in Sources */,
 				83BAC28F18A34AAF0088BF29 /* MD1ProcessViewController.m in Sources */,
@@ -366,7 +390,7 @@
 /* Begin PBXTargetDependency section */
 		836D0717188EF45D005BD8C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 836D06EC188EF45D005BD8C7 /* MasterDetail_1 */;
+			target = 836D06EC188EF45D005BD8C7 /* Workflow */;
 			targetProxy = 836D0716188EF45D005BD8C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -479,9 +503,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MasterDetail_1/MasterDetail_1-Prefix.pch";
-				INFOPLIST_FILE = "MasterDetail_1/MasterDetail_1-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "MasterDetail_1/Workflow-Prefix.pch";
+				INFOPLIST_FILE = "MasterDetail_1/Workflow-Info.plist";
+				PRODUCT_NAME = Workflow;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -495,9 +519,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MasterDetail_1/MasterDetail_1-Prefix.pch";
-				INFOPLIST_FILE = "MasterDetail_1/MasterDetail_1-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "MasterDetail_1/Workflow-Prefix.pch";
+				INFOPLIST_FILE = "MasterDetail_1/Workflow-Info.plist";
+				PRODUCT_NAME = Workflow;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -519,8 +543,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "MasterDetail_1Tests/MasterDetail_1Tests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "MasterDetail_1Tests/WorkflowTests-Info.plist";
+				PRODUCT_NAME = WorkflowTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -538,8 +562,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MasterDetail_1/MasterDetail_1-Prefix.pch";
-				INFOPLIST_FILE = "MasterDetail_1Tests/MasterDetail_1Tests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "MasterDetail_1Tests/WorkflowTests-Info.plist";
+				PRODUCT_NAME = WorkflowTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -548,7 +572,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		836D06E8188EF45D005BD8C7 /* Build configuration list for PBXProject "MasterDetail_1" */ = {
+		836D06E8188EF45D005BD8C7 /* Build configuration list for PBXProject "Workflow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				836D0720188EF45D005BD8C7 /* Debug */,
@@ -557,7 +581,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		836D0722188EF45D005BD8C7 /* Build configuration list for PBXNativeTarget "MasterDetail_1" */ = {
+		836D0722188EF45D005BD8C7 /* Build configuration list for PBXNativeTarget "Workflow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				836D0723188EF45D005BD8C7 /* Debug */,
@@ -566,7 +590,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		836D0725188EF45D005BD8C7 /* Build configuration list for PBXNativeTarget "MasterDetail_1Tests" */ = {
+		836D0725188EF45D005BD8C7 /* Build configuration list for PBXNativeTarget "WorkflowTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				836D0726188EF45D005BD8C7 /* Debug */,

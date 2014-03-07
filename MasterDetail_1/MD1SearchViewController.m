@@ -215,8 +215,12 @@ MD1SimonSessionHelper *g_SimonSession;
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if([[segue destinationViewController] isKindOfClass:[MD1PlansViewController class]]) {
     MD1PlansViewController *targetvc =[segue destinationViewController];
     targetvc.resultset = self.resultset;
+    } else {
+        
+    }
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender

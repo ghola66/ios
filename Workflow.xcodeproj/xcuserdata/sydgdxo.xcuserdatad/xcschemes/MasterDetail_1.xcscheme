@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "836D06EC188EF45D005BD8C7"
-               BuildableName = "MasterDetail_1.app"
-               BlueprintName = "MasterDetail_1"
-               ReferencedContainer = "container:MasterDetail_1.xcodeproj">
+               BuildableName = "Workflow.app"
+               BlueprintName = "Workflow"
+               ReferencedContainer = "container:Workflow.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "836D0710188EF45D005BD8C7"
-               BuildableName = "MasterDetail_1Tests.xctest"
-               BlueprintName = "MasterDetail_1Tests"
-               ReferencedContainer = "container:MasterDetail_1.xcodeproj">
+               BuildableName = "WorkflowTests.xctest"
+               BlueprintName = "WorkflowTests"
+               ReferencedContainer = "container:Workflow.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "836D06EC188EF45D005BD8C7"
-            BuildableName = "MasterDetail_1.app"
-            BlueprintName = "MasterDetail_1"
-            ReferencedContainer = "container:MasterDetail_1.xcodeproj">
+            BuildableName = "Workflow.app"
+            BlueprintName = "Workflow"
+            ReferencedContainer = "container:Workflow.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "836D06EC188EF45D005BD8C7"
-            BuildableName = "MasterDetail_1.app"
-            BlueprintName = "MasterDetail_1"
-            ReferencedContainer = "container:MasterDetail_1.xcodeproj">
+            BuildableName = "Workflow.app"
+            BlueprintName = "Workflow"
+            ReferencedContainer = "container:Workflow.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "836D06EC188EF45D005BD8C7"
-            BuildableName = "MasterDetail_1.app"
-            BlueprintName = "MasterDetail_1"
-            ReferencedContainer = "container:MasterDetail_1.xcodeproj">
+            BuildableName = "Workflow.app"
+            BlueprintName = "Workflow"
+            ReferencedContainer = "container:Workflow.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

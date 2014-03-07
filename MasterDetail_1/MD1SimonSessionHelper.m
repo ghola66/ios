@@ -23,18 +23,21 @@
         self.junctionAndSimon = @"/caseinstall/Simon";
         self.searchAction = @"/MobileAppJSonSearch.do";
         self.staticDataAction = @"/MobileAppJSonStaticData.do";
+        self.submitInquiryAction = @"/Support.do";
     } else if ([self.env isEqualToString:@"local"]) {
         self.domain = @"http://hos7d2ua33610jl:9081";
         self.pkmsloginForm = @"/Simon/Main.do?zuser=sydgdxo";
         self.junctionAndSimon = @"/Simon";
         self.searchAction = @"/MobileAppJSonSearch.do";
         self.staticDataAction = @"/MobileAppJSonStaticData.do";
+        self.submitInquiryAction = @"/Support.do";
     } else {
         self.domain = @"https://www8.glic.com";
         self.pkmsloginForm = @"/pkmslogin.form";
         self.junctionAndSimon = @"/caseinstall/Simon";
         self.searchAction = @"/MobileAppJSonTest.do";
         self.staticDataAction = @"/MobileAppJSonStaticData.do";
+        self.submitInquiryAction = @"/Support.do";
     }
     
     self.RGOs = [[NSMutableArray alloc] init];
@@ -61,6 +64,12 @@
     return url;
 }
 
+- (NSURL *) getSubmitInquiryURL
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", self.domain, self.junctionAndSimon, self.submitInquiryAction]];
+    return url;
+}
+
 - (NSData *) pkmsloginData:(NSString *) userid password:(NSString *) password
 {
     NSString *bodyData = [NSString stringWithFormat:@"username=%@&login-form-type=pwd&password=%@&x=0&y=0", userid, password];
@@ -76,6 +85,13 @@
 }
 
 - (NSData *) getStaticDataData
+{
+    NSString *bodyData = [NSString stringWithFormat:@"json=\"\""];
+    NSData *data = [NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])];
+    return data;
+}
+
+- (NSData *) getSubmitInquiryData
 {
     NSString *bodyData = [NSString stringWithFormat:@"json=\"\""];
     NSData *data = [NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])];
@@ -144,12 +160,19 @@
                     if(range.location != NSNotFound) {
                         retval.error = BUS_ERROR;
                     } else if([taskHelper.responseString rangeOfString:XPIRE_MSG].location != NSNotFound) {
+                        self.isLogin = NO;
+                        self.isRefresh = YES;
                         retval.error = @"Session expired. Please login again";
                     }
                     else {
                         retval.error = [[NSString alloc] initWithFormat:@"Invalid Server Response:\n%@", taskHelper.responseString];
                     }
                 }
+                break;
+            }
+            case 500:
+            {
+                retval.error = @"500 Internal Server Error";
                 break;
             }
             default:
@@ -192,16 +215,25 @@
             case 200:
             {
                 if(![self.env isEqualToString:@"local"] ){
-                    //taskHelper.responseString <P>Your login was successful.
                     NSRange range = [taskHelper.responseString rangeOfString:@"<P>Your login was successful."];
                     if(range.location != NSNotFound){
                         self.isLogin = YES;
                     } else {
-                        retval.error = @"Not Authenticated";
+                        NSRange range = [taskHelper.responseString rangeOfString:XPIRE_MSG];
+                        if(range.location == NSNotFound){
+                            self.isLogin = YES;
+                        } else {
+                            retval.error = @"Not Authenticated";
+                        }
                     }
                 } else {
                     self.isLogin = YES;
                 }
+                break;
+            }
+            case 500:
+            {
+                retval.error = @"500 Internal Server Error";
                 break;
             }
             default:
@@ -256,12 +288,74 @@
                         retval.error = BUS_ERROR;
                     } else if([taskHelper.responseString rangeOfString:XPIRE_MSG].location != NSNotFound) {
                         self.isLogin = NO;
+                        self.isRefresh = YES;
                         retval.error = @"Session expired. Please login again";
                     }
                     else {
                         retval.error = [[NSString alloc] initWithFormat:@"Invalid Server Response:\n%@", taskHelper.responseString];
                     }
                 }
+                break;
+            }
+            case 500:
+            {
+                retval.error = @"500 Internal Server Error";
+                break;
+            }
+            default:
+            {
+                retval.error = [taskHelper.error localizedDescription];
+                break;
+            }
+        }
+        
+    } else {
+        [taskHelper.task cancel];
+        retval.error = [taskHelper.error localizedDescription];
+    }
+    
+    return retval;
+}
+
+- (MD1SimonResponse *) submitInquiry:(UIView *) topView
+{
+    MD1SimonResponse *retval = [[MD1SimonResponse alloc] init];
+    
+    NSMutableURLRequest *request = [self postRequest:[self getSubmitInquiryURL]];
+    NSData *data = [self getSubmitInquiryData];
+    
+    MD1SimonTaskHelper *taskHelper = [[MD1SimonTaskHelper alloc] init];
+    
+    [taskHelper startSync:self.session request:request data:data wait:SEARCH_TIMEOUT view:topView];
+    
+    if(taskHelper.task.state == NSURLSessionTaskStateCompleted && !taskHelper.error) {
+        NSInteger nscode = [taskHelper.httpResponse statusCode];
+        long code = nscode;
+        
+        switch(code)
+        {
+            case 200:
+            {
+                NSRange range = [taskHelper.responseString rangeOfString:@"Support Pages"];
+                if(range.location != NSNotFound){
+                } else {
+                    NSRange range = [taskHelper.responseString rangeOfString:BUS_ERROR];
+                    if(range.location != NSNotFound) {
+                        retval.error = BUS_ERROR;
+                    } else if([taskHelper.responseString rangeOfString:XPIRE_MSG].location != NSNotFound) {
+                        self.isLogin = NO;
+                        self.isRefresh = YES;
+                        retval.error = @"Session expired. Please login again";
+                    }
+                    else {
+                        retval.error = [[NSString alloc] initWithFormat:@"Invalid Server Response:\n%@", taskHelper.responseString];
+                    }
+                }
+                break;
+            }
+            case 500:
+            {
+                retval.error = @"500 Internal Server Error";
                 break;
             }
             default:

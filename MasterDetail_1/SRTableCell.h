@@ -1,9 +1,6 @@
 //
-//  RecipeTableCell.h
-//  RecipeApp
-//
-//  Created by Simon on 11/12/13.
-//  Copyright (c) 2013 Appcoda. All rights reserved.
+//  Created by Dmitry Oreshkin on 1/29/14.
+//  Copyright (c) 2014 Dmitry Oreshkin. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

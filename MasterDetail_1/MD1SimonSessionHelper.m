@@ -21,27 +21,30 @@
         self.domain = @"https://www8.qa.glic.com";
         self.pkmsloginForm = @"/pkmslogin.form";
         self.junctionAndSimon = @"/caseinstall/Simon";
-        self.searchAction = @"/MobileAppJSonSearch.do";
-        self.staticDataAction = @"/MobileAppJSonStaticData.do";
-        self.submitInquiryAction = @"/Support.do";
     } else if ([self.env isEqualToString:@"local"]) {
         self.domain = @"http://hos7d2ua33610jl:9081";
-        self.pkmsloginForm = @"/Simon/Main.do?zuser=sydgdxo";
+        self.pkmsloginForm = @"/Simon/MobileAppJSonLocalLogin.do?mobile=true&zuser=";
         self.junctionAndSimon = @"/Simon";
-        self.searchAction = @"/MobileAppJSonSearch.do";
-        self.staticDataAction = @"/MobileAppJSonStaticData.do";
-        self.submitInquiryAction = @"/Support.do";
+    } else if ([self.env isEqualToString:@"SIT2"]) {
+        self.domain = @"https://cesit.glic.com";
+        self.pkmsloginForm = @"/pkmslogin.form";
+        self.junctionAndSimon = @"/cisit/Simon";
+    } else if ([self.env isEqualToString:@"SIT"]) {
+        self.domain = @"https://cesit.glic.com";
+        self.pkmsloginForm = @"/pkmslogin.form";
+        self.junctionAndSimon = @"/caseinstall/Simon";
     } else {
         self.domain = @"https://www8.glic.com";
         self.pkmsloginForm = @"/pkmslogin.form";
         self.junctionAndSimon = @"/caseinstall/Simon";
-        self.searchAction = @"/MobileAppJSonTest.do";
-        self.staticDataAction = @"/MobileAppJSonStaticData.do";
-        self.submitInquiryAction = @"/Support.do";
     }
+    self.searchAction = @"/MobileAppJSonSearch.do?mobile=true";
+    self.caseAction = @"/MobileAppJSonCase.do?mobile=true";
+    self.staticDataAction = @"/MobileAppJSonStaticData.do?mobile=true";
+
     
     self.RGOs = [[NSMutableArray alloc] init];
-    self.salesReps  = [[NSMutableArray alloc] init];
+    self.salesReps  = [[NSMutableDictionary alloc] init];
                        
     return self;
 }
@@ -52,21 +55,28 @@
     return url;
 }
 
+- (NSURL *) pkmsLoginURL:(NSString *) userid
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", self.domain, self.pkmsloginForm, userid]];
+    return url;
+}
+
 - (NSURL *) searchURL
 {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", self.domain, self.junctionAndSimon, self.searchAction]];
     return url;
 }
 
-- (NSURL *) getStaticDataURL
+- (NSURL *) caseURL
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", self.domain, self.junctionAndSimon, self.staticDataAction]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", self.domain, self.junctionAndSimon, self.caseAction]];
     return url;
 }
 
-- (NSURL *) getSubmitInquiryURL
+
+- (NSURL *) getStaticDataURL
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", self.domain, self.junctionAndSimon, self.submitInquiryAction]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", self.domain, self.junctionAndSimon, self.staticDataAction]];
     return url;
 }
 
@@ -84,14 +94,14 @@
     return data;
 }
 
-- (NSData *) getStaticDataData
+- (NSData *) caseData:(NSString *) json
 {
-    NSString *bodyData = [NSString stringWithFormat:@"json=\"\""];
+    NSString *bodyData = [NSString stringWithFormat:@"json=%@", json];
     NSData *data = [NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])];
     return data;
 }
 
-- (NSData *) getSubmitInquiryData
+- (NSData *) getStaticDataData
 {
     NSString *bodyData = [NSString stringWithFormat:@"json=\"\""];
     NSData *data = [NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])];
@@ -136,7 +146,7 @@
     
     MD1SimonTaskHelper *taskHelper = [[MD1SimonTaskHelper alloc] init];
     
-    [taskHelper startSync:self.session request:request data:data wait:SEARCH_TIMEOUT];
+    [taskHelper startSync:self.session request:request data:data wait:SEARCH_TIMEOUT msg:@"Searching"];
     
     if(taskHelper.task.state == NSURLSessionTaskStateCompleted && !taskHelper.error) {
         NSInteger nscode = [taskHelper.httpResponse statusCode];
@@ -190,6 +200,70 @@
     return retval;
 }
 
+
+- (MD1SimonResponse *) getCase:(NSString *)json
+{
+    MD1SimonResponse *retval = [[MD1SimonResponse alloc] init];
+    
+    NSMutableURLRequest *request = [self postRequest:[self caseURL]];
+    NSData *data = [self searchData:json];
+    
+    MD1SimonTaskHelper *taskHelper = [[MD1SimonTaskHelper alloc] init];
+    
+    [taskHelper startSync:self.session request:request data:data wait:SEARCH_TIMEOUT msg:@"Getting Plan Data"];
+    
+    if(taskHelper.task.state == NSURLSessionTaskStateCompleted && !taskHelper.error) {
+        NSInteger nscode = [taskHelper.httpResponse statusCode];
+        long code = nscode;
+        
+        switch(code)
+        {
+            case 200:
+            {
+                NSRange range = [taskHelper.responseString rangeOfString:@"{\"resultset\""];
+                if(range.location != NSNotFound){
+                    NSError *error;
+                    NSObject *json = [NSJSONSerialization JSONObjectWithData:taskHelper.responseData options:0 error:&error];
+                    if(!error){
+                        retval.data = json;
+                    } else {
+                        retval.error = [error localizedDescription];
+                    }
+                } else {
+                    NSRange range = [taskHelper.responseString rangeOfString:BUS_ERROR];
+                    if(range.location != NSNotFound) {
+                        retval.error = BUS_ERROR;
+                    } else if([taskHelper.responseString rangeOfString:XPIRE_MSG].location != NSNotFound) {
+                        self.isLogin = NO;
+                        self.isRefresh = YES;
+                        retval.error = @"Session expired. Please login again";
+                    }
+                    else {
+                        retval.error = [[NSString alloc] initWithFormat:@"Invalid Server Response:\n%@", taskHelper.responseString];
+                    }
+                }
+                break;
+            }
+            case 500:
+            {
+                retval.error = @"500 Internal Server Error";
+                break;
+            }
+            default:
+            {
+                retval.error = [taskHelper.error localizedDescription];
+                break;
+            }
+        }
+        
+    } else {
+        [taskHelper.task cancel];
+        retval.error = [taskHelper.error localizedDescription];
+    }
+    
+    return retval;
+}
+
 - (MD1SimonResponse *) login:(NSString *) userid password:(NSString *) password
 {
     MD1SimonResponse *retval = [[MD1SimonResponse alloc] init];
@@ -198,12 +272,19 @@
         return retval;
     }
     
-    NSMutableURLRequest *request = [self postRequest:[self pkmsLoginURL]];
+    NSURL *loginURL;
+    if([self.env isEqualToString:@"local"]) {
+        loginURL = [self pkmsLoginURL:userid];
+    } else {
+        loginURL = [self pkmsLoginURL];
+    }
+    
+    NSMutableURLRequest *request = [self postRequest:loginURL];
     NSData *data = [self pkmsloginData:userid password:password];
     
     MD1SimonTaskHelper *taskHelper = [[MD1SimonTaskHelper alloc] init];
     
-    [taskHelper startSync:self.session request:request data:data wait:LOGIN_TIMEOUT];
+    [taskHelper startSync:self.session request:request data:data wait:LOGIN_TIMEOUT msg:@"Authenticating"];
     
     if(taskHelper.task.state == NSURLSessionTaskStateCompleted && !taskHelper.error) {
         //TO DO NSJSONSerialization later for data calls. not here
@@ -263,7 +344,7 @@
     
     MD1SimonTaskHelper *taskHelper = [[MD1SimonTaskHelper alloc] init];
     
-    [taskHelper startSync:self.session request:request data:data wait:SEARCH_TIMEOUT];
+    [taskHelper startSync:self.session request:request data:data wait:SEARCH_TIMEOUT msg:@"Getting Application Data"];
     
     if(taskHelper.task.state == NSURLSessionTaskStateCompleted && !taskHelper.error) {
         NSInteger nscode = [taskHelper.httpResponse statusCode];
@@ -282,62 +363,6 @@
                     } else {
                         retval.error = [error localizedDescription];
                     }
-                } else {
-                    NSRange range = [taskHelper.responseString rangeOfString:BUS_ERROR];
-                    if(range.location != NSNotFound) {
-                        retval.error = BUS_ERROR;
-                    } else if([taskHelper.responseString rangeOfString:XPIRE_MSG].location != NSNotFound) {
-                        self.isLogin = NO;
-                        self.isRefresh = YES;
-                        retval.error = @"Session expired. Please login again";
-                    }
-                    else {
-                        retval.error = [[NSString alloc] initWithFormat:@"Invalid Server Response:\n%@", taskHelper.responseString];
-                    }
-                }
-                break;
-            }
-            case 500:
-            {
-                retval.error = @"500 Internal Server Error";
-                break;
-            }
-            default:
-            {
-                retval.error = [taskHelper.error localizedDescription];
-                break;
-            }
-        }
-        
-    } else {
-        [taskHelper.task cancel];
-        retval.error = [taskHelper.error localizedDescription];
-    }
-    
-    return retval;
-}
-
-- (MD1SimonResponse *) submitInquiry:(UIView *) topView
-{
-    MD1SimonResponse *retval = [[MD1SimonResponse alloc] init];
-    
-    NSMutableURLRequest *request = [self postRequest:[self getSubmitInquiryURL]];
-    NSData *data = [self getSubmitInquiryData];
-    
-    MD1SimonTaskHelper *taskHelper = [[MD1SimonTaskHelper alloc] init];
-    
-    [taskHelper startSync:self.session request:request data:data wait:SEARCH_TIMEOUT view:topView];
-    
-    if(taskHelper.task.state == NSURLSessionTaskStateCompleted && !taskHelper.error) {
-        NSInteger nscode = [taskHelper.httpResponse statusCode];
-        long code = nscode;
-        
-        switch(code)
-        {
-            case 200:
-            {
-                NSRange range = [taskHelper.responseString rangeOfString:@"Support Pages"];
-                if(range.location != NSNotFound){
                 } else {
                     NSRange range = [taskHelper.responseString rangeOfString:BUS_ERROR];
                     if(range.location != NSNotFound) {

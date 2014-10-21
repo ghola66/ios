@@ -11,5 +11,6 @@
 @interface MD1PlansViewController : UITableViewController
 
 @property NSArray *resultset;
+@property NSArray *caseResultset;
 
 @end

@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MD1SearchViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
+@interface MD1SearchViewController : UIViewController <UITextFieldDelegate>
 
-@property NSArray *resultset;
+@property (strong, nonatomic) NSArray *resultset;
+
+@property (weak, nonatomic) NSString *userid;
+@property (weak, nonatomic) NSString *userGroup;
 
 @end

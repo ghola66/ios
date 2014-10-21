@@ -10,4 +10,10 @@
 
 @interface MD1LoginViewController : UIViewController <UITextFieldDelegate>
 
++ (void)keyChainSaveKey:(NSString *)key data:(id)data;
++ (id)keyChainLoadKey:(NSString *)key;
++ (void)keyChainDeleteKey:(NSString *)service;
+
+@property (strong, nonatomic) NSArray *resultset;
+
 @end

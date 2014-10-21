@@ -10,13 +10,20 @@
 #import "MD1SimonSessionHelper.h"
 
 MD1SimonSessionHelper *g_SimonSession;
+//MFMailComposeViewController *g_MailVC;
 
 @implementation MD1AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_bg_ios7@2x.png"] forBarMetrics:UIBarMetricsDefault];
+    
     g_SimonSession = [[MD1SimonSessionHelper alloc] init];
+    //g_MailVC = nil;
+    //g_MailVC = [[MFMailComposeViewController alloc] init];
+    
     return YES;
 }
 							

@@ -14,6 +14,7 @@
 #define LOGIN_TIMEOUT 60
 #define SEARCH_TIMEOUT 60
 #define BUS_ERROR @"An unexpected error has occurred. Please contact the BUS for assistance if this issue persists."
+#define CRU_ERROR @"An unexpected error has occurred. Please contact the CRU for assistance if this issue persists."
 
 #define XPIRE_MSG @">Please enter your userid and password.<"
 
@@ -26,17 +27,17 @@
 @property NSString *pkmsloginForm;
 @property NSString *junctionAndSimon;
 @property NSString *searchAction;
+@property NSString *caseAction;
 @property NSString *staticDataAction;
-@property NSString *submitInquiryAction;
 
 @property NSMutableArray *RGOs;
-@property NSMutableArray *salesReps;
+@property NSMutableDictionary *salesReps;
 
 - (BOOL) defaultSessionConfiguration;
 - (BOOL) delegateFreeSession;
 - (MD1SimonResponse *) login:(NSString *) userid password:(NSString *) password;
 - (MD1SimonResponse *) search:(NSString *)json;
+- (MD1SimonResponse *) getCase:(NSString *)json;
 - (MD1SimonResponse *) getStaticData;
-- (MD1SimonResponse *) submitInquiry:(UIView *) topView;
 
 @end

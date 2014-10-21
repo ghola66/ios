@@ -11,6 +11,8 @@
 #import "MD1SimonSessionHelper.h"
 #import "MD1SearchViewController.h"
 #import "MD1PlansViewController.h"
+#import "RGOTableViewController.h"
+#import "SRTableViewController.h"
 
 
 MD1SimonSessionHelper *g_SimonSession;
@@ -18,28 +20,25 @@ MD1SimonSessionHelper *g_SimonSession;
 
 @interface MD1SearchViewController ()
 
-@property (weak, nonatomic) IBOutlet UIPickerView *RGO;
 @property (weak, nonatomic) IBOutlet UITextField *RGOtext;
-@property (weak, nonatomic) IBOutlet UIPickerView *salesRep;
 @property (weak, nonatomic) IBOutlet UITextField *salesRepText;
-@property (weak, nonatomic) IBOutlet UIDatePicker *from;
-@property (weak, nonatomic) IBOutlet UITextField *fromText;
-@property (weak, nonatomic) IBOutlet UIDatePicker *to;
-@property (weak, nonatomic) IBOutlet UITextField *toText;
 @property (weak, nonatomic) IBOutlet UITextField *planNumber;
 @property (weak, nonatomic) IBOutlet UITextField *planholder;
 @property (weak, nonatomic) IBOutlet UISwitch *matchAnywhere;
-
-@property (nonatomic) NSMutableArray *RGOs;
+@property BOOL RGOtextClr;
+@property BOOL SRtextClr;
 @property (nonatomic) NSMutableArray *salesReps;
+@property (nonatomic, assign) id currentResponder;
 
 - (IBAction)home:(id)sender;
-- (IBAction)datePickerChanged:(id)sender;
 - (IBAction)clear:(id)sender;
 
 @end
 
 @implementation MD1SearchViewController
+
+    RGO *RGOselected;
+    SalesRep *SRselected;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,85 +52,44 @@ MD1SimonSessionHelper *g_SimonSession;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    self.RGOs = [[NSMutableArray alloc] init];
-    self.RGOs[0] = @"Please Select RGO...";
-    for(int i = 0; i < g_SimonSession.RGOs.count; i++){
-        self.RGOs[i+1] = g_SimonSession.RGOs[i];
+    // Do any additional setup after loading the view.
+    
+    
+    
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignOnTap:)];
+    [singleTap setNumberOfTapsRequired:1];
+    [singleTap setNumberOfTouchesRequired:1];
+    [self.view addGestureRecognizer:singleTap];
+    
+    self.RGOtextClr = NO;
+    self.SRtextClr = NO;
+    
+    if([_userGroup isEqualToString:@"Group_producer"]){
+        if([self shouldPerformSegueWithIdentifier:@"ShowPlans" sender:self]){
+            [self performSegueWithIdentifier:@"ShowPlans" sender:self];
+            return;
+        }
     }
-    self.RGO.hidden = YES;
     
-    self.salesReps = [[NSMutableArray alloc] init];
-    self.salesReps[0] = @"Please Select Sales Rep...";
-    for(int i = 0; i < g_SimonSession.salesReps.count; i++){
-        self.salesReps[i+1] = g_SimonSession.salesReps[i];
+    NSString *racfid = _userid;
+    BOOL idfound = NO;
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"(racfid =[cd] %@)", racfid];
+    
+    for(NSString *key in g_SimonSession.salesReps) {
+        NSArray *array = g_SimonSession.salesReps[key];
+        NSArray *matches = [array filteredArrayUsingPredicate:resultPredicate];
+        if([matches count] > 0) {
+            idfound = YES;
+            SRselected = matches[0];
+            break;
+        }
     }
-    self.salesRep.hidden = YES;
     
-    self.from.hidden = YES;
-    self.to.hidden = YES;
-    
-    [self addPickerToTextfield:self.salesRepText picker:self.salesRep action:@selector(salesRepPickerDoneClicked)];
-    [self addPickerToTextfield:self.RGOtext picker:self.RGO action:@selector(rgoPickerDoneClicked)];
-    [self addPickerToTextfield:self.fromText picker:self.from action:@selector(fromPickerDoneClicked)];
-    [self addPickerToTextfield:self.toText picker:self.to action:@selector(toPickerDoneClicked)];
+    if(idfound) {
+        _salesRepText.text = SRselected.fullNm;
+    }
 }
 
-- (void) addPickerToTextfield:(UITextField *)text picker:(UIView *)picker action:(SEL)action
-{
-    [text setInputView:picker];
-    
-    UIToolbar *pickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 56)];
-    [pickerToolbar sizeToFit];
-    
-    NSMutableArray *barItems = [[NSMutableArray alloc] init];
-    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    [barItems addObject:flexSpace];
-    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:action];
-    [barItems addObject:doneBtn];
-    [pickerToolbar setItems:barItems animated:YES];
-
-    text.inputAccessoryView = pickerToolbar;
-}
-
-- (void)rgoPickerDoneClicked
-{
-    [self.RGOtext resignFirstResponder];
-    self.RGOtext.inputAccessoryView.hidden=YES;
-    self.RGO.hidden=YES;
-}
-
-- (void)salesRepPickerDoneClicked
-{
-    [self.salesRepText resignFirstResponder];
-    self.salesRepText.inputAccessoryView.hidden=YES;
-    self.salesRep.hidden=YES;
-}
-
-- (void)fromPickerDoneClicked
-{
-    [self.fromText resignFirstResponder];
-    self.fromText.inputAccessoryView.hidden=YES;
-    self.from.hidden = YES;
-    
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"MM/dd/yyyy"];
-    
-    self.fromText.text =[df stringFromDate:self.from.date];
-}
-
-- (void)toPickerDoneClicked
-{
-    [self.toText resignFirstResponder];
-    self.toText.inputAccessoryView.hidden=YES;
-    self.to.hidden = YES;
-    
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"MM/dd/yyyy"];
-    
-    self.toText.text =[df stringFromDate:self.to.date];
-
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -139,57 +97,6 @@ MD1SimonSessionHelper *g_SimonSession;
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark PickerView DataSource
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    if([pickerView isEqual:self.RGO]) {
-        return self.RGOs.count;
-    } else if ([pickerView isEqual:self.salesRep]) {
-        return self.salesReps.count;
-    } else {
-        return 0;
-    }
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    if([pickerView isEqual:self.RGO]) {
-        return self.RGOs[row];
-    } else if ([pickerView isEqual:self.salesRep]) {
-        return self.salesReps[row];
-    } else {
-        return nil;
-    }
-}
-
-#pragma mark PickerView Delegate
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row
-      inComponent:(NSInteger)component
-{
-    if([pickerView isEqual:self.RGO]) {
-        if(row > 0) {
-            NSString *rgo = self.RGOs[row];
-            self.RGOtext.text = rgo;
-        } else {
-            self.RGOtext.text = @"";
-        }
-    } else if ([pickerView isEqual:self.salesRep]) {
-        if(row > 0) {
-            NSString *salesRep = self.salesReps[row];
-            self.salesRepText.text = salesRep;
-        } else {
-            self.salesRepText.text = @"";
-        }
-    } else {
-        return;
-    }
-}
 
 - (IBAction)search:(id)sender
 {
@@ -205,19 +112,23 @@ MD1SimonSessionHelper *g_SimonSession;
     self.planNumber.text = @"";
     self.planholder.text = @"";
     self.matchAnywhere.on = NO;
-    [self.salesRep selectRow:0 inComponent:0 animated:NO];
     self.salesRepText.text = @"";
-    [self.RGO selectRow:0 inComponent:0 animated:NO];
     self.RGOtext.text = @"";
-    self.fromText.text = @"";
-    self.toText.text = @"";
+    RGOselected = nil;
+    SRselected = nil;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([[segue destinationViewController] isKindOfClass:[MD1PlansViewController class]]) {
-    MD1PlansViewController *targetvc =[segue destinationViewController];
-    targetvc.resultset = self.resultset;
+        MD1PlansViewController *targetvc =[segue destinationViewController];
+        targetvc.resultset = self.resultset;
+    } else if([[segue destinationViewController] isKindOfClass:[RGOTableViewController class]]) {
+        RGOTableViewController *targetvc =[segue destinationViewController];
+        targetvc.RGOs = g_SimonSession.RGOs;
+    } else if([[segue destinationViewController] isKindOfClass:[SRTableViewController class]]) {
+        SRTableViewController *targetvc =[segue destinationViewController];
+        targetvc.SalesReps = g_SimonSession.salesReps;
     } else {
         
     }
@@ -227,42 +138,52 @@ MD1SimonSessionHelper *g_SimonSession;
 {
     if ([identifier isEqualToString:@"ShowPlans"]) {
         BOOL performSegue = NO;
-        NSString *error;
+        NSString *error, *errTitle;
         
         NSMutableDictionary *jsonIn = [[NSMutableDictionary alloc] init];
         if([self.planNumber.text length] > 0) {
-            jsonIn[CSD_PLN_NR] = self.planNumber.text;
+            NSString *plnNr = self.planNumber.text;
+            if([plnNr length] < 8) {
+                NSString *padding = [@"" stringByPaddingToLength:8 - [plnNr length]  withString:@"0" startingAtIndex:0];
+                plnNr = [padding stringByAppendingString:plnNr];
+            }
+            jsonIn[CSD_PLN_NR] = plnNr;
         }
         if([self.planholder.text length] > 0) {
             jsonIn[CSD_PHD_NM] = self.planholder.text;
         }
         if(self.matchAnywhere.on) {
-           jsonIn[@"isPHMatch"] = @"true";
+            jsonIn[@"isPHMatch"] = @"true";
         }
-        if([self.salesRepText.text length] > 0) {
-            NSRange range = [self.salesRepText.text rangeOfString:@" - "];
-            if(range.location != NSNotFound) {
-                jsonIn[CSD_SALES_REP_CD] = [self.salesRepText.text substringToIndex:range.location];
-            }
+        if(SRselected != nil) {
+            jsonIn[CSD_SALES_REP_CD] = SRselected.racfid;
         }
-        if([self.RGOtext.text length] > 0) {
-            NSRange range = [self.RGOtext.text rangeOfString:@" - "];
-            if(range.location != NSNotFound) {
-                jsonIn[CSD_RGO_CD] = [self.RGOtext.text substringToIndex:range.location];
-            }
+        if(RGOselected != nil) {
+            jsonIn[CSD_RGO_CD] = RGOselected.cd;
         }
-        if([self.fromText.text length] > 0) {
-            jsonIn[@"dateFrom"] = self.fromText.text;
-        }
-        if([self.toText.text length] > 0) {
-            jsonIn[@"dateTo"] = self.toText.text;
+        
+        if([jsonIn count] == 0) {
+            UIAlertView *notPermitted = [[UIAlertView alloc]
+                                         initWithTitle:@"Warning"
+                                         message:@"Please enter search criteria"
+                                         delegate:nil
+                                         cancelButtonTitle:@"OK"
+                                         otherButtonTitles:nil];
+            
+            // shows alert to user
+            [notPermitted show];
+            return NO;
         }
         
         NSError *nserror;
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:(jsonIn) options:0 error:&nserror];
         
+        errTitle = @"Error";
+        
         if(!nserror) {
             NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            
+            self.resultset = nil;
             
             MD1SimonResponse *response;
             response = [g_SimonSession search:jsonStr];
@@ -273,8 +194,15 @@ MD1SimonSessionHelper *g_SimonSession;
                     NSDictionary *jsonDic = (NSDictionary *)jsonOut;
                     NSArray *resultset = [jsonDic objectForKey:@"resultset"];
                     if(resultset) {
-                        self.resultset = resultset;
-                        performSegue = YES;
+                        if([resultset count] > 0) {
+                            self.resultset = resultset;
+                            performSegue = YES;
+                        } else {
+                            performSegue = NO;
+                            errTitle = @"Warning";
+                            error = @"No customer applications currently found";
+                        }
+                        
                     } else {
                         error = @"Invalid System Response, resultset=(nil)";
                     }
@@ -290,7 +218,7 @@ MD1SimonSessionHelper *g_SimonSession;
         
         if (!performSegue) {
             UIAlertView *notPermitted = [[UIAlertView alloc]
-                                         initWithTitle:@"Error"
+                                         initWithTitle:errTitle
                                          message:error
                                          delegate:nil
                                          cancelButtonTitle:@"OK"
@@ -299,7 +227,7 @@ MD1SimonSessionHelper *g_SimonSession;
             // shows alert to user
             [notPermitted show];
         }
-       return performSegue;
+        return performSegue;
     }
     
     // by default perform the segue transition
@@ -309,43 +237,98 @@ MD1SimonSessionHelper *g_SimonSession;
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    if([textField isEqual:self.planNumber] || [textField isEqual:self.planholder]) {
+        if([self shouldPerformSegueWithIdentifier:@"ShowPlans" sender:self]){
+            [self performSegueWithIdentifier:@"ShowPlans" sender:self];
+        }
+    }
     return YES;
 }
 
 - (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
 {
-    if([textField isEqual:self.RGOtext]) {
-        self.RGO.hidden = NO;
-        textField.inputAccessoryView.hidden=NO;
-    } else if([textField isEqual:self.salesRepText]) {
-        self.salesRep.hidden = NO;
-        textField.inputAccessoryView.hidden = NO;
-    } else if([textField isEqual:self.fromText]) {
-        textField.inputAccessoryView.hidden = NO;
-        self.from.hidden = NO;
-    } else if([textField isEqual:self.toText]) {
-        textField.inputAccessoryView.hidden = NO;
-        self.to.hidden = NO;
-    } else if([textField isEqual:self.planNumber]) {
+    if([textField isEqual:self.RGOtext] ) {
+        [textField resignFirstResponder];
+        if(self.RGOtextClr == NO) {
+            [self performSegueWithIdentifier:@"showrgos" sender:self];
+        } else {
+            self.RGOtextClr = NO;
+        }
+        return NO;
+    } else if([textField isEqual:self.salesRepText] ) {
+        [textField resignFirstResponder];
+        if(self.SRtextClr == NO) {
+            [self performSegueWithIdentifier:@"showsalesreps" sender:self];
+        } else {
+            self.SRtextClr = NO;
+        }
+        return NO;
     }
-    
     return YES;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+    if([textField isEqual:self.RGOtext] ) {
+        self.RGOtext.text = @"";
+        RGOselected = nil;
+        self.RGOtextClr = YES;
+    } else if([textField isEqual:self.salesRepText] ) {
+        self.salesRepText.text = @"";
+        SRselected = nil;
+        self.SRtextClr = YES;
+    }
+        
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.currentResponder = textField;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
     
 }
 
-- (IBAction)datePickerChanged:(id)sender
-{
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"MM/dd/yyyy"];
+- (void)resignOnTap:(id)iSender {
+    [self.currentResponder resignFirstResponder];
+}
+
+- (IBAction) unwindToSearch: (UIStoryboardSegue *)segue {
     
-    if([sender isEqual:self.from]) {
-        self.fromText.text =[df stringFromDate:self.from.date];
-    } else if([sender isEqual:self.to]) {
-        self.toText.text =[df stringFromDate:self.to.date];
+    
+    if([[segue sourceViewController] isKindOfClass:[RGOTableViewController class]]) {
+        RGOTableViewController *sourceVC = [segue sourceViewController];
+        RGOselected = sourceVC.RGOselected;
+        self.RGOtext.text = [NSString stringWithFormat:@"%@ - %@", sourceVC.RGOselected.cd, sourceVC.RGOselected.name];
+    } else if([[segue sourceViewController] isKindOfClass:[SRTableViewController class]]) {
+        SRTableViewController *sourceVC = [segue sourceViewController];
+        SRselected = sourceVC.SRselected;
+        self.salesRepText.text = [NSString stringWithFormat:@"%@", sourceVC.SRselected.fullNm];
     }
 }
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.navigationController.toolbarHidden = NO;
+  }
+
+- (void) addPickerToTextfield:(UITextField *)text picker:(UIView *)picker action:(SEL)action {
+    [text setInputView:picker];
+    
+    UIToolbar *pickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 56)];
+    [pickerToolbar sizeToFit];
+    
+    NSMutableArray *barItems = [[NSMutableArray alloc] init];
+    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    [barItems addObject:flexSpace];
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:action];
+    [barItems addObject:doneBtn];
+    [pickerToolbar setItems:barItems animated:YES];
+    
+    text.inputAccessoryView = pickerToolbar;
+}
+
+
+
 @end

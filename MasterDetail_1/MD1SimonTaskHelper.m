@@ -18,6 +18,9 @@
     self.session = session;
     self.request = request;
     self.data = data;
+    NSString *dataString = [[NSString alloc] initWithData: data
+                                                encoding: NSUTF8StringEncoding];
+    NSLog(@"MD1SimonTaskHelper.start, request:%@, data:%@", request, dataString);
     self.task = [session uploadTaskWithRequest:request fromData:data
     
                              completionHandler:^(NSData *data, NSURLResponse *response,
@@ -38,17 +41,17 @@
     [self.task resume];
 }
 
-- (void) startSync:(NSURLSession *) session request:(NSMutableURLRequest *) request data:(NSData *) data wait:(int)wait
+- (void) startSync:(NSURLSession *) session request:(NSMutableURLRequest *) request data:(NSData *) data wait:(int)wait msg:(NSString *)msg
 {
     MD1AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     UIView *topView = appDelegate.window.rootViewController.view;
-    [self startSync:session request:request data:data wait:wait view:topView];
+    [self startSync:session request:request data:data wait:wait view:topView msg:msg];
 }
 
-- (void) startSync:(NSURLSession *) session request:(NSMutableURLRequest *) request data:(NSData *) data wait:(int) wait view:(UIView *) topView
+- (void) startSync:(NSURLSession *) session request:(NSMutableURLRequest *) request data:(NSData *) data wait:(int) wait view:(UIView *) topView msg:(NSString *)msg
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:topView animated:YES];
-    hud.labelText = @"Network Activity";
+    hud.labelText = msg;
     
     [self start:session request:request data:data];
     int count = 0;

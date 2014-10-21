@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
-@interface MD1PlanViewController : UITableViewController
+@interface MD1PlanViewController : UITableViewController <MFMailComposeViewControllerDelegate>
 
 @property NSDictionary *CaseSearchDataJSon;
 @property NSMutableDictionary *planData;

@@ -5,7 +5,7 @@
 //  Created by Dmitry Oreshkin on 1/23/14.
 //  Copyright (c) 2014 Dmitry Oreshkin. All rights reserved.
 //
-
+#import <MessageUI/MessageUI.h>
 #import "MD1SimonSessionHelper.h"
 #import "MD1NavigationController.h"
 
@@ -14,6 +14,7 @@
 @end
 
 extern MD1SimonSessionHelper *g_SimonSession;
+//extern MFMailComposeViewController *g_MailVC;
 
 @implementation MD1NavigationController
 
@@ -31,6 +32,8 @@ extern MD1SimonSessionHelper *g_SimonSession;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    //self.hidesBottomBarWhenPushed = YES;
+    
     [g_SimonSession defaultSessionConfiguration];
     
     [g_SimonSession delegateFreeSession];
@@ -40,6 +43,11 @@ extern MD1SimonSessionHelper *g_SimonSession;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)navigationBar:(UINavigationBar *)navigationBar
+           didPopItem:(UINavigationItem *)item {
+    
 }
 
 @end

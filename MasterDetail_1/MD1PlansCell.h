@@ -12,5 +12,6 @@
 
 @property (nonatomic, weak) IBOutlet UILabel *numberLabel;
 @property (nonatomic, weak) IBOutlet UILabel *phNameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *processLabel;
 
 @end

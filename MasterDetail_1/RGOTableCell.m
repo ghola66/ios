@@ -1,14 +1,14 @@
 //
-//  MD1InquiriesCell.m
-//  Workflow
+//  CustomTableCell.m
+//  CustomTable
 //
-//  Created by Dmitry Oreshkin on 2/27/14.
-//  Copyright (c) 2014 Dmitry Oreshkin. All rights reserved.
+//  Created by Simon on 11/12/13.
+//  Copyright (c) 2013 Appcoda. All rights reserved.
 //
 
-#import "MD1InquiriesCell.h"
+#import "RGOTableCell.h"
 
-@implementation MD1InquiriesCell
+@implementation RGOTableCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

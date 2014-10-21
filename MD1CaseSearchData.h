@@ -30,6 +30,11 @@
 #define CSD_CASE_STATUS_DESC  @"caseStatusDesc"
 #define CSD_CASE_START_DT  @"caseStartDt"
 #define CSD_TERM_DT  @"termDt"
+#define CSD_MBO_DT  @"goalDt"
+#define CSD_EFF_DT  @"effDt"
+#define CSD_IC_EMAIL  @"ice"
+#define CSD_IC_NAME  @"icn"
+#define CSD_CURRENT_STATUS @"currSt"
 
 #define CSD_JSON   @"CaseSearchDataJSon"
 @end

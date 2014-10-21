@@ -7,9 +7,13 @@
 //
 
 #import "MD1CaseSearchData.h"
+#import "MD1SimonResponse.h"
+#import "MD1SimonSessionHelper.h"
 #import "MD1PlansCell.h"
 #import "MD1PlansViewController.h"
 #import "MD1PlanViewController.h"
+
+MD1SimonSessionHelper *g_SimonSession;
 
 @interface MD1PlansViewController ()
 
@@ -50,7 +54,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -58,19 +62,50 @@
     // Return the number of rows in the section.
     long retval;
     if(section == 0 ) {
-        retval = 1;
+        retval = [self.resultset count];
     } else {
         retval = [self.resultset count];
     }
     return retval;
 }
 
+/*
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionTitle;
+    
+    switch(section) {
+        case 0:
+        {
+            sectionTitle = @"Plan #          Process";
+            break;
+        }
+        case 1:
+        {
+            sectionTitle = @"Process        Status";
+            break;
+        }
+        case 2:
+        {
+            sectionTitle = @"";
+            break;
+        }
+        default:
+        {
+            sectionTitle = @"";
+            break;
+        }
+    }
+    return sectionTitle;
+}
+*/
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier;
     
     if(indexPath.section == 0 ) {
-        cellIdentifier = @"PlansHeader";
+        cellIdentifier = @"PlansData"; //cellIdentifier = @"PlansHeader";
     } else {
         cellIdentifier = @"PlansData";
     }
@@ -79,17 +114,29 @@
     
     // Configure the cell...
     if(indexPath.section == 0 ) {
-        cell.numberLabel.text = @"Plan #";
-        cell.phNameLabel.text = @"Plan Name";
+        //cell.numberLabel.text = @"Plan #";
+        //cell.phNameLabel.text = @"Process";
+        NSDictionary  *row = self.resultset[indexPath.row];
+        
+        NSDictionary *jCSD = row[CSD_JSON];
+        NSString *plnNr = (NSString *)jCSD[CSD_PLN_NR];
+        NSString *phName = (NSString *)jCSD[CSD_PHD_NM];
+        NSString *process = (NSString *)jCSD[CSD_PROC_TYPE_DESC];
+        
+        cell.numberLabel.text = plnNr;
+        cell.phNameLabel.text = phName;
+        cell.processLabel.text = process;
     } else {
         NSDictionary  *row = self.resultset[indexPath.row];
         
         NSDictionary *jCSD = row[CSD_JSON];
         NSString *plnNr = (NSString *)jCSD[CSD_PLN_NR];
         NSString *phName = (NSString *)jCSD[CSD_PHD_NM];
+        NSString *process = (NSString *)jCSD[CSD_PROC_TYPE_DESC];
         
         cell.numberLabel.text = plnNr;
         cell.phNameLabel.text = phName;
+        cell.processLabel.text = process;
     }
     
     return cell;
@@ -102,17 +149,71 @@
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     if ([identifier isEqualToString:@"ShowPlan"]) {
+        
+        MD1PlansCell *cell = sender;
+        UITableView *table = (UITableView *)cell.superview.superview;
+        NSIndexPath *indexPath = [table indexPathForCell:cell];
+        NSDictionary  *row = self.resultset[indexPath.row];
+        NSDictionary *jCSD = row[CSD_JSON];
+        NSString *caseNr = (NSString *)jCSD[CSD_CASE_NR];
+        
+        NSLog(@"caseNr:%@\n", caseNr);
+        
+        BOOL performSegue = NO;
+        NSString *error;
+        
+        NSMutableDictionary *jsonIn = [[NSMutableDictionary alloc] init];
+            jsonIn[CSD_CASE_NR] = caseNr;
+        
+        NSError *nserror;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:(jsonIn) options:0 error:&nserror];
+        
+        if(!nserror) {
+            NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            
+            MD1SimonResponse *response;
+            response = [g_SimonSession getCase:jsonStr];
+            
+            if (!response.error) {
+                NSObject *jsonOut = response.data;
+                if(jsonOut) {
+                    NSDictionary *jsonDic = (NSDictionary *)jsonOut;
+                    NSArray *resultset = [jsonDic objectForKey:@"resultset"];
+                    if(resultset) {
+                        self.caseResultset = resultset;
+                        performSegue = YES;
+                    } else {
+                        error = @"Invalid System Response, resultset=(nil)";
+                    }
+                } else {
+                    error = @"Invalid System Response, data=(nil)";
+                }
+            } else {
+                error = response.error;
+            }
+        } else {
+            error = [nserror localizedDescription];
+        }
+        
+        if (!performSegue) {
+            UIAlertView *notPermitted = [[UIAlertView alloc]
+                                         initWithTitle:@"Error"
+                                         message:error
+                                         delegate:nil
+                                         cancelButtonTitle:@"OK"
+                                         otherButtonTitles:nil];
+            
+            // shows alert to user
+            [notPermitted show];
+        }
+        return performSegue;
     }
     return YES;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    MD1PlansCell *cell = sender;
-    UITableView *table = (UITableView *)cell.superview.superview;
-    NSIndexPath *indexPath = [table indexPathForCell:cell];
-    NSDictionary  *row = self.resultset[indexPath.row];
-    
+    NSDictionary  *row = self.caseResultset[0];
     NSDictionary *jCSD = row[CSD_JSON];
     MD1PlanViewController *targetvc =[segue destinationViewController];
     [targetvc segueData:jCSD];
@@ -155,17 +256,5 @@
     return YES;
 }
 */
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end

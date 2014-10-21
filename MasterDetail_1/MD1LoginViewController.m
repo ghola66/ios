@@ -5,9 +5,14 @@
 //  Created by Dmitry Oreshkin on 1/23/14.
 //  Copyright (c) 2014 Dmitry Oreshkin. All rights reserved.
 //
+#import <CommonCrypto/CommonCryptor.h>
 
 #import "MD1SimonSessionHelper.h"
 #import "MD1LoginViewController.h"
+#import "RGO.h"
+#import "SalesRep.h"
+#import "MD1SearchViewController.h"
+#import "MD1PlansViewController.h"
 
 MD1SimonSessionHelper *g_SimonSession;
 
@@ -16,15 +21,23 @@ MD1SimonSessionHelper *g_SimonSession;
 @property (strong, nonatomic) IBOutlet UITextField *userid;
 @property (strong, nonatomic) IBOutlet UITextField *password;
 @property (strong, nonatomic) NSString *dataFilePath;
+@property (strong, nonatomic) NSArray *RGOs;
+@property (strong, nonatomic) NSDictionary *salesReps;
+@property (strong, nonatomic) NSString *userGroup;
+@property (strong, nonatomic) NSString *tmpid;
 
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
 @property (weak, nonatomic) IBOutlet UIButton *go;
+@property (weak, nonatomic) IBOutlet UIButton *legal;
 
 - (IBAction)go:(id)sender;
+- (IBAction)legal:(id)sender;
 
 @end
 
 @implementation MD1LoginViewController
+
+BOOL isFirstAppearance;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,9 +51,25 @@ MD1SimonSessionHelper *g_SimonSession;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    isFirstAppearance = YES;
+    
 	// Do any additional setup after loading the view.
+    
     self.logo.image  = [UIImage imageNamed:@"guardian-logo.gif"];
     
+    //self.hidesBottomBarWhenPushed = YES;
+    self.navigationController.toolbarHidden = YES;
+    
+    {
+        NSMutableDictionary *data = [MD1LoginViewController keyChainLoadKey:@"simonlogin"];
+        if(data != nil) {
+            _tmpid = data[@"userid"];
+            _userid.text = _tmpid;
+            _password.text = data[@"password"];
+        }
+    }
+
     {
         NSFileManager *filemgr;
         NSString *docsDir;
@@ -50,38 +79,48 @@ MD1SimonSessionHelper *g_SimonSession;
         dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         docsDir = dirPaths[0];
         // Build the path to the data file
-        _dataFilePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"guardian.archive"]];
+        _dataFilePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"guardian_simon.archive"]];
         // Check if the file already exists
-        if ([filemgr fileExistsAtPath: _dataFilePath]){
+        if ([filemgr fileExistsAtPath: _dataFilePath] && YES){
             NSMutableArray *dataArray;
             dataArray = [NSKeyedUnarchiver
                          unarchiveObjectWithFile: _dataFilePath];
-            _userid.text = dataArray[0];
-            _password.text = dataArray[1];
+            NSLog(@"got stored objects:%lu", (unsigned long)[dataArray count]);
+            if([dataArray count] == 3 ){
+                _userGroup = dataArray[0];
+                _RGOs = dataArray[1];
+                _salesReps = dataArray[2];
+            } else {
+                NSLog(@"expecting 3 but got:%lu objects", (unsigned long)[dataArray count]);
+            }
+        } else {
+            NSLog(@"did not find guardian_simon.archive");
         }
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)go:(id)sender
-{
+- (IBAction)go:(id)sender {
+    //
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (IBAction)legal:(id)sender {
+    NSString* launchUrl = @"http://www.guardiananytime.com";
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
 }
 
 -(IBAction)passwordFieldReturn:(id)sender
 {
     [sender resignFirstResponder];
-    /*if ([sender isEqual:self.password]) {
-     [self.go sendActionsForControlEvents:UIControlEventTouchUpInside];
-    }*/
+    if ([sender isEqual:self.password]) {
+        if([self shouldPerformSegueWithIdentifier:@"ShowSearch" sender:self]) {
+            [self performSegueWithIdentifier:@"ShowSearch" sender:self];
+        }
+    }
 }
 
 -(IBAction)textFieldReturn:(id)sender
@@ -95,11 +134,35 @@ MD1SimonSessionHelper *g_SimonSession;
     return YES;
 }
 
+
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     if ([identifier isEqualToString:@"ShowSearch"]) {
         // perform your computation to determine whether segue should occur
-        
+        NSMutableArray *dataArray = [[NSMutableArray alloc] init];
         MD1SimonResponse *response;
+        
+        if(![self.userid.text isEqualToString:_tmpid]) {
+            _userGroup = nil;
+            _RGOs = nil;
+            _salesReps = nil;
+            _tmpid = self.userid.text;
+        }
+        
+        if( [self.userid.text length] == 0 || [self.password.text length] == 0) {
+            UIAlertView *notPermitted = [[UIAlertView alloc]
+                                         initWithTitle:@"Error"
+                                         message:@"Please enter ID and password"
+                                         delegate:nil
+                                         cancelButtonTitle:@"OK"
+                                         otherButtonTitles:nil];
+            
+            // shows alert to user
+            [notPermitted show];
+            
+            // prevent segue from occurring
+            return NO;
+        }
+        
         
         response = [g_SimonSession login:self.userid.text password:self.password.text];
         
@@ -118,15 +181,14 @@ MD1SimonSessionHelper *g_SimonSession;
             return NO;
         }
         
-        {
-            NSMutableArray *dataArray;
-            dataArray = [[NSMutableArray alloc] init];
-            [dataArray addObject:_userid.text];
-            [dataArray addObject:_password.text];
-            [NSKeyedArchiver archiveRootObject:dataArray toFile:_dataFilePath];
-        }
+        NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+        data[@"userid"] = _userid.text;
+        data[@"password"] = _password.text;
         
-        {
+        [MD1LoginViewController keyChainSaveKey:@"simonlogin" data:data];
+        
+    
+        if(_RGOs == nil){
             MD1SimonResponse *response = [g_SimonSession getStaticData];
             if (response.error) {
                 UIAlertView *notPermitted = [[UIAlertView alloc]
@@ -142,37 +204,230 @@ MD1SimonSessionHelper *g_SimonSession;
                 // prevent segue from occurring
                 return NO;
             }
+        
+            NSObject *jsonOut = response.data;
+            NSDictionary *jsonDic = (NSDictionary *)jsonOut;
+            NSDictionary *resultset = [jsonDic objectForKey:@"resultset"];
             
+            _userGroup = [resultset objectForKey:@"group"];
+            _RGOs = [resultset objectForKey:@"RGOs"];
+            _salesReps = [resultset objectForKey:@"salesReps"];
+        }
+        
+        BOOL dataerror = NO;
+        @try{
+            [dataArray addObject:_userGroup];
+            
+            for(int i = 0; i < _RGOs.count; i++)
             {
-                NSObject *jsonOut = response.data;
-                NSDictionary *jsonDic = (NSDictionary *)jsonOut;
-                NSDictionary *resultset = [jsonDic objectForKey:@"resultset"];
-                NSArray *RGOs = [resultset objectForKey:@"RGOs"];
-                NSArray *salesReps = [resultset objectForKey:@"salesReps"];
-                
-                for(int i = 0; i < RGOs.count; i++)
-                {
-                    NSDictionary *rgo = RGOs[i];
-                    NSArray *allKeys = [rgo allKeys];
-                    NSString *key = allKeys[0];
-                    NSString *value = rgo[key];
-                    g_SimonSession.RGOs[i] = [[NSString alloc] initWithFormat:@"%@ - %@", key, value];
+                NSDictionary *rgo = _RGOs[i];
+                NSArray *allKeys = [rgo allKeys];
+                NSString *key = allKeys[0];
+                NSString *value = rgo[key];
+                RGO *rgocn = [RGO new];
+                rgocn.cd = key;
+                rgocn.name = value;
+                g_SimonSession.RGOs[i] = rgocn;
+            }
+            
+            
+            NSArray *akeys = [_salesReps allKeys];
+            for(NSString *key in akeys)
+            {
+                NSArray *jReps = _salesReps[key];
+                NSMutableArray *reps = [[NSMutableArray alloc] init];
+                for(NSDictionary *jRep in jReps) {
+                    SalesRep *rep = [SalesRep new];
+                    rep.racfid = jRep[@"racfid"];
+                    rep.fullNm = jRep[@"fullNm"];
+                    [reps addObject:rep];
                 }
-                
-                for(int i = 0; i < salesReps.count; i++)
-                {
-                    NSDictionary *sr = salesReps[i];
-                    NSArray *allKeys = [sr allKeys];
-                    NSString *key = allKeys[0];
-                    NSString *value = sr[key];
-                    g_SimonSession.salesReps[i] = [[NSString alloc] initWithFormat:@"%@ - %@", key, value];
-                }
+                g_SimonSession.salesReps[key] = reps;
             }
         }
+        @catch(NSException *e) {
+            NSLog(@"NSException:%@", e);
+            
+            NSString *err;
+            
+            if([_userGroup isEqualToString:@"case_install_mobile_user"] || [_userGroup isEqualToString:@"case_install_mobile_usr"]) {
+                err = BUS_ERROR;
+            } else {
+                err = CRU_ERROR;
+            }
+            
+            dataerror = YES;
+            _RGOs = nil;
+            _salesReps = nil;
+            _userGroup = nil;
+            
+            UIAlertView *notPermitted = [[UIAlertView alloc]
+                                         initWithTitle:@"Error"
+                                         message:err
+                                         delegate:nil
+                                         cancelButtonTitle:@"OK"
+                                         otherButtonTitles:nil];
+            
+            // shows alert to user
+            [notPermitted show];
+            
+            [dataArray removeAllObjects];
+            [dataArray addObject:[NSNull null]];
+            
+            [NSKeyedArchiver archiveRootObject:dataArray toFile:_dataFilePath];
+            
+            // prevent segue from occurring
+            return NO;
+        }
+        
+        [dataArray addObject:_RGOs];
+        [dataArray addObject:_salesReps];
+        
+        [NSKeyedArchiver archiveRootObject:dataArray toFile:_dataFilePath];
 
+        if([_userGroup isEqualToString:@"case_install_mobile_user"] || [_userGroup isEqualToString:@"case_install_mobile_usr"]) {
+            return YES;
+        } else {
+            BOOL performSegue = NO;
+            NSString *error, *errTitle;
+            
+            NSMutableDictionary *jsonIn = [[NSMutableDictionary alloc] init];
+            
+            NSError *nserror;
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:(jsonIn) options:0 error:&nserror];
+            
+            errTitle = @"Error";
+            
+            if(!nserror) {
+                NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+                
+                MD1SimonResponse *response;
+                response = [g_SimonSession search:jsonStr];
+                
+                if (!response.error) {
+                    NSObject *jsonOut = response.data;
+                    if(jsonOut) {
+                        NSDictionary *jsonDic = (NSDictionary *)jsonOut;
+                        NSArray *resultset = [jsonDic objectForKey:@"resultset"];
+                        if(resultset) {
+                            if([resultset count] > 0) {
+                                self.resultset = resultset;
+                                performSegue = YES;
+                            } else {
+                                performSegue = NO;
+                                errTitle = @"Warning";
+                                error = @"No customer applications currently found";
+                            }
+                            
+                        } else {
+                            error = @"Invalid System Response, resultset=(nil)";
+                        }
+                    } else {
+                        error = @"Invalid System Response, data=(nil)";
+                    }
+                } else {
+                    error = response.error;
+                }
+            } else {
+                error = [nserror localizedDescription];
+            }
+            
+            if (!performSegue) {
+               [self performSegueWithIdentifier:@"showbrokernoplansID" sender:self];
+            } else {
+                [self performSegueWithIdentifier:@"showbrokerplansID" sender:self];
+            }
+            
+            return NO;
+
+        }
+        
+    } else if([identifier isEqualToString:@"showbrokernoplansID"]){
+        
     }
-
-    // by default perform the segue transition
     return YES;
 }
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([[segue destinationViewController] isKindOfClass:[MD1SearchViewController class]]) {
+        MD1SearchViewController *targetvc =[segue destinationViewController];
+        targetvc.userid = _userid.text;
+        targetvc.userGroup = _userGroup;
+    } else if([[segue destinationViewController] isKindOfClass:[MD1PlansViewController class]]) {
+        MD1PlansViewController *targetvc =[segue destinationViewController];
+        targetvc.resultset = self.resultset;
+    }
+}
+
+- (IBAction) unwindToLogin: (UIStoryboardSegue *)segue {
+    
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.toolbarHidden = YES;
+    
+    if(self.isMovingToParentViewController == YES) {
+        
+    } else {
+        
+    }
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (isFirstAppearance) {
+        //NSLog(@"root view controller is moving to parent");
+        isFirstAppearance = NO;
+    }else{
+        //NSLog(@"root view controller, not moving to parent");
+    }
+}
+
++ (void)keyChainSaveKey:(NSString *)key data:(id)data
+{
+    NSMutableDictionary *keychainQuery = [self getKeychainQuery:key];
+    SecItemDelete((__bridge CFDictionaryRef)keychainQuery);
+    [keychainQuery setObject:[NSKeyedArchiver archivedDataWithRootObject:data] forKey:(__bridge id)kSecValueData];
+    SecItemAdd((__bridge CFDictionaryRef)keychainQuery, NULL);
+}
+
++ (id)keyChainLoadKey:(NSString *)key
+{
+    id ret = nil;
+    NSMutableDictionary *keychainQuery = [self getKeychainQuery:key];
+    [keychainQuery setObject:(id)kCFBooleanTrue forKey:(__bridge id)kSecReturnData];
+    [keychainQuery setObject:(__bridge id)kSecMatchLimitOne forKey:(__bridge id)kSecMatchLimit];
+    CFDataRef keyData = NULL;
+    if (SecItemCopyMatching((__bridge CFDictionaryRef)keychainQuery, (CFTypeRef *)&keyData) == noErr) {
+        @try {
+            ret = [NSKeyedUnarchiver unarchiveObjectWithData:(__bridge NSData *)keyData];
+        }
+        @catch (NSException *e) {
+            //NS Log(@"Unarchive of %@ failed: %@", service, e);
+        }
+        @finally {}
+    }
+    if (keyData) CFRelease(keyData);
+    return ret;
+}
+
++ (void)keyChainDeleteKey:(NSString *)service
+{
+    NSMutableDictionary *keychainQuery = [self getKeychainQuery:service];
+    SecItemDelete((__bridge CFDictionaryRef)keychainQuery);
+}
+
+//helper
++ (NSMutableDictionary *)getKeychainQuery:(NSString *)key
+{
+    return [NSMutableDictionary dictionaryWithObjectsAndKeys:
+            (__bridge id)kSecClassGenericPassword, (__bridge id)kSecClass,
+            key, (__bridge id)kSecAttrService,
+            key, (__bridge id)kSecAttrAccount,
+            (__bridge id)kSecAttrAccessibleAfterFirstUnlock, (__bridge id)kSecAttrAccessible,
+            nil];
+}
+
 @end

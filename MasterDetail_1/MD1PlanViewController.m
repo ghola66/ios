@@ -11,11 +11,15 @@
 #import "MD1ProcessesCell.h"
 #import "MD1PlanViewController.h"
 #import "MD1ProcessViewController.h"
+#import "MD1EMailViewController.h"
+
 
 @interface MD1PlanViewController ()
 
 @property NSMutableArray *planInfoOrder;
 @property NSMutableArray *planTitleOrder;
+@property NSString *plnNr;
+@property NSString *plhm;
 
 - (IBAction)home:(id)sender;
 
@@ -41,26 +45,32 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.plnNr = self.CaseSearchDataJSon[CSD_PLN_NR];
+    self.plhm = self.CaseSearchDataJSon[CSD_PHD_NM];
+    self.title = self.plnNr;
     
     self.planInfoOrder = [[NSMutableArray alloc] init];
-    self.planInfoOrder[0] = CSD_PLN_NR;
-    self.planInfoOrder[1] = CSD_PHD_NM;
-    self.planInfoOrder[2] = CSD_SITUS_ST;
-    self.planInfoOrder[3] = CSD_RGO_NM;
-    self.planInfoOrder[4] = CSD_SALES_REP_NM;
-    self.planInfoOrder[5] = CSD_SSA;
-    self.planInfoOrder[6] = CSD_PROC_TEAM_NM;
-    self.planInfoOrder[7] = CSD_TOTAL_ELIG_LVS_CT;
+    self.planInfoOrder[0] = CSD_IC_NAME;
+    self.planInfoOrder[1] = CSD_EFF_DT;
+    self.planInfoOrder[2] = CSD_CURRENT_STATUS;
+    self.planInfoOrder[3] = CSD_MBO_DT;
     
     self.planTitleOrder = [[NSMutableArray alloc] init];
-    self.planTitleOrder[0] = @"Plan #";
-    self.planTitleOrder[1] = @"Plan Name:";
-    self.planTitleOrder[2] = @"State:";
-    self.planTitleOrder[3] = @"RGO:";
-    self.planTitleOrder[4] = @"Sales Rep:";
-    self.planTitleOrder[5] = @"SSA:";
-    self.planTitleOrder[6] = @"Onboarder:";
-    self.planTitleOrder[7] = @"Lives:";
+    self.planTitleOrder[0] = @"Installation Contact:";
+    self.planTitleOrder[1] = @"Effective Date:";
+    self.planTitleOrder[2] = @"Current Status:";
+    self.planTitleOrder[3] = @"Estimated Completion:";
+    
+    self.planData = [[NSMutableDictionary alloc] init];
+    self.planData[CSD_IC_NAME] = self.CaseSearchDataJSon[CSD_IC_NAME];
+    self.planData[CSD_EFF_DT] = self.CaseSearchDataJSon[CSD_EFF_DT];
+    if(self.CaseSearchDataJSon[CSD_CURRENT_STATUS]){
+        self.planData[CSD_CURRENT_STATUS] = self.CaseSearchDataJSon[CSD_CURRENT_STATUS];
+    } else {
+        self.planData[CSD_CURRENT_STATUS] = @"N/A";
+    }
+    self.planData[CSD_MBO_DT] = self.CaseSearchDataJSon[CSD_MBO_DT];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,25 +82,6 @@
 - (void) segueData:(NSDictionary *)jCSD
 {
     self.CaseSearchDataJSon = jCSD;
-    self.planData = [[NSMutableDictionary alloc] init];
-    self.planData[CSD_PLN_NR] = self.CaseSearchDataJSon[CSD_PLN_NR];
-    self.planData[CSD_PHD_NM] = self.CaseSearchDataJSon[CSD_PHD_NM];
-    self.planData[CSD_SITUS_ST] = self.CaseSearchDataJSon[CSD_SITUS_ST];
-    self.planData[CSD_RGO_NM] = self.CaseSearchDataJSon[CSD_RGO_NM];
-    self.planData[CSD_SALES_REP_NM] = self.CaseSearchDataJSon[CSD_SALES_REP_NM];
-    self.planData[CSD_SSA] = self.CaseSearchDataJSon[CSD_SSA];
-    self.planData[CSD_PROC_TEAM_NM] = self.CaseSearchDataJSon[CSD_PROC_TEAM_NM];
-    self.planData[CSD_TOTAL_ELIG_LVS_CT] = self.CaseSearchDataJSon[CSD_TOTAL_ELIG_LVS_CT];
-    
-    self.processesData = [[NSMutableArray alloc] init];
-    NSMutableDictionary *row = [[NSMutableDictionary alloc] init];
-    row[CSD_CASE_NR] = self.CaseSearchDataJSon[CSD_CASE_NR];
-    row[CSD_PROC_TYPE_DESC] = self.CaseSearchDataJSon[CSD_PROC_TYPE_DESC];
-    row[CSD_OWNR_NM] = self.CaseSearchDataJSon[CSD_OWNR_NM];
-    row[CSD_CASE_STATUS_DESC] = self.CaseSearchDataJSon[CSD_CASE_STATUS_DESC];
-    row[CSD_CASE_START_DT] = self.CaseSearchDataJSon[CSD_CASE_START_DT];
-    row[CSD_TERM_DT] = self.CaseSearchDataJSon[CSD_TERM_DT];
-    self.processesData[0] = row;
 }
 
 - (IBAction)home:(id)sender {
@@ -102,7 +93,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -116,7 +107,9 @@
         }
         case 1:
         {
-            return 1;
+            NSArray *statuses = self.CaseSearchDataJSon[@"statuses"];
+            
+            return [statuses count];
             break;
         }
         case 2:
@@ -131,7 +124,7 @@
     }
 }
 
-/*
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *sectionTitle;
@@ -139,12 +132,12 @@
     switch(section) {
         case 0:
         {
-            sectionTitle = @"";
+            sectionTitle = self.plhm;
             break;
         }
         case 1:
         {
-            sectionTitle = @"Process        Status";
+            sectionTitle = @"Activity                   Date Completed";
             break;
         }
         case 2:
@@ -160,7 +153,7 @@
     }
     return sectionTitle;
 }
-*/
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -170,20 +163,52 @@
         case 0:
         {
             CellIdentifier = @"PlanData";
+            if(indexPath.row == 0 ) {
+                CellIdentifier = @"PlanDataLong";
+            }
             MD1PlanCell *cell = (MD1PlanCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
             cell.keyLabel.text = self.planTitleOrder[indexPath.row];
             cell.valueLabel.text = self.planData[self.planInfoOrder[indexPath.row]];
+            
+            if(indexPath.row == 0) {
+                NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithAttributedString:cell.valueLabel.attributedText];
+                NSDictionary *underlineAttribute = @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
+                [mas addAttributes:underlineAttribute range:(NSRange){0, [cell.valueLabel.attributedText length]}];
+                cell.valueLabel.attributedText = mas;
+            }
             return cell;
             break;
         }
         case 1:
         {
-            CellIdentifier = @"ProcessesHeader";
-            MD1ProcessesCell *cell = (MD1ProcessesCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-            cell.typeLabel.text = @"Process";
-            cell.statusLabel.text = @"Status";
-            return cell;
+            UITableViewCell *tcell;
+            NSArray *statuses = self.CaseSearchDataJSon[@"statuses"];
+            NSDictionary *status = statuses[indexPath.row];
+            NSString *cat = status[@"cat"];
+            NSString *desc;
             
+            CellIdentifier = @"PlanData";
+            if( [cat isEqualToString:@"M"]) {
+                CellIdentifier = @"PlanData";
+                MD1PlanCell *cell = (MD1PlanCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+                desc = status[@"desc"];
+                cell.valueLabel.text = status[@"st"];
+                cell.keyLabel.text = desc;
+                tcell = cell;
+            } else {
+                CellIdentifier = @"ProcessesData";
+                
+                MD1ProcessesCell *cell = (MD1ProcessesCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+                
+                desc = [NSString stringWithFormat:@"   %@", status[@"desc"]];
+                //UIFontDescriptor *fontD = [cell.keyLabel.font.fontDescriptor fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitItalic];
+                //cell.keyLabel.font = [UIFont fontWithDescriptor:fontD size:0];
+                cell.typeLabel.text = desc;
+                tcell = cell;
+            }
+            
+            return tcell;
+
             break;
         }
         case 2:
@@ -259,17 +284,19 @@
         NSIndexPath *indexPath = [table indexPathForCell:cell];
         NSDictionary *row = self.processesData[indexPath.row];
         
-        MD1ProcessViewController *targetvc =[segue destinationViewController];
+        MD1ProcessViewController *targetvc = [segue destinationViewController];
         [targetvc segueData:row];
-    } else {
+    } else if ([[segue destinationViewController] isKindOfClass:[MD1EMailViewController class]]){
+        MD1EMailViewController *targetvc = [segue destinationViewController];
+        targetvc.CaseSearchDataJSon = self.CaseSearchDataJSon;
+    }
+        else {
     }
     
 }
 
 - (IBAction) unwindToPlan: (UIStoryboardSegue *)segue {
-    if(YES) {
-        
-    }
+   
 }
 
 

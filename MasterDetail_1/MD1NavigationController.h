@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MD1NavigationController : UINavigationController <UINavigationControllerDelegate>
+@interface MD1NavigationController : UINavigationController <UINavigationControllerDelegate, UINavigationBarDelegate>
 
 @end

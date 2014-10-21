@@ -3,7 +3,6 @@
     <dependencies>
         <deployment version="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Log In-->
@@ -49,7 +48,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="875-ZB-bhC">
                                 <rect key="frame" x="91" y="66" width="138" height="89"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wZq-H0-jZY">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wZq-H0-jZY">
                                 <rect key="frame" x="16" y="530" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Terms of Use - Legal Notices and Disclaimers">
@@ -78,7 +77,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="wZq-H0-jZY" secondAttribute="bottom" constant="8" id="T3r-CF-meQ"/>
+                            <constraint firstAttribute="bottom" secondItem="wZq-H0-jZY" secondAttribute="bottom" constant="8" id="0aV-gr-wO9"/>
+                            <constraint firstAttribute="trailing" secondItem="wZq-H0-jZY" secondAttribute="trailing" constant="16" id="BNC-Us-jPy"/>
+                            <constraint firstItem="wZq-H0-jZY" firstAttribute="leading" secondItem="BIh-mU-seB" secondAttribute="leading" constant="16" id="Typ-Dc-lwQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Log In" id="nAn-2w-M9G">

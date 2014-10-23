@@ -100,6 +100,7 @@ BOOL isFirstAppearance;
                 _salesReps = dataArray[2];
             } else {
                 NSLog(@"expecting 3 but got:%lu objects", (unsigned long)[dataArray count]);
+                NSLog(@"group:%@", _userGroup);
             }
         } else {
             NSLog(@"did not find guardian_simon.archive");
@@ -392,8 +393,8 @@ BOOL isFirstAppearance;
         isFirstAppearance = NO;
     }else{
         //NSLog(@"root view controller, not moving to parent");
-        [g_SimonSession invalidateAndCancel];
-        [g_SimonSession delegateFreeSession];
+        [g_SimonSession invalidateWebseal];
+        //[g_SimonSession delegateFreeSession];
     }
 }
 

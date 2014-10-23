@@ -141,10 +141,19 @@ BOOL isValid;
     }
 }
 
-- (void) invalidateAndCancel {
-    [self.session invalidateAndCancel];
-    isValid = NO;
+- (void) invalidateWebseal {
+    //[self.session invalidateAndCancel];
+    //self.session = nil;
+    //isValid = NO;
     self.isLogin = NO;
+    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[self pkmsLoginURL]];
+    for (NSHTTPCookie *cookie in cookies)
+    {
+        NSLog(@"%@", cookie);
+        if([[cookie name] isEqualToString:@"PD-S-SESSION-ID"] || [[cookie name] isEqualToString:@"PD-ID"] || [[cookie name] isEqualToString:@"JSESSIONID"]) {
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+        }
+    }
 }
 
 - (MD1SimonResponse *) search:(NSString *)json

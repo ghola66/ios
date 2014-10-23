@@ -64,12 +64,14 @@ MD1SimonSessionHelper *g_SimonSession;
     self.RGOtextClr = NO;
     self.SRtextClr = NO;
     
+    /*
     if([_userGroup isEqualToString:@"Group_producer"]){
         if([self shouldPerformSegueWithIdentifier:@"ShowPlans" sender:self]){
             [self performSegueWithIdentifier:@"ShowPlans" sender:self];
             return;
         }
     }
+    */
     
     NSString *racfid = _userid;
     BOOL idfound = NO;
@@ -295,7 +297,6 @@ MD1SimonSessionHelper *g_SimonSession;
 
 - (IBAction) unwindToSearch: (UIStoryboardSegue *)segue {
     
-    
     if([[segue sourceViewController] isKindOfClass:[RGOTableViewController class]]) {
         RGOTableViewController *sourceVC = [segue sourceViewController];
         RGOselected = sourceVC.RGOselected;
@@ -312,23 +313,5 @@ MD1SimonSessionHelper *g_SimonSession;
     
     self.navigationController.toolbarHidden = NO;
   }
-
-- (void) addPickerToTextfield:(UITextField *)text picker:(UIView *)picker action:(SEL)action {
-    [text setInputView:picker];
-    
-    UIToolbar *pickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 56)];
-    [pickerToolbar sizeToFit];
-    
-    NSMutableArray *barItems = [[NSMutableArray alloc] init];
-    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    [barItems addObject:flexSpace];
-    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:action];
-    [barItems addObject:doneBtn];
-    [pickerToolbar setItems:barItems animated:YES];
-    
-    text.inputAccessoryView = pickerToolbar;
-}
-
-
 
 @end

@@ -14,6 +14,7 @@
 
 - (void) start:(NSURLSession *) session request:(NSMutableURLRequest *) request data:(NSData *) data
 {
+        
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     self.session = session;
     self.request = request;
@@ -63,6 +64,7 @@
     }
     if(count == wait) {
         [self.task cancel];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }
     [MBProgressHUD hideHUDForView:topView animated:YES];
 }

@@ -43,6 +43,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
                                     <action selector="textFieldReturn:" destination="dLK-Ja-PwF" eventType="editingDidEndOnExit" id="OKJ-w5-uTq"/>
+                                    <outlet property="delegate" destination="dLK-Ja-PwF" id="8f6-50-Yuz"/>
                                 </connections>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="875-ZB-bhC">
@@ -615,6 +616,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="rYe-y4-QHb"/>
+        <segue reference="5xj-UW-VOz"/>
     </inferredMetricsTieBreakers>
 </document>

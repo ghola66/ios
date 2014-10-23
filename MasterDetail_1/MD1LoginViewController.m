@@ -30,6 +30,8 @@ MD1SimonSessionHelper *g_SimonSession;
 @property (weak, nonatomic) IBOutlet UIButton *go;
 @property (weak, nonatomic) IBOutlet UIButton *legal;
 
+@property (nonatomic, assign) id currentResponder;
+
 - (IBAction)go:(id)sender;
 - (IBAction)legal:(id)sender;
 
@@ -55,6 +57,12 @@ BOOL isFirstAppearance;
     isFirstAppearance = YES;
     
 	// Do any additional setup after loading the view.
+    
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignOnTap:)];
+    [singleTap setNumberOfTapsRequired:1];
+    [singleTap setNumberOfTouchesRequired:1];
+    [self.view addGestureRecognizer:singleTap];
+
     
     self.logo.image  = [UIImage imageNamed:@"guardian-logo.gif"];
     
@@ -367,12 +375,14 @@ BOOL isFirstAppearance;
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.toolbarHidden = YES;
-    
-    if(self.isMovingToParentViewController == YES) {
-        
-    } else {
-        
-    }
+ }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.currentResponder = textField;
+}
+
+- (void)resignOnTap:(id)iSender {
+    [self.currentResponder resignFirstResponder];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -382,6 +392,8 @@ BOOL isFirstAppearance;
         isFirstAppearance = NO;
     }else{
         //NSLog(@"root view controller, not moving to parent");
+        [g_SimonSession invalidateAndCancel];
+        [g_SimonSession delegateFreeSession];
     }
 }
 

@@ -12,6 +12,8 @@
 
 @implementation MD1SimonSessionHelper
 
+BOOL isValid;
+
 - (MD1SimonSessionHelper *) init {
     self = [super init];
     
@@ -131,15 +133,28 @@
 {
     self.session = [NSURLSession sessionWithConfiguration: self.sessionConfig delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
     if(self.session) {
+        isValid = YES;
         return YES;
     } else {
+        isValid = NO;
         return NO;
     }
+}
+
+- (void) invalidateAndCancel {
+    [self.session invalidateAndCancel];
+    isValid = NO;
+    self.isLogin = NO;
 }
 
 - (MD1SimonResponse *) search:(NSString *)json
 {
     MD1SimonResponse *retval = [[MD1SimonResponse alloc] init];
+    
+    if(isValid == NO) {
+        retval.error = @"Lost connection to Guardian";
+        return retval;
+    }
  
     NSMutableURLRequest *request = [self postRequest:[self searchURL]];
     NSData *data = [self searchData:json];
@@ -304,7 +319,7 @@
                         if(range.location == NSNotFound){
                             self.isLogin = YES;
                         } else {
-                            retval.error = @"Not Authenticated";
+                            retval.error = @"Your user id and/or password are not recognized.  If you are a registered GuardianAnytime user, please try again.  If you are not registered, please go to www.guardiananytime.com to sign up now.  You will need your commission statement to register.";
                         }
                     }
                 } else {

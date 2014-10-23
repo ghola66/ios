@@ -35,6 +35,7 @@
 
 - (BOOL) defaultSessionConfiguration;
 - (BOOL) delegateFreeSession;
+- (void) invalidateAndCancel;
 - (MD1SimonResponse *) login:(NSString *) userid password:(NSString *) password;
 - (MD1SimonResponse *) search:(NSString *)json;
 - (MD1SimonResponse *) getCase:(NSString *)json;

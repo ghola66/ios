@@ -38,7 +38,6 @@
 		83BAC28618A32BA30088BF29 /* MD1PlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC28518A32BA30088BF29 /* MD1PlanViewController.m */; };
 		83BAC28918A339840088BF29 /* MD1PlanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC28818A339840088BF29 /* MD1PlanCell.m */; };
 		83BAC28C18A339CD0088BF29 /* MD1ProcessesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC28B18A339CD0088BF29 /* MD1ProcessesCell.m */; };
-		83BAC28F18A34AAF0088BF29 /* MD1ProcessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC28E18A34AAF0088BF29 /* MD1ProcessViewController.m */; };
 		83BAC29218A3D34E0088BF29 /* MD1CaseSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC29118A3D34E0088BF29 /* MD1CaseSearchData.m */; };
 		83BAC29518A428670088BF29 /* MD1ProcessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC29418A428670088BF29 /* MD1ProcessCell.m */; };
 		83C9D10F19E33C9600DF8BC1 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C9D10E19E33C9600DF8BC1 /* MessageUI.framework */; };
@@ -110,8 +109,6 @@
 		83BAC28818A339840088BF29 /* MD1PlanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD1PlanCell.m; sourceTree = "<group>"; };
 		83BAC28A18A339CD0088BF29 /* MD1ProcessesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD1ProcessesCell.h; sourceTree = "<group>"; };
 		83BAC28B18A339CD0088BF29 /* MD1ProcessesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD1ProcessesCell.m; sourceTree = "<group>"; };
-		83BAC28D18A34AAF0088BF29 /* MD1ProcessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD1ProcessViewController.h; sourceTree = "<group>"; };
-		83BAC28E18A34AAF0088BF29 /* MD1ProcessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD1ProcessViewController.m; sourceTree = "<group>"; };
 		83BAC29018A3D34E0088BF29 /* MD1CaseSearchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MD1CaseSearchData.h; path = ../MD1CaseSearchData.h; sourceTree = "<group>"; };
 		83BAC29118A3D34E0088BF29 /* MD1CaseSearchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MD1CaseSearchData.m; path = ../MD1CaseSearchData.m; sourceTree = "<group>"; };
 		83BAC29318A428670088BF29 /* MD1ProcessCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD1ProcessCell.h; sourceTree = "<group>"; };
@@ -208,7 +205,6 @@
 				83BAC28518A32BA30088BF29 /* MD1PlanViewController.m */,
 				83BAC29418A428670088BF29 /* MD1ProcessCell.m */,
 				83BAC28B18A339CD0088BF29 /* MD1ProcessesCell.m */,
-				83BAC28E18A34AAF0088BF29 /* MD1ProcessViewController.m */,
 				8364B103189202A8007A6B41 /* MD1SearchViewController.m */,
 				8364B11A18A140E0007A6B41 /* MD1SimonResponse.m */,
 				8364B1091899815D007A6B41 /* MD1SimonSessionHelper.m */,
@@ -272,7 +268,6 @@
 				83BAC28418A32BA30088BF29 /* MD1PlanViewController.h */,
 				83BAC29318A428670088BF29 /* MD1ProcessCell.h */,
 				83BAC28A18A339CD0088BF29 /* MD1ProcessesCell.h */,
-				83BAC28D18A34AAF0088BF29 /* MD1ProcessViewController.h */,
 				8364B102189202A8007A6B41 /* MD1SearchViewController.h */,
 				8364B11918A140E0007A6B41 /* MD1SimonResponse.h */,
 				8364B1081899815D007A6B41 /* MD1SimonSessionHelper.h */,
@@ -419,7 +414,6 @@
 				8364B10D1899AC20007A6B41 /* MD1SimonTaskHelper.m in Sources */,
 				83BAC29518A428670088BF29 /* MD1ProcessCell.m in Sources */,
 				83C9D12319E8284B00DF8BC1 /* SRTableCell.m in Sources */,
-				83BAC28F18A34AAF0088BF29 /* MD1ProcessViewController.m in Sources */,
 				8364B104189202A8007A6B41 /* MD1SearchViewController.m in Sources */,
 				8364B113189C50C6007A6B41 /* MD1PlansViewController.m in Sources */,
 				83BAC28C18A339CD0088BF29 /* MD1ProcessesCell.m in Sources */,

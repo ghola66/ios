@@ -10,7 +10,6 @@
 #import "MD1PlanCell.h"
 #import "MD1ProcessesCell.h"
 #import "MD1PlanViewController.h"
-#import "MD1ProcessViewController.h"
 #import "MD1EMailViewController.h"
 
 
@@ -112,12 +111,7 @@
             return [statuses count];
             break;
         }
-        case 2:
-        {
-            return [self.processesData count];
-            break;
-        }
-            default:
+        default:
         {
             return 0;
         }
@@ -137,12 +131,7 @@
         }
         case 1:
         {
-            sectionTitle = @"Activity                   Date Completed";
-            break;
-        }
-        case 2:
-        {
-            sectionTitle = @"";
+            sectionTitle = @"Activity                          Date Completed";
             break;
         }
         default:
@@ -183,7 +172,28 @@
         {
             UITableViewCell *tcell;
             NSArray *statuses = self.CaseSearchDataJSon[@"statuses"];
-            NSDictionary *status = statuses[indexPath.row];
+            NSDictionary *status;
+            
+            for( NSDictionary *st in statuses) {
+                NSString *cd = st[@"cd"];
+                if([cd isEqualToString:@"NTCOSALE"] && indexPath.row == 0) {
+                    status = st;
+                    break;
+                } else if([cd isEqualToString:@"DATACOLL"] && indexPath.row == 1) {
+                    status = st;
+                    break;
+                } else if([cd isEqualToString:@"PLANSETP"] && indexPath.row == 2) {
+                    status = st;
+                    break;
+                } else if([cd isEqualToString:@"BILCLASU"] && indexPath.row == 3) {
+                    status = st;
+                    break;
+                } else if([cd isEqualToString:@"COMPLETE"] && indexPath.row == 4) {
+                    status = st;
+                    break;
+                }
+            }
+            
             NSString *cat = status[@"cat"];
             NSString *desc;
             
@@ -209,18 +219,6 @@
             
             return tcell;
 
-            break;
-        }
-        case 2:
-        {
-            CellIdentifier = @"ProcessesData";
-            MD1ProcessesCell *cell = (MD1ProcessesCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-            
-            NSMutableDictionary *row = self.processesData[indexPath.row];
-            cell.typeLabel.text = row[CSD_PROC_TYPE_DESC];
-            cell.statusLabel.text = row[CSD_CASE_STATUS_DESC];
-            return cell;
-            
             break;
         }
         default:
@@ -278,28 +276,16 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if([[segue destinationViewController] isKindOfClass:[MD1ProcessViewController class]]) {
-        MD1PlanCell *cell = sender;
-        UITableView *table = (UITableView *)cell.superview.superview;
-        NSIndexPath *indexPath = [table indexPathForCell:cell];
-        NSDictionary *row = self.processesData[indexPath.row];
-        
-        MD1ProcessViewController *targetvc = [segue destinationViewController];
-        [targetvc segueData:row];
-    } else if ([[segue destinationViewController] isKindOfClass:[MD1EMailViewController class]]){
+    if ([[segue destinationViewController] isKindOfClass:[MD1EMailViewController class]]){
         MD1EMailViewController *targetvc = [segue destinationViewController];
         targetvc.CaseSearchDataJSon = self.CaseSearchDataJSon;
     }
         else {
     }
-    
 }
 
 - (IBAction) unwindToPlan: (UIStoryboardSegue *)segue {
    
 }
-
-
-
 
 @end

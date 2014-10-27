@@ -422,4 +422,21 @@ BOOL isValid;
     return retval;
 }
 
++ (BOOL) isBroker:(NSString *) group {
+    if([group isEqualToString:BROKER_GROUP]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
++ (NSString *) getUserError:(NSString *) group {
+    if([MD1SimonSessionHelper isBroker:group]) {
+        return CRU_ERROR;
+    } else {
+        return BUS_ERROR;
+    }
+}
+
+
 @end

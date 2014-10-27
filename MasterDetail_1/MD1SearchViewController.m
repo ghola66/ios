@@ -219,6 +219,8 @@ MD1SimonSessionHelper *g_SimonSession;
         }
         
         if (!performSegue) {
+            NSLog(@"%@", error);
+            error = [MD1SimonSessionHelper getUserError:self.userGroup];
             UIAlertView *notPermitted = [[UIAlertView alloc]
                                          initWithTitle:errTitle
                                          message:error

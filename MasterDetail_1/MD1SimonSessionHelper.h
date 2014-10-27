@@ -13,10 +13,12 @@
 
 #define LOGIN_TIMEOUT 60
 #define SEARCH_TIMEOUT 60
-#define BUS_ERROR @"An unexpected error has occurred. Please contact the BUS for assistance if this issue persists."
+#define BUS_ERROR @"An unexpected error has occurred. Please contact GBIS Simon through Service Now for assistance if this issue persists."
 #define CRU_ERROR @"An unexpected error has occurred. Please contact the CRU for assistance if this issue persists."
 
 #define XPIRE_MSG @">Please enter your userid and password.<"
+
+#define BROKER_GROUP @"License_Producer"
 
 @property NSURLSessionConfiguration *sessionConfig;
 @property NSURLSession *session;
@@ -40,5 +42,7 @@
 - (MD1SimonResponse *) search:(NSString *)json;
 - (MD1SimonResponse *) getCase:(NSString *)json;
 - (MD1SimonResponse *) getStaticData;
++ (BOOL) isBroker:(NSString *) group;
++ (NSString *) getUserError:(NSString *) group;
 
 @end

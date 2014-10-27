@@ -131,7 +131,7 @@
         }
         case 1:
         {
-            sectionTitle = @"Activity                          Date Completed";
+            sectionTitle = @"Activity                   Date Completed";
             break;
         }
         default:

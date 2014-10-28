@@ -17,7 +17,7 @@ BOOL isValid;
 - (MD1SimonSessionHelper *) init {
     self = [super init];
     
-    self.env = @"UAT";
+    self.env = @"local";
     
     if([self.env isEqualToString:@"UAT"]) {
         self.domain = @"https://www8.qa.glic.com";

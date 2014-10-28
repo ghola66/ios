@@ -172,27 +172,8 @@
         {
             UITableViewCell *tcell;
             NSArray *statuses = self.CaseSearchDataJSon[@"statuses"];
-            NSDictionary *status;
+            NSDictionary *status = statuses[indexPath.row];
             
-            for( NSDictionary *st in statuses) {
-                NSString *cd = st[@"cd"];
-                if([cd isEqualToString:@"NTCOSALE"] && indexPath.row == 0) {
-                    status = st;
-                    break;
-                } else if([cd isEqualToString:@"DATACOLL"] && indexPath.row == 1) {
-                    status = st;
-                    break;
-                } else if([cd isEqualToString:@"PLANSETP"] && indexPath.row == 2) {
-                    status = st;
-                    break;
-                } else if([cd isEqualToString:@"BILCLASU"] && indexPath.row == 3) {
-                    status = st;
-                    break;
-                } else if([cd isEqualToString:@"COMPLETE"] && indexPath.row == 4) {
-                    status = st;
-                    break;
-                }
-            }
             
             NSString *cat = status[@"cat"];
             NSString *desc;

@@ -393,7 +393,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Hmb-Um-WT4"/>
                     <connections>
                         <segue destination="eqM-R4-gQJ" kind="unwind" identifier="unwindToPlanID" unwindAction="unwindToPlan:" id="5cZ-6b-eNC"/>
                     </connections>

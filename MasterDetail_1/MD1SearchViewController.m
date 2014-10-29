@@ -177,6 +177,7 @@ MD1SimonSessionHelper *g_SimonSession;
             return NO;
         }
         
+        BOOL noRecords = NO;
         NSError *nserror;
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:(jsonIn) options:0 error:&nserror];
         
@@ -203,6 +204,7 @@ MD1SimonSessionHelper *g_SimonSession;
                             performSegue = NO;
                             errTitle = @"Warning";
                             error = @"No customer applications currently found";
+                            noRecords = YES;
                         }
                         
                     } else {
@@ -219,8 +221,11 @@ MD1SimonSessionHelper *g_SimonSession;
         }
         
         if (!performSegue) {
-            NSLog(@"%@", error);
-            error = [MD1SimonSessionHelper getUserError:self.userGroup];
+            if(!noRecords) {
+                NSLog(@"%@", error);
+                error = [MD1SimonSessionHelper getUserError:self.userGroup];
+            }
+            
             UIAlertView *notPermitted = [[UIAlertView alloc]
                                          initWithTitle:errTitle
                                          message:error

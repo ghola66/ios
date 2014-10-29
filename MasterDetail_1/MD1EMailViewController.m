@@ -14,17 +14,25 @@
 
 @end
 
-MFMailComposeViewController *g_MailVC;
 
 @implementation MD1EMailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
+}
+
+
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    UINavigationBar *navBar = [UINavigationBar appearance];
+    [navBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    
     NSLog(@"%@", self.CaseSearchDataJSon);
     
     // Email Subject
-    
     NSString *emailTitle = [NSString stringWithFormat:@"%@ - %@", self.CaseSearchDataJSon[CSD_PLN_NR], self.CaseSearchDataJSon[CSD_PHD_NM]];
     // Email Content
     NSString *messageBody = @"";
@@ -50,10 +58,9 @@ MFMailComposeViewController *g_MailVC;
         
         // shows alert to user
         [notPermitted show];
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_bg_ios7@2x.png"] forBarMetrics:UIBarMetricsDefault];
         [self performSegueWithIdentifier:@"unwindToPlanID" sender:self];
     }
-
-
 }
 
 - (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
@@ -87,8 +94,8 @@ MFMailComposeViewController *g_MailVC;
         [notPermitted show];
     }
     // Close the Mail Interface
-    [self dismissViewControllerAnimated:YES completion:NULL];
-    
+    //[self dismissViewControllerAnimated:YES completion:NULL];
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_bg_ios7@2x.png"] forBarMetrics:UIBarMetricsDefault];
     [self performSegueWithIdentifier:@"unwindToPlanID" sender:self];
 }
 

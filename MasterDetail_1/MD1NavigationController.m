@@ -32,8 +32,6 @@ extern MD1SimonSessionHelper *g_SimonSession;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    //self.hidesBottomBarWhenPushed = YES;
-    
     [g_SimonSession defaultSessionConfiguration];
     
     [g_SimonSession delegateFreeSession];

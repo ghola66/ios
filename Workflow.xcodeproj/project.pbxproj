@@ -45,6 +45,8 @@
 		83C9D12019E826A500DF8BC1 /* SalesRep.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C9D11F19E826A500DF8BC1 /* SalesRep.m */; };
 		83C9D12319E8284B00DF8BC1 /* SRTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C9D12219E8284B00DF8BC1 /* SRTableCell.m */; };
 		83C9D12619E8288600DF8BC1 /* SRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C9D12519E8288600DF8BC1 /* SRTableViewController.m */; };
+		83F779991A01418900E7132F /* LegalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F779981A01418900E7132F /* LegalViewController.m */; };
+		83F7799B1A01781E00E7132F /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83F7799A1A01781E00E7132F /* Launch Screen.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +124,9 @@
 		83C9D12219E8284B00DF8BC1 /* SRTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRTableCell.m; sourceTree = "<group>"; };
 		83C9D12419E8287600DF8BC1 /* SRTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRTableViewController.h; sourceTree = "<group>"; };
 		83C9D12519E8288600DF8BC1 /* SRTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRTableViewController.m; sourceTree = "<group>"; };
+		83F779971A01418900E7132F /* LegalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LegalViewController.h; sourceTree = "<group>"; };
+		83F779981A01418900E7132F /* LegalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LegalViewController.m; sourceTree = "<group>"; };
+		83F7799A1A01781E00E7132F /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +166,7 @@
 		836D06E4188EF45D005BD8C7 = {
 			isa = PBXGroup;
 			children = (
+				83F7799A1A01781E00E7132F /* Launch Screen.xib */,
 				836D06F6188EF45D005BD8C7 /* MasterDetail_1 */,
 				836D0718188EF45D005BD8C7 /* MasterDetail_1Tests */,
 				836D06EF188EF45D005BD8C7 /* Frameworks */,
@@ -194,6 +200,8 @@
 			children = (
 				833D872219F6B348001A4C26 /* 3p */,
 				836D0702188EF45D005BD8C7 /* Main.storyboard */,
+				83F779971A01418900E7132F /* LegalViewController.h */,
+				83F779981A01418900E7132F /* LegalViewController.m */,
 				836D0700188EF45D005BD8C7 /* MD1AppDelegate.m */,
 				83BAC29118A3D34E0088BF29 /* MD1CaseSearchData.m */,
 				83C9D11119E440B300DF8BC1 /* MD1EMailViewController.m */,
@@ -381,6 +389,7 @@
 				8356EB1C19F19AD4000C70AB /* nav_bg_ios7@2x.png in Resources */,
 				8364B115189F0F82007A6B41 /* guardian-logo.gif in Resources */,
 				836D0704188EF45D005BD8C7 /* Main.storyboard in Resources */,
+				83F7799B1A01781E00E7132F /* Launch Screen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +411,7 @@
 				836D06FD188EF45D005BD8C7 /* main.m in Sources */,
 				836D0701188EF45D005BD8C7 /* MD1AppDelegate.m in Sources */,
 				833D872119F69407001A4C26 /* RGOTableViewController.m in Sources */,
+				83F779991A01418900E7132F /* LegalViewController.m in Sources */,
 				8364B10A1899815D007A6B41 /* MD1SimonSessionHelper.m in Sources */,
 				8364B118189F1079007A6B41 /* MD1PlansCell.m in Sources */,
 				836D075018916195005BD8C7 /* MD1LoginViewController.m in Sources */,
@@ -551,6 +561,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MasterDetail_1/Workflow-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "MasterDetail_1/Workflow-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = Workflow;

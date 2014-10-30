@@ -388,13 +388,15 @@ BOOL isFirstAppearance;
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    //[self performSegueWithIdentifier:@"showlegal" sender:self];
+    
     if (isFirstAppearance) {
         //NSLog(@"root view controller is moving to parent");
         isFirstAppearance = NO;
     }else{
         //NSLog(@"root view controller, not moving to parent");
         [g_SimonSession invalidateWebseal];
-        //[g_SimonSession delegateFreeSession];
     }
 }
 

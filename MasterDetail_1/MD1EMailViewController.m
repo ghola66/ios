@@ -17,49 +17,60 @@
 
 @implementation MD1EMailViewController
 
+BOOL isPushed;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    
+    isPushed = NO;
 }
 
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    UINavigationBar *navBar = [UINavigationBar appearance];
-    [navBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    if (isPushed) {
+        isPushed = NO;
+    }else{
+        isPushed = YES;
+    }
     
-    NSLog(@"%@", self.CaseSearchDataJSon);
-    
-    // Email Subject
-    NSString *emailTitle = [NSString stringWithFormat:@"%@ - %@", self.CaseSearchDataJSon[CSD_PLN_NR], self.CaseSearchDataJSon[CSD_PHD_NM]];
-    // Email Content
-    NSString *messageBody = @"";
-    // To address
-    NSArray *toRecipents = [NSArray arrayWithObject:self.CaseSearchDataJSon[CSD_IC_EMAIL]];
-    
-    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
-    mc.mailComposeDelegate = self;
-    [mc setSubject:emailTitle];
-    [mc setMessageBody:messageBody isHTML:NO];
-    [mc setToRecipients:toRecipents];
-    
-    if([MFMailComposeViewController canSendMail]) {
-        // Present mail view controller on screen
-        [self presentViewController:mc animated:YES completion:NULL];
-    } else {
-        UIAlertView *notPermitted = [[UIAlertView alloc]
-                                     initWithTitle:@"Unable to use Mail API"
-                                     message:@""
-                                     delegate:nil
-                                     cancelButtonTitle:@"OK"
-                                     otherButtonTitles:nil];
-        
-        // shows alert to user
-        [notPermitted show];
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_bg_ios7@2x.png"] forBarMetrics:UIBarMetricsDefault];
-        [self performSegueWithIdentifier:@"unwindToPlanID" sender:self];
+    if(isPushed){
+        if([MFMailComposeViewController canSendMail]) {
+            
+            UINavigationBar *navBar = [UINavigationBar appearance];
+            [navBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+            
+            NSLog(@"%@", self.CaseSearchDataJSon);
+            
+            // Email Subject
+            NSString *emailTitle = [NSString stringWithFormat:@"%@ - %@", self.CaseSearchDataJSon[CSD_PLN_NR], self.CaseSearchDataJSon[CSD_PHD_NM]];
+            // Email Content
+            NSString *messageBody = @"";
+            // To address
+            NSArray *toRecipents = [NSArray arrayWithObject:self.CaseSearchDataJSon[CSD_IC_EMAIL]];
+            
+            MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+            mc.mailComposeDelegate = self;
+            [mc setSubject:emailTitle];
+            [mc setMessageBody:messageBody isHTML:NO];
+            [mc setToRecipients:toRecipents];
+            
+            // Present mail view controller on screen
+            [self presentViewController:mc animated:YES completion:NULL];
+        } else {
+            UIAlertView *notPermitted = [[UIAlertView alloc]
+                                         initWithTitle:@"Unable to use Mail API"
+                                         message:@""
+                                         delegate:nil
+                                         cancelButtonTitle:@"OK"
+                                         otherButtonTitles:nil];
+            
+            // shows alert to user
+            [notPermitted show];
+            [self performSegueWithIdentifier:@"unwindToPlanID" sender:self];
+        }
     }
 }
 
@@ -84,12 +95,12 @@
             break;
     }
     if(result == MFMailComposeResultFailed) {
-    UIAlertView *notPermitted = [[UIAlertView alloc]
-                                 initWithTitle:@"Mail sent failure"
-                                 message:[error localizedDescription]
-                                 delegate:nil
-                                 cancelButtonTitle:@"OK"
-                                 otherButtonTitles:nil];
+        UIAlertView *notPermitted = [[UIAlertView alloc]
+                                     initWithTitle:@"Mail sent failure"
+                                     message:[error localizedDescription]
+                                     delegate:nil
+                                     cancelButtonTitle:@"OK"
+                                     otherButtonTitles:nil];
         // shows alert to user
         [notPermitted show];
     }
@@ -105,14 +116,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 
 @end

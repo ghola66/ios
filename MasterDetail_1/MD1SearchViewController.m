@@ -124,6 +124,7 @@ MD1SimonSessionHelper *g_SimonSession;
 {
     if([[segue destinationViewController] isKindOfClass:[MD1PlansViewController class]]) {
         MD1PlansViewController *targetvc =[segue destinationViewController];
+        targetvc.userGroup = _userGroup;
         targetvc.resultset = self.resultset;
     } else if([[segue destinationViewController] isKindOfClass:[RGOTableViewController class]]) {
         RGOTableViewController *targetvc =[segue destinationViewController];
@@ -177,7 +178,6 @@ MD1SimonSessionHelper *g_SimonSession;
             return NO;
         }
         
-        BOOL noRecords = NO;
         NSError *nserror;
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:(jsonIn) options:0 error:&nserror];
         
@@ -204,27 +204,32 @@ MD1SimonSessionHelper *g_SimonSession;
                             performSegue = NO;
                             errTitle = @"Warning";
                             error = @"No customer applications currently found";
-                            noRecords = YES;
                         }
                         
                     } else {
                         error = @"Invalid System Response, resultset=(nil)";
+                        NSLog(@"%@", error);
+                        error = [NSString stringWithFormat:@"%@\n\n%@", [MD1SimonSessionHelper getUserError:self.userGroup], error];
                     }
                 } else {
                     error = @"Invalid System Response, data=(nil)";
+                    NSLog(@"%@", error);
+                    error = [NSString stringWithFormat:@"%@\n\n%@", [MD1SimonSessionHelper getUserError:self.userGroup], error];
                 }
             } else {
-                error = response.error;
+                if(response.isSessExp) {
+                    error = response.error;
+                } else {
+                    error = [NSString stringWithFormat:@"%@\n\n%@", [MD1SimonSessionHelper getUserError:self.userGroup], response.error];
+                }
             }
         } else {
             error = [nserror localizedDescription];
+            error = [NSString stringWithFormat:@"%@\n\n%@", [MD1SimonSessionHelper getUserError:self.userGroup], error];
         }
         
         if (!performSegue) {
-            if(!noRecords) {
-                NSLog(@"%@", error);
-                error = [MD1SimonSessionHelper getUserError:self.userGroup];
-            }
+            
             
             UIAlertView *notPermitted = [[UIAlertView alloc]
                                          initWithTitle:errTitle

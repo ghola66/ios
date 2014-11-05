@@ -184,15 +184,22 @@ MD1SimonSessionHelper *g_SimonSession;
                         performSegue = YES;
                     } else {
                         error = @"Invalid System Response, resultset=(nil)";
+                        [NSString stringWithFormat:@"%@\n\n%@", [MD1SimonSessionHelper getUserError:self.userGroup], error];
                     }
                 } else {
                     error = @"Invalid System Response, data=(nil)";
+                    [NSString stringWithFormat:@"%@\n\n%@", [MD1SimonSessionHelper getUserError:self.userGroup], error];
                 }
             } else {
-                error = response.error;
+                if(response.isSessExp) {
+                    error = response.error;
+                } else {
+                    error = [NSString stringWithFormat:@"%@\n\n%@", [MD1SimonSessionHelper getUserError:self.userGroup], response.error];
+                }
             }
         } else {
             error = [nserror localizedDescription];
+            [NSString stringWithFormat:@"%@\n\n%@", [MD1SimonSessionHelper getUserError:self.userGroup], error];
         }
         
         if (!performSegue) {
@@ -216,6 +223,7 @@ MD1SimonSessionHelper *g_SimonSession;
     NSDictionary  *row = self.caseResultset[0];
     NSDictionary *jCSD = row[CSD_JSON];
     MD1PlanViewController *targetvc =[segue destinationViewController];
+    targetvc.userGroup = _userGroup;
     [targetvc segueData:jCSD];
 }
 /*

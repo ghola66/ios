@@ -12,5 +12,6 @@
 
 @property NSArray *resultset;
 @property NSArray *caseResultset;
+@property (weak, nonatomic) NSString *userGroup;
 
 @end

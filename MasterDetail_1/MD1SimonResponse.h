@@ -12,5 +12,7 @@
 
 @property NSObject *data;
 @property NSString *error;
+@property BOOL isAuthFailed;
+@property BOOL isSessExp;
 
 @end

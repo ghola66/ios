@@ -149,9 +149,10 @@ BOOL isValid;
     NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[self pkmsLoginURL]];
     for (NSHTTPCookie *cookie in cookies)
     {
-        NSLog(@"%@", cookie);
-        if([[cookie name] isEqualToString:@"PD-S-SESSION-ID"] || [[cookie name] isEqualToString:@"PD-ID"] || [[cookie name] isEqualToString:@"JSESSIONID"]) {
+        NSLog(@"found:%@", cookie);
+        if([[cookie name] isEqualToString:@"PD-S-SESSION-ID"] || [[cookie name] isEqualToString:@"PD-H-SESSION-ID"] || [[cookie name] isEqualToString:@"PD-ID"] || [[cookie name] isEqualToString:@"JSESSIONID"]) {
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+            NSLog(@"removed:%@", cookie);
         }
     }
 }
@@ -192,11 +193,12 @@ BOOL isValid;
                 } else {
                     NSRange range = [taskHelper.responseString rangeOfString:BUS_ERROR];
                     if(range.location != NSNotFound) {
-                        retval.error = BUS_ERROR;
+                        retval.error = @"Server returned generic error"; //BUS_ERROR;
                     } else if([taskHelper.responseString rangeOfString:XPIRE_MSG].location != NSNotFound) {
                         self.isLogin = NO;
                         self.isRefresh = YES;
                         retval.error = @"Session expired. Please login again";
+                        retval.isSessExp = YES;
                     }
                     else {
                         retval.error = [[NSString alloc] initWithFormat:@"Invalid Server Response:\n%@", taskHelper.responseString];
@@ -256,11 +258,12 @@ BOOL isValid;
                 } else {
                     NSRange range = [taskHelper.responseString rangeOfString:BUS_ERROR];
                     if(range.location != NSNotFound) {
-                        retval.error = BUS_ERROR;
+                        retval.error = @"Server returned generic error"; //BUS_ERROR;
                     } else if([taskHelper.responseString rangeOfString:XPIRE_MSG].location != NSNotFound) {
                         self.isLogin = NO;
                         self.isRefresh = YES;
                         retval.error = @"Session expired. Please login again";
+                        retval.isSessExp = YES;
                     }
                     else {
                         retval.error = [[NSString alloc] initWithFormat:@"Invalid Server Response:\n%@", taskHelper.responseString];
@@ -328,6 +331,7 @@ BOOL isValid;
                         if(range.location == NSNotFound){
                             self.isLogin = YES;
                         } else {
+                            retval.isAuthFailed = YES;
                             retval.error = @"Your user id and/or password are not recognized.  If you are a registered GuardianAnytime user, please try again.  If you are not registered, please go to www.guardiananytime.com to sign up now.  You will need your commission statement to register.";
                         }
                     }
@@ -390,11 +394,12 @@ BOOL isValid;
                 } else {
                     NSRange range = [taskHelper.responseString rangeOfString:BUS_ERROR];
                     if(range.location != NSNotFound) {
-                        retval.error = BUS_ERROR;
+                        retval.error = @"Server returned generic error"; //BUS_ERROR;
                     } else if([taskHelper.responseString rangeOfString:XPIRE_MSG].location != NSNotFound) {
                         self.isLogin = NO;
                         self.isRefresh = YES;
                         retval.error = @"Session expired. Please login again";
+                        retval.isSessExp = YES;
                     }
                     else {
                         retval.error = [[NSString alloc] initWithFormat:@"Invalid Server Response:\n%@", taskHelper.responseString];

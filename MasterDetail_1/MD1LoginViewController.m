@@ -23,6 +23,7 @@ MD1SimonSessionHelper *g_SimonSession;
 @property (strong, nonatomic) NSString *dataFilePath;
 @property (strong, nonatomic) NSArray *RGOs;
 @property (strong, nonatomic) NSDictionary *salesReps;
+@property (strong, nonatomic) NSDate *cacheDate;
 @property (strong, nonatomic) NSString *userGroup;
 @property (strong, nonatomic) NSString *tmpid;
 
@@ -84,7 +85,7 @@ BOOL isFirstAppearance;
         NSArray *dirPaths;
         filemgr = [NSFileManager defaultManager];
         // Get the documents directory
-        dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        dirPaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
         docsDir = dirPaths[0];
         // Build the path to the data file
         _dataFilePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"guardian_simon.archive"]];
@@ -94,12 +95,13 @@ BOOL isFirstAppearance;
             dataArray = [NSKeyedUnarchiver
                          unarchiveObjectWithFile: _dataFilePath];
             NSLog(@"got stored objects:%lu", (unsigned long)[dataArray count]);
-            if([dataArray count] == 3 ){
+            if([dataArray count] == 4 ){
                 _userGroup = dataArray[0];
                 _RGOs = dataArray[1];
                 _salesReps = dataArray[2];
+                _cacheDate = dataArray[3];
             } else {
-                NSLog(@"expecting 3 but got:%lu objects", (unsigned long)[dataArray count]);
+                NSLog(@"expecting 4 but got:%lu objects", (unsigned long)[dataArray count]);
                 NSLog(@"group:%@", _userGroup);
             }
         } else {
@@ -155,6 +157,7 @@ BOOL isFirstAppearance;
             _RGOs = nil;
             _salesReps = nil;
             _tmpid = self.userid.text;
+            [g_SimonSession invalidateWebseal];
         }
         
         if( [self.userid.text length] == 0 || [self.password.text length] == 0) {
@@ -176,9 +179,17 @@ BOOL isFirstAppearance;
         response = [g_SimonSession login:self.userid.text password:self.password.text];
         
         if (response.error) {
+            
+            NSString *error = nil;
+            if(response.isAuthFailed) {
+                error = response.error;
+            } else {
+                error = [NSString stringWithFormat:@"%@\n\n%@", [MD1SimonSessionHelper getUserError:self.userGroup], response.error];
+            }
+            
             UIAlertView *notPermitted = [[UIAlertView alloc]
                                          initWithTitle:@"Error"
-                                         message:response.error
+                                         message:error
                                          delegate:nil
                                          cancelButtonTitle:@"OK"
                                          otherButtonTitles:nil];
@@ -187,6 +198,7 @@ BOOL isFirstAppearance;
             [notPermitted show];
             
             // prevent segue from occurring
+            [g_SimonSession invalidateWebseal];
             return NO;
         }
         
@@ -196,13 +208,27 @@ BOOL isFirstAppearance;
         
         [MD1LoginViewController keyChainSaveKey:@"simonlogin" data:data];
         
-    
+        if(_cacheDate != nil) {
+            NSInteger days = [MD1LoginViewController daysBetweenDate:_cacheDate andDate:[NSDate date]];
+            NSLog(@"days between casche:%ld", (long)days);
+            if(days > 0) {
+                _RGOs = nil;
+            }
+        }
+        
         if(_RGOs == nil){
             MD1SimonResponse *response = [g_SimonSession getStaticData];
             if (response.error) {
+                NSString *error = nil;
+                if(response.isSessExp) {
+                    error = response.error;
+                } else {
+                    error = [NSString stringWithFormat:@"%@\n\n%@", [MD1SimonSessionHelper getUserError:self.userGroup], response.error];
+                }
+                
                 UIAlertView *notPermitted = [[UIAlertView alloc]
                                              initWithTitle:@"Error"
-                                             message:response.error
+                                             message:error
                                              delegate:nil
                                              cancelButtonTitle:@"OK"
                                              otherButtonTitles:nil];
@@ -211,6 +237,7 @@ BOOL isFirstAppearance;
                 [notPermitted show];
                 
                 // prevent segue from occurring
+                [g_SimonSession invalidateWebseal];
                 return NO;
             }
         
@@ -257,14 +284,7 @@ BOOL isFirstAppearance;
         @catch(NSException *e) {
             NSLog(@"NSException:%@", e);
             
-            NSString *err;
-            
-            if([_userGroup isEqualToString:@"case_install_mobile_user"] || [_userGroup isEqualToString:@"case_install_mobile_usr"]) {
-                err = BUS_ERROR;
-            } else {
-                err = CRU_ERROR;
-            }
-            
+            NSString *error = [NSString stringWithFormat:@"%@\n\n%@", [MD1SimonSessionHelper getUserError:self.userGroup], e];
             dataerror = YES;
             _RGOs = nil;
             _salesReps = nil;
@@ -272,7 +292,7 @@ BOOL isFirstAppearance;
             
             UIAlertView *notPermitted = [[UIAlertView alloc]
                                          initWithTitle:@"Error"
-                                         message:err
+                                         message:error
                                          delegate:nil
                                          cancelButtonTitle:@"OK"
                                          otherButtonTitles:nil];
@@ -286,11 +306,15 @@ BOOL isFirstAppearance;
             [NSKeyedArchiver archiveRootObject:dataArray toFile:_dataFilePath];
             
             // prevent segue from occurring
+            [g_SimonSession invalidateWebseal];
             return NO;
         }
         
         [dataArray addObject:_RGOs];
         [dataArray addObject:_salesReps];
+        _cacheDate = [NSDate date];
+        [dataArray addObject:_cacheDate];
+        
         
         [NSKeyedArchiver archiveRootObject:dataArray toFile:_dataFilePath];
 
@@ -330,15 +354,22 @@ BOOL isFirstAppearance;
                             
                         } else {
                             error = @"Invalid System Response, resultset=(nil)";
+                            error = [NSString stringWithFormat:@"%@\n\n%@", [MD1SimonSessionHelper getUserError:self.userGroup], error];
                         }
                     } else {
                         error = @"Invalid System Response, data=(nil)";
+                        error = [NSString stringWithFormat:@"%@\n\n%@", [MD1SimonSessionHelper getUserError:self.userGroup], error];
                     }
                 } else {
-                    error = response.error;
+                    if(response.isSessExp) {
+                        error = response.error;
+                    } else {
+                        error = [NSString stringWithFormat:@"%@\n\n%@", [MD1SimonSessionHelper getUserError:self.userGroup], response.error];
+                    }
                 }
             } else {
                 error = [nserror localizedDescription];
+                error = [NSString stringWithFormat:@"%@\n\n%@", [MD1SimonSessionHelper getUserError:self.userGroup], error];
             }
             
             if (!performSegue) {
@@ -365,6 +396,7 @@ BOOL isFirstAppearance;
         targetvc.userGroup = _userGroup;
     } else if([[segue destinationViewController] isKindOfClass:[MD1PlansViewController class]]) {
         MD1PlansViewController *targetvc =[segue destinationViewController];
+        targetvc.userGroup = _userGroup;
         targetvc.resultset = self.resultset;
     }
 }
@@ -443,6 +475,24 @@ BOOL isFirstAppearance;
             key, (__bridge id)kSecAttrAccount,
             (__bridge id)kSecAttrAccessibleAfterFirstUnlock, (__bridge id)kSecAttrAccessible,
             nil];
+}
+
++ (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime
+{
+    NSDate *fromDate;
+    NSDate *toDate;
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&fromDate
+                 interval:NULL forDate:fromDateTime];
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&toDate
+                 interval:NULL forDate:toDateTime];
+    
+    NSDateComponents *difference = [calendar components:NSDayCalendarUnit
+                                               fromDate:fromDate toDate:toDate options:0];
+    
+    return [difference day];
 }
 
 @end

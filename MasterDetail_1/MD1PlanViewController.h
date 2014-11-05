@@ -14,6 +14,7 @@
 @property NSDictionary *CaseSearchDataJSon;
 @property NSMutableDictionary *planData;
 @property NSMutableArray *processesData;
+@property (weak, nonatomic) NSString *userGroup;
 
 - (void) segueData:(NSDictionary *)jCSD;
 

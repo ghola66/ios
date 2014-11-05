@@ -90,7 +90,7 @@ BOOL isFirstAppearance;
         // Build the path to the data file
         _dataFilePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"guardian_simon.archive"]];
         // Check if the file already exists
-        if ([filemgr fileExistsAtPath: _dataFilePath] && YES){
+        if ([filemgr fileExistsAtPath: _dataFilePath]){
             NSMutableArray *dataArray;
             dataArray = [NSKeyedUnarchiver
                          unarchiveObjectWithFile: _dataFilePath];
@@ -303,7 +303,21 @@ BOOL isFirstAppearance;
             [dataArray removeAllObjects];
             [dataArray addObject:[NSNull null]];
             
-            [NSKeyedArchiver archiveRootObject:dataArray toFile:_dataFilePath];
+            if([NSKeyedArchiver archiveRootObject:dataArray toFile:_dataFilePath]) {
+                
+                NSError* error;
+                NSDictionary *fileAttributes = [NSDictionary
+                                                dictionaryWithObject:NSFileProtectionComplete
+                                                forKey:NSFileProtectionKey];
+                if([[NSFileManager defaultManager] setAttributes:fileAttributes
+                                                    ofItemAtPath:_dataFilePath  error: &error]) {
+                    NSLog(@"Success to use NSFileProtectionComplete");
+                }
+                else {
+                    NSLog(@"%@", error);
+                }
+            }
+
             
             // prevent segue from occurring
             [g_SimonSession invalidateWebseal];
@@ -316,7 +330,22 @@ BOOL isFirstAppearance;
         [dataArray addObject:_cacheDate];
         
         
-        [NSKeyedArchiver archiveRootObject:dataArray toFile:_dataFilePath];
+        
+        
+        if([NSKeyedArchiver archiveRootObject:dataArray toFile:_dataFilePath]) {
+            
+            NSError* error;
+            NSDictionary *fileAttributes = [NSDictionary
+                                            dictionaryWithObject:NSFileProtectionComplete
+                                            forKey:NSFileProtectionKey];
+            if([[NSFileManager defaultManager] setAttributes:fileAttributes
+                                                ofItemAtPath:_dataFilePath  error: &error]) {
+                NSLog(@"Success to use NSFileProtectionComplete");
+            }
+            else {
+                NSLog(@"%@", error);
+            }
+        }
 
         if([_userGroup isEqualToString:@"case_install_mobile_user"] || [_userGroup isEqualToString:@"case_install_mobile_usr"]) {
             return YES;

@@ -12,7 +12,10 @@
 #import "MD1PlansCell.h"
 #import "MD1PlansViewController.h"
 #import "MD1PlanViewController.h"
+
+#if GGS_ENV==UAT
 #import <HockeySDK/HockeySDK.h>
+#endif
 
 MD1SimonSessionHelper *g_SimonSession;
 

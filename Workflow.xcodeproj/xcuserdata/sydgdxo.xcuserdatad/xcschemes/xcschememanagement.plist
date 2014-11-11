@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Group Status - UAT.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>MasterDetail_1.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +23,21 @@
 			<true/>
 		</dict>
 		<key>836D0710188EF45D005BD8C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83F7799C1A0BF8BB00E7132F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83F779C81A0BF8E900E7132F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83F779F41A0BFA3000E7132F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

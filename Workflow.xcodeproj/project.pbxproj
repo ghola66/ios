@@ -47,6 +47,50 @@
 		83C9D12619E8288600DF8BC1 /* SRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C9D12519E8288600DF8BC1 /* SRTableViewController.m */; };
 		83F779991A01418900E7132F /* LegalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F779981A01418900E7132F /* LegalViewController.m */; };
 		83F7799B1A01781E00E7132F /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83F7799A1A01781E00E7132F /* Launch Screen.xib */; };
+		83F779F61A0BFA3000E7132F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 836D06FC188EF45D005BD8C7 /* main.m */; };
+		83F779F71A0BFA3000E7132F /* MD1AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 836D0700188EF45D005BD8C7 /* MD1AppDelegate.m */; };
+		83F779F81A0BFA3000E7132F /* RGOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833D871E19F69407001A4C26 /* RGOTableViewController.m */; };
+		83F779F91A0BFA3000E7132F /* LegalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F779981A01418900E7132F /* LegalViewController.m */; };
+		83F779FA1A0BFA3000E7132F /* MD1SimonSessionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364B1091899815D007A6B41 /* MD1SimonSessionHelper.m */; };
+		83F779FB1A0BFA3000E7132F /* MD1PlansCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364B117189F1079007A6B41 /* MD1PlansCell.m */; };
+		83F779FC1A0BFA3000E7132F /* MD1LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 836D074F18916195005BD8C7 /* MD1LoginViewController.m */; };
+		83F779FD1A0BFA3000E7132F /* SRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C9D12519E8288600DF8BC1 /* SRTableViewController.m */; };
+		83F779FE1A0BFA3000E7132F /* MD1SimonResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364B11A18A140E0007A6B41 /* MD1SimonResponse.m */; };
+		83F779FF1A0BFA3000E7132F /* MD1NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364B10618920380007A6B41 /* MD1NavigationController.m */; };
+		83F77A001A0BFA3000E7132F /* SalesRep.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C9D11F19E826A500DF8BC1 /* SalesRep.m */; };
+		83F77A011A0BFA3000E7132F /* GCPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83066E3D18C0E8B90069797F /* GCPlaceholderTextView.m */; };
+		83F77A021A0BFA3000E7132F /* RGO.m in Sources */ = {isa = PBXBuildFile; fileRef = 833D871A19F69407001A4C26 /* RGO.m */; };
+		83F77A031A0BFA3000E7132F /* MD1SimonTaskHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364B10C1899AC20007A6B41 /* MD1SimonTaskHelper.m */; };
+		83F77A041A0BFA3000E7132F /* MD1ProcessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC29418A428670088BF29 /* MD1ProcessCell.m */; };
+		83F77A051A0BFA3000E7132F /* SRTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C9D12219E8284B00DF8BC1 /* SRTableCell.m */; };
+		83F77A061A0BFA3000E7132F /* MD1SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364B103189202A8007A6B41 /* MD1SearchViewController.m */; };
+		83F77A071A0BFA3000E7132F /* MD1PlansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364B112189C50C6007A6B41 /* MD1PlansViewController.m */; };
+		83F77A081A0BFA3000E7132F /* MD1ProcessesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC28B18A339CD0088BF29 /* MD1ProcessesCell.m */; };
+		83F77A091A0BFA3000E7132F /* MD1CaseSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC29118A3D34E0088BF29 /* MD1CaseSearchData.m */; };
+		83F77A0A1A0BFA3000E7132F /* MD1PlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC28518A32BA30088BF29 /* MD1PlanViewController.m */; };
+		83F77A0B1A0BFA3000E7132F /* MD1EMailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C9D11119E440B300DF8BC1 /* MD1EMailViewController.m */; };
+		83F77A0C1A0BFA3000E7132F /* RGOTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 833D871C19F69407001A4C26 /* RGOTableCell.m */; };
+		83F77A0D1A0BFA3000E7132F /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364B10F189C32BB007A6B41 /* MBProgressHUD.m */; };
+		83F77A0E1A0BFA3000E7132F /* MD1PlanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC28818A339840088BF29 /* MD1PlanCell.m */; };
+		83F77A101A0BFA3000E7132F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C9D10E19E33C9600DF8BC1 /* MessageUI.framework */; };
+		83F77A111A0BFA3000E7132F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 836D06F2188EF45D005BD8C7 /* CoreGraphics.framework */; };
+		83F77A121A0BFA3000E7132F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 836D06F4188EF45D005BD8C7 /* UIKit.framework */; };
+		83F77A131A0BFA3000E7132F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 836D06F0188EF45D005BD8C7 /* Foundation.framework */; };
+		83F77A151A0BFA3000E7132F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 836D070B188EF45D005BD8C7 /* Images.xcassets */; };
+		83F77A161A0BFA3000E7132F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 836D06F9188EF45D005BD8C7 /* InfoPlist.strings */; };
+		83F77A171A0BFA3000E7132F /* nav_bg_ios7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8356EB1B19F19AD4000C70AB /* nav_bg_ios7@2x.png */; };
+		83F77A181A0BFA3000E7132F /* guardian-logo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8364B114189F0F82007A6B41 /* guardian-logo.gif */; };
+		83F77A191A0BFA3000E7132F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836D0702188EF45D005BD8C7 /* Main.storyboard */; };
+		83F77A1A1A0BFA3000E7132F /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83F7799A1A01781E00E7132F /* Launch Screen.xib */; };
+		83F77A221A0C16FF00E7132F /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F77A211A0C16FF00E7132F /* AssetsLibrary.framework */; };
+		83F77A241A0C170600E7132F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F77A231A0C170600E7132F /* CoreText.framework */; };
+		83F77A261A0C170E00E7132F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F77A251A0C170E00E7132F /* SystemConfiguration.framework */; };
+		83F77A281A0C171B00E7132F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F77A271A0C171B00E7132F /* MobileCoreServices.framework */; };
+		83F77A2A1A0C172000E7132F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F77A291A0C172000E7132F /* QuartzCore.framework */; };
+		83F77A2C1A0C172600E7132F /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F77A2B1A0C172600E7132F /* QuickLook.framework */; };
+		83F77A321A0C174600E7132F /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F77A2E1A0C174600E7132F /* HockeySDK.framework */; };
+		83F77A331A0C174600E7132F /* HockeySDK.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 83F77A301A0C174600E7132F /* HockeySDK.xcconfig */; };
+		83F77A341A0C174600E7132F /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 83F77A311A0C174600E7132F /* HockeySDKResources.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +171,19 @@
 		83F779971A01418900E7132F /* LegalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LegalViewController.h; sourceTree = "<group>"; };
 		83F779981A01418900E7132F /* LegalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LegalViewController.m; sourceTree = "<group>"; };
 		83F7799A1A01781E00E7132F /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
+		83F779C71A0BF8BC00E7132F /* Workflow copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Workflow copy-Info.plist"; path = "/Users/sydgdxo/Desktop/MD1/MasterDetail_1/Workflow copy-Info.plist"; sourceTree = "<absolute>"; };
+		83F779F31A0BF8E900E7132F /* Workflow copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Workflow copy2-Info.plist"; path = "/Users/sydgdxo/Desktop/MD1/MasterDetail_1/Workflow copy2-Info.plist"; sourceTree = "<absolute>"; };
+		83F77A1E1A0BFA3000E7132F /* groupstatus-uat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "groupstatus-uat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		83F77A1F1A0BFA3000E7132F /* Workflow copy3-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Workflow copy3-Info.plist"; path = "/Users/sydgdxo/Desktop/MD1/MasterDetail_1/Workflow copy3-Info.plist"; sourceTree = "<absolute>"; };
+		83F77A211A0C16FF00E7132F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		83F77A231A0C170600E7132F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		83F77A251A0C170E00E7132F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		83F77A271A0C171B00E7132F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		83F77A291A0C172000E7132F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		83F77A2B1A0C172600E7132F /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
+		83F77A2E1A0C174600E7132F /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
+		83F77A301A0C174600E7132F /* HockeySDK.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = HockeySDK.xcconfig; sourceTree = "<group>"; };
+		83F77A311A0C174600E7132F /* HockeySDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HockeySDKResources.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +208,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		83F77A0F1A0BFA3000E7132F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83F77A2C1A0C172600E7132F /* QuickLook.framework in Frameworks */,
+				83F77A2A1A0C172000E7132F /* QuartzCore.framework in Frameworks */,
+				83F77A281A0C171B00E7132F /* MobileCoreServices.framework in Frameworks */,
+				83F77A261A0C170E00E7132F /* SystemConfiguration.framework in Frameworks */,
+				83F77A241A0C170600E7132F /* CoreText.framework in Frameworks */,
+				83F77A221A0C16FF00E7132F /* AssetsLibrary.framework in Frameworks */,
+				83F77A101A0BFA3000E7132F /* MessageUI.framework in Frameworks */,
+				83F77A111A0BFA3000E7132F /* CoreGraphics.framework in Frameworks */,
+				83F77A121A0BFA3000E7132F /* UIKit.framework in Frameworks */,
+				83F77A321A0C174600E7132F /* HockeySDK.framework in Frameworks */,
+				83F77A131A0BFA3000E7132F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -171,6 +246,9 @@
 				836D0718188EF45D005BD8C7 /* MasterDetail_1Tests */,
 				836D06EF188EF45D005BD8C7 /* Frameworks */,
 				836D06EE188EF45D005BD8C7 /* Products */,
+				83F779C71A0BF8BC00E7132F /* Workflow copy-Info.plist */,
+				83F779F31A0BF8E900E7132F /* Workflow copy2-Info.plist */,
+				83F77A1F1A0BFA3000E7132F /* Workflow copy3-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -179,6 +257,7 @@
 			children = (
 				836D06ED188EF45D005BD8C7 /* Workflow.app */,
 				836D0711188EF45D005BD8C7 /* WorkflowTests.xctest */,
+				83F77A1E1A0BFA3000E7132F /* groupstatus-uat.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,6 +265,13 @@
 		836D06EF188EF45D005BD8C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83F77A2D1A0C174600E7132F /* HockeySDK.embeddedframework */,
+				83F77A2B1A0C172600E7132F /* QuickLook.framework */,
+				83F77A291A0C172000E7132F /* QuartzCore.framework */,
+				83F77A271A0C171B00E7132F /* MobileCoreServices.framework */,
+				83F77A251A0C170E00E7132F /* SystemConfiguration.framework */,
+				83F77A231A0C170600E7132F /* CoreText.framework */,
+				83F77A211A0C16FF00E7132F /* AssetsLibrary.framework */,
 				83C9D10E19E33C9600DF8BC1 /* MessageUI.framework */,
 				836D06F0188EF45D005BD8C7 /* Foundation.framework */,
 				836D06F2188EF45D005BD8C7 /* CoreGraphics.framework */,
@@ -299,6 +385,25 @@
 			name = 3p;
 			sourceTree = "<group>";
 		};
+		83F77A2D1A0C174600E7132F /* HockeySDK.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				83F77A2E1A0C174600E7132F /* HockeySDK.framework */,
+				83F77A2F1A0C174600E7132F /* Resources */,
+			);
+			name = HockeySDK.embeddedframework;
+			path = "HockeySDK-iOS/HockeySDK.embeddedframework";
+			sourceTree = "<group>";
+		};
+		83F77A2F1A0C174600E7132F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				83F77A301A0C174600E7132F /* HockeySDK.xcconfig */,
+				83F77A311A0C174600E7132F /* HockeySDKResources.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -337,6 +442,24 @@
 			productReference = 836D0711188EF45D005BD8C7 /* WorkflowTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		83F779F41A0BFA3000E7132F /* Group Status UAT */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83F77A1B1A0BFA3000E7132F /* Build configuration list for PBXNativeTarget "Group Status UAT" */;
+			buildPhases = (
+				83F779F51A0BFA3000E7132F /* Sources */,
+				83F77A0F1A0BFA3000E7132F /* Frameworks */,
+				83F77A141A0BFA3000E7132F /* Resources */,
+				83F77A201A0C16AE00E7132F /* HockeyApp Checker */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Group Status UAT";
+			productName = MasterDetail_1;
+			productReference = 83F77A1E1A0BFA3000E7132F /* groupstatus-uat.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -358,6 +481,9 @@
 					836D0710188EF45D005BD8C7 = {
 						TestTargetID = 836D06EC188EF45D005BD8C7;
 					};
+					83F779F41A0BFA3000E7132F = {
+						DevelopmentTeam = 6EJ6KUHYQ8;
+					};
 				};
 			};
 			buildConfigurationList = 836D06E8188EF45D005BD8C7 /* Build configuration list for PBXProject "Workflow" */;
@@ -375,6 +501,7 @@
 			targets = (
 				836D06EC188EF45D005BD8C7 /* Workflow */,
 				836D0710188EF45D005BD8C7 /* WorkflowTests */,
+				83F779F41A0BFA3000E7132F /* Group Status UAT */,
 			);
 		};
 /* End PBXProject section */
@@ -401,7 +528,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		83F77A141A0BFA3000E7132F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83F77A151A0BFA3000E7132F /* Images.xcassets in Resources */,
+				83F77A341A0C174600E7132F /* HockeySDKResources.bundle in Resources */,
+				83F77A161A0BFA3000E7132F /* InfoPlist.strings in Resources */,
+				83F77A171A0BFA3000E7132F /* nav_bg_ios7@2x.png in Resources */,
+				83F77A181A0BFA3000E7132F /* guardian-logo.gif in Resources */,
+				83F77A191A0BFA3000E7132F /* Main.storyboard in Resources */,
+				83F77A1A1A0BFA3000E7132F /* Launch Screen.xib in Resources */,
+				83F77A331A0C174600E7132F /* HockeySDK.xcconfig in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		83F77A201A0C16AE00E7132F /* HockeyApp Checker */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "HockeyApp Checker";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		836D06E9188EF45D005BD8C7 /* Sources */ = {
@@ -441,6 +600,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				836D071F188EF45D005BD8C7 /* MasterDetail_1Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83F779F51A0BFA3000E7132F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83F779F61A0BFA3000E7132F /* main.m in Sources */,
+				83F779F71A0BFA3000E7132F /* MD1AppDelegate.m in Sources */,
+				83F779F81A0BFA3000E7132F /* RGOTableViewController.m in Sources */,
+				83F779F91A0BFA3000E7132F /* LegalViewController.m in Sources */,
+				83F779FA1A0BFA3000E7132F /* MD1SimonSessionHelper.m in Sources */,
+				83F779FB1A0BFA3000E7132F /* MD1PlansCell.m in Sources */,
+				83F779FC1A0BFA3000E7132F /* MD1LoginViewController.m in Sources */,
+				83F779FD1A0BFA3000E7132F /* SRTableViewController.m in Sources */,
+				83F779FE1A0BFA3000E7132F /* MD1SimonResponse.m in Sources */,
+				83F779FF1A0BFA3000E7132F /* MD1NavigationController.m in Sources */,
+				83F77A001A0BFA3000E7132F /* SalesRep.m in Sources */,
+				83F77A011A0BFA3000E7132F /* GCPlaceholderTextView.m in Sources */,
+				83F77A021A0BFA3000E7132F /* RGO.m in Sources */,
+				83F77A031A0BFA3000E7132F /* MD1SimonTaskHelper.m in Sources */,
+				83F77A041A0BFA3000E7132F /* MD1ProcessCell.m in Sources */,
+				83F77A051A0BFA3000E7132F /* SRTableCell.m in Sources */,
+				83F77A061A0BFA3000E7132F /* MD1SearchViewController.m in Sources */,
+				83F77A071A0BFA3000E7132F /* MD1PlansViewController.m in Sources */,
+				83F77A081A0BFA3000E7132F /* MD1ProcessesCell.m in Sources */,
+				83F77A091A0BFA3000E7132F /* MD1CaseSearchData.m in Sources */,
+				83F77A0A1A0BFA3000E7132F /* MD1PlanViewController.m in Sources */,
+				83F77A0B1A0BFA3000E7132F /* MD1EMailViewController.m in Sources */,
+				83F77A0C1A0BFA3000E7132F /* RGOTableCell.m in Sources */,
+				83F77A0D1A0BFA3000E7132F /* MBProgressHUD.m in Sources */,
+				83F77A0E1A0BFA3000E7132F /* MD1PlanCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,10 +752,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MasterDetail_1/Workflow-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = "MasterDetail_1/Workflow-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = Workflow;
@@ -630,6 +818,53 @@
 			};
 			name = Release;
 		};
+		83F77A1C1A0BFA3000E7132F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HockeySDK-iOS/HockeySDK.embeddedframework",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MasterDetail_1/Workflow-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"GGS_ENV=UAT",
+				);
+				INFOPLIST_FILE = "Workflow Copy3-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "groupstatus-uat";
+				PROVISIONING_PROFILE = "6934bb6c-1c41-4e12-ac59-bd2247735c7a";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		83F77A1D1A0BFA3000E7132F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HockeySDK-iOS/HockeySDK.embeddedframework",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MasterDetail_1/Workflow-Prefix.pch";
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "GGS_ENV=UAT";
+				INFOPLIST_FILE = "Workflow Copy3-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "groupstatus-uat";
+				PROVISIONING_PROFILE = "fc4af7ef-1297-4313-8cfd-38691538745f";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -656,6 +891,15 @@
 			buildConfigurations = (
 				836D0726188EF45D005BD8C7 /* Debug */,
 				836D0727188EF45D005BD8C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83F77A1B1A0BFA3000E7132F /* Build configuration list for PBXNativeTarget "Group Status UAT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83F77A1C1A0BFA3000E7132F /* Debug */,
+				83F77A1D1A0BFA3000E7132F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

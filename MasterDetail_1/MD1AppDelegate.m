@@ -9,6 +9,10 @@
 #import "MD1AppDelegate.h"
 #import "MD1SimonSessionHelper.h"
 
+#if GGS_ENV==UAT
+#import <HockeySDK/HockeySDK.h>
+#endif
+
 MD1SimonSessionHelper *g_SimonSession;
 
 @implementation MD1AppDelegate
@@ -16,6 +20,11 @@ MD1SimonSessionHelper *g_SimonSession;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+#if GGS_ENV==UAT
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"bd098a0f3092c287f3aa8d831bfaf130"];
+    [[BITHockeyManager sharedHockeyManager] startManager];
+    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
+#endif
     
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_bg_ios7@2x.png"]   forBarMetrics:UIBarMetricsDefault];
     

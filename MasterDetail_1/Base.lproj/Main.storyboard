@@ -360,7 +360,7 @@
         <!--Plans-->
         <scene sceneID="j0a-Lg-Vgi">
             <objects>
-                <tableViewController hidesBottomBarWhenPushed="YES" id="CEC-i7-ouC" customClass="MD1PlansViewController" sceneMemberID="viewController">
+                <tableViewController id="CEC-i7-ouC" customClass="MD1PlansViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="aic-aG-ewB">
                         <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -430,6 +430,19 @@
                             <outlet property="delegate" destination="CEC-i7-ouC" id="5We-Cq-SAb"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Show Feedback" id="mlD-xg-ZrL">
+                            <connections>
+                                <action selector="listFeedback:" destination="CEC-i7-ouC" id="rMa-cj-yXe"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="qUB-OV-Zce"/>
+                        <barButtonItem title="Submit Feedback" id="iiQ-uE-lLb">
+                            <connections>
+                                <action selector="feedback:" destination="CEC-i7-ouC" id="nQv-xJ-Veh"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Plans" id="ZNm-pG-Unz"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZg-kB-QfC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -671,6 +684,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5xj-UW-VOz"/>
+        <segue reference="rYe-y4-QHb"/>
     </inferredMetricsTieBreakers>
 </document>

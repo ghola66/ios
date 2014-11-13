@@ -13,7 +13,7 @@
 #import "MD1PlansViewController.h"
 #import "MD1PlanViewController.h"
 
-#if GGS_ENV==UAT
+#ifdef GGS_HOCKEY
 #import <HockeySDK/HockeySDK.h>
 #endif
 
@@ -22,7 +22,7 @@ MD1SimonSessionHelper *g_SimonSession;
 @interface MD1PlansViewController ()
 
 - (IBAction)home:(id)sender;
-- (IBAction)feedback:(id)sender;
+
 
 @end
 
@@ -151,17 +151,6 @@ MD1SimonSessionHelper *g_SimonSession;
     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
 }
 
-- (IBAction)feedback:(id)sender {
-#if GGS_ENV==UAT
-    [[[BITHockeyManager sharedHockeyManager] feedbackManager] showFeedbackComposeView];
-#endif
-}
-
-- (IBAction)listFeedback:(id)sender {
-#if GGS_ENV==UAT
-    [[[BITHockeyManager sharedHockeyManager] feedbackManager] showFeedbackListView];
-#endif
-}
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {

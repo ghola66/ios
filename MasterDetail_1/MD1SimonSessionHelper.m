@@ -17,7 +17,15 @@ BOOL isValid;
 - (MD1SimonSessionHelper *) init {
     self = [super init];
     
+    self.env = @"PROD";
+    
+#if GGS_ENV==GGS_ENV_PROD
+    self.env = @"PROD";
+#elif GGS_ENV==GGS_ENV_UAT
     self.env = @"UAT";
+#elif GGS_ENV==GGS_ENV_LOCAL
+    self.env = @"local";
+#endif
     
     if([self.env isEqualToString:@"UAT"]) {
         self.domain = @"https://www8.qa.glic.com";

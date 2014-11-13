@@ -14,6 +14,10 @@
 #import "MD1SearchViewController.h"
 #import "MD1PlansViewController.h"
 
+#ifdef GGS_HOCKEY
+#import <HockeySDK/HockeySDK.h>
+#endif
+
 MD1SimonSessionHelper *g_SimonSession;
 
 @interface MD1LoginViewController ()
@@ -30,6 +34,9 @@ MD1SimonSessionHelper *g_SimonSession;
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
 @property (weak, nonatomic) IBOutlet UIButton *go;
 @property (weak, nonatomic) IBOutlet UIButton *legal;
+
+@property (weak, nonatomic) IBOutlet UIButton *feedbackB;
+@property (weak, nonatomic) IBOutlet UIButton *showFeedbackB;
 
 @property (nonatomic, assign) id currentResponder;
 
@@ -63,12 +70,14 @@ BOOL isFirstAppearance;
     [singleTap setNumberOfTapsRequired:1];
     [singleTap setNumberOfTouchesRequired:1];
     [self.view addGestureRecognizer:singleTap];
-
-    
-    self.logo.image  = [UIImage imageNamed:@"guardian-logo.gif"];
     
     //self.hidesBottomBarWhenPushed = YES;
     self.navigationController.toolbarHidden = YES;
+    
+#ifndef GGS_HOCKEY
+    self.feedbackB.hidden = YES;
+    self.showFeedbackB.hidden = YES;
+#endif
     
     {
         NSMutableDictionary *data = [MD1LoginViewController keyChainLoadKey:@"simonlogin"];
@@ -461,6 +470,17 @@ BOOL isFirstAppearance;
     }
 }
 
+- (IBAction)feedback:(id)sender {
+#ifdef GGS_HOCKEY
+    [[[BITHockeyManager sharedHockeyManager] feedbackManager] showFeedbackComposeView];
+#endif
+}
+
+- (IBAction)listFeedback:(id)sender {
+#ifdef GGS_HOCKEY
+    [[[BITHockeyManager sharedHockeyManager] feedbackManager] showFeedbackListView];
+#endif
+}
 + (void)keyChainSaveKey:(NSString *)key data:(id)data
 {
     NSMutableDictionary *keychainQuery = [self getKeychainQuery:key];

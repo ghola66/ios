@@ -9,8 +9,18 @@
 #import "MD1AppDelegate.h"
 #import "MD1SimonSessionHelper.h"
 
-#if GGS_ENV==UAT
+#ifdef GGS_HOCKEY
 #import <HockeySDK/HockeySDK.h>
+
+
+#if GGS_ENV==GGS_ENV_PROD
+#define GGS_HOCKEY_ID @"60e06067c9cf3b23e902c925c5c89759"
+#elif GGS_ENV==GGS_ENV_UAT
+#define GGS_HOCKEY_ID @"bd098a0f3092c287f3aa8d831bfaf130"
+#elif GGS_ENV==GGS_ENV_LOCAL
+#define GGS_HOCKEY_ID @"bd098a0f3092c287f3aa8d831bfaf130"
+#endif
+
 #endif
 
 MD1SimonSessionHelper *g_SimonSession;
@@ -20,8 +30,8 @@ MD1SimonSessionHelper *g_SimonSession;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-#if GGS_ENV==UAT
-    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"bd098a0f3092c287f3aa8d831bfaf130"];
+#ifdef GGS_HOCKEY
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:GGS_HOCKEY_ID];
     [[BITHockeyManager sharedHockeyManager] startManager];
     [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
 #endif

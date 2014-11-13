@@ -20,6 +20,10 @@
 
 #define BROKER_GROUP @"License_Producer"
 
+#define GGS_ENV_PROD 1
+#define GGS_ENV_UAT 2
+#define GGS_ENV_LOCAL 3
+
 @property NSURLSessionConfiguration *sessionConfig;
 @property NSURLSession *session;
 @property BOOL isLogin;

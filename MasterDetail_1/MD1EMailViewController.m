@@ -39,8 +39,8 @@ BOOL isPushed;
     if(isPushed){
         if([MFMailComposeViewController canSendMail]) {
             
-            UINavigationBar *navBar = [UINavigationBar appearance];
-            [navBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+            //UINavigationBar *navBar = [UINavigationBar appearance];
+            //[navBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
             
             NSLog(@"%@", self.CaseSearchDataJSon);
             
@@ -106,7 +106,7 @@ BOOL isPushed;
     }
     // Close the Mail Interface
     //[self dismissViewControllerAnimated:YES completion:NULL];
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_bg_ios7@2x.png"] forBarMetrics:UIBarMetricsDefault];
+    //[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_bg_ios7@2x.png"] forBarMetrics:UIBarMetricsDefault];
     [self performSegueWithIdentifier:@"unwindToPlanID" sender:self];
 }
 

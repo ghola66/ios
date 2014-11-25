@@ -36,7 +36,7 @@ MD1SimonSessionHelper *g_SimonSession;
     [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
 #endif
     
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_bg_ios7@2x.png"]   forBarMetrics:UIBarMetricsDefault];
+    //[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_bg_ios7@2x.png"]   forBarMetrics:UIBarMetricsDefault];
     
     g_SimonSession = [[MD1SimonSessionHelper alloc] init];
     

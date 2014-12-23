@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>Group Status UAT copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>Group Status inHouse.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -28,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>836D0710188EF45D005BD8C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83A210701A373C180036516D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

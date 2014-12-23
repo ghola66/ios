@@ -22,8 +22,8 @@ MD1SimonSessionHelper *g_SimonSession;
 
 @interface MD1LoginViewController ()
 
-@property (strong, nonatomic) IBOutlet UITextField *userid;
-@property (strong, nonatomic) IBOutlet UITextField *password;
+@property (weak, nonatomic) IBOutlet UITextField *userid;
+@property (weak, nonatomic) IBOutlet UITextField *password;
 @property (strong, nonatomic) NSString *dataFilePath;
 @property (strong, nonatomic) NSArray *RGOs;
 @property (strong, nonatomic) NSDictionary *salesReps;
@@ -39,9 +39,6 @@ MD1SimonSessionHelper *g_SimonSession;
 @property (weak, nonatomic) IBOutlet UIButton *showFeedbackB;
 
 @property (nonatomic, assign) id currentResponder;
-
-- (IBAction)go:(id)sender;
-- (IBAction)legal:(id)sender;
 
 @end
 
@@ -124,12 +121,8 @@ BOOL isFirstAppearance;
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)go:(id)sender {
-    //
-}
-
 - (IBAction)legal:(id)sender {
-    NSString* launchUrl = @"http://www.guardiananytime.com";
+    NSString* launchUrl = @"https://www.guardiananytime.com/fpapp/FPWeb/disclaimers.jsp";
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
 }
 
@@ -430,7 +423,7 @@ BOOL isFirstAppearance;
 {
     if([[segue destinationViewController] isKindOfClass:[MD1SearchViewController class]]) {
         MD1SearchViewController *targetvc =[segue destinationViewController];
-        targetvc.userid = _userid.text;
+        targetvc.userid = self.userid.text;
         targetvc.userGroup = _userGroup;
     } else if([[segue destinationViewController] isKindOfClass:[MD1PlansViewController class]]) {
         MD1PlansViewController *targetvc =[segue destinationViewController];

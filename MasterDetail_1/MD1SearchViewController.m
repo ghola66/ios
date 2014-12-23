@@ -25,10 +25,10 @@ MD1SimonSessionHelper *g_SimonSession;
 @property (weak, nonatomic) IBOutlet UITextField *planNumber;
 @property (weak, nonatomic) IBOutlet UITextField *planholder;
 @property (weak, nonatomic) IBOutlet UISwitch *matchAnywhere;
-@property BOOL RGOtextClr;
-@property BOOL SRtextClr;
+@property (assign, nonatomic) BOOL RGOtextClr;
+@property (assign, nonatomic) BOOL SRtextClr;
 @property (nonatomic) NSMutableArray *salesReps;
-@property (nonatomic, assign) id currentResponder;
+@property (nonatomic, weak) id currentResponder;
 
 - (IBAction)home:(id)sender;
 - (IBAction)clear:(id)sender;

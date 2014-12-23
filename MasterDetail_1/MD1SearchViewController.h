@@ -12,7 +12,7 @@
 
 @property (strong, nonatomic) NSArray *resultset;
 
-@property (weak, nonatomic) NSString *userid;
-@property (weak, nonatomic) NSString *userGroup;
+@property (strong, nonatomic) NSString *userid;
+@property (strong, nonatomic) NSString *userGroup;
 
 @end

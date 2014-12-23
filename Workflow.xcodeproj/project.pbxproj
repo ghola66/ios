@@ -12,6 +12,48 @@
 		836D0715188EF45D005BD8C7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 836D06F4188EF45D005BD8C7 /* UIKit.framework */; };
 		836D071D188EF45D005BD8C7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 836D071B188EF45D005BD8C7 /* InfoPlist.strings */; };
 		836D071F188EF45D005BD8C7 /* MasterDetail_1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 836D071E188EF45D005BD8C7 /* MasterDetail_1Tests.m */; };
+		83A210721A373C180036516D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 836D06FC188EF45D005BD8C7 /* main.m */; };
+		83A210731A373C180036516D /* MD1AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 836D0700188EF45D005BD8C7 /* MD1AppDelegate.m */; };
+		83A210741A373C180036516D /* RGOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833D871E19F69407001A4C26 /* RGOTableViewController.m */; };
+		83A210751A373C180036516D /* LegalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F779981A01418900E7132F /* LegalViewController.m */; };
+		83A210761A373C180036516D /* MD1SimonSessionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364B1091899815D007A6B41 /* MD1SimonSessionHelper.m */; };
+		83A210771A373C180036516D /* MD1PlansCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364B117189F1079007A6B41 /* MD1PlansCell.m */; };
+		83A210781A373C180036516D /* MD1LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 836D074F18916195005BD8C7 /* MD1LoginViewController.m */; };
+		83A210791A373C180036516D /* SRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C9D12519E8288600DF8BC1 /* SRTableViewController.m */; };
+		83A2107A1A373C180036516D /* MD1SimonResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364B11A18A140E0007A6B41 /* MD1SimonResponse.m */; };
+		83A2107B1A373C180036516D /* MD1NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364B10618920380007A6B41 /* MD1NavigationController.m */; };
+		83A2107C1A373C180036516D /* SalesRep.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C9D11F19E826A500DF8BC1 /* SalesRep.m */; };
+		83A2107D1A373C180036516D /* GCPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83066E3D18C0E8B90069797F /* GCPlaceholderTextView.m */; };
+		83A2107E1A373C180036516D /* RGO.m in Sources */ = {isa = PBXBuildFile; fileRef = 833D871A19F69407001A4C26 /* RGO.m */; };
+		83A2107F1A373C180036516D /* MD1SimonTaskHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364B10C1899AC20007A6B41 /* MD1SimonTaskHelper.m */; };
+		83A210801A373C180036516D /* MD1ProcessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC29418A428670088BF29 /* MD1ProcessCell.m */; };
+		83A210811A373C180036516D /* SRTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C9D12219E8284B00DF8BC1 /* SRTableCell.m */; };
+		83A210821A373C180036516D /* MD1SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364B103189202A8007A6B41 /* MD1SearchViewController.m */; };
+		83A210831A373C180036516D /* MD1PlansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364B112189C50C6007A6B41 /* MD1PlansViewController.m */; };
+		83A210841A373C180036516D /* MD1ProcessesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC28B18A339CD0088BF29 /* MD1ProcessesCell.m */; };
+		83A210851A373C180036516D /* MD1CaseSearchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC29118A3D34E0088BF29 /* MD1CaseSearchData.m */; };
+		83A210861A373C180036516D /* MD1PlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC28518A32BA30088BF29 /* MD1PlanViewController.m */; };
+		83A210871A373C180036516D /* MD1EMailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C9D11119E440B300DF8BC1 /* MD1EMailViewController.m */; };
+		83A210881A373C180036516D /* RGOTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 833D871C19F69407001A4C26 /* RGOTableCell.m */; };
+		83A210891A373C180036516D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364B10F189C32BB007A6B41 /* MBProgressHUD.m */; };
+		83A2108A1A373C180036516D /* MD1PlanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC28818A339840088BF29 /* MD1PlanCell.m */; };
+		83A2108C1A373C180036516D /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F77A2B1A0C172600E7132F /* QuickLook.framework */; };
+		83A2108D1A373C180036516D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F77A291A0C172000E7132F /* QuartzCore.framework */; };
+		83A2108E1A373C180036516D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F77A271A0C171B00E7132F /* MobileCoreServices.framework */; };
+		83A2108F1A373C180036516D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F77A251A0C170E00E7132F /* SystemConfiguration.framework */; };
+		83A210901A373C180036516D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F77A231A0C170600E7132F /* CoreText.framework */; };
+		83A210911A373C180036516D /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F77A211A0C16FF00E7132F /* AssetsLibrary.framework */; };
+		83A210921A373C180036516D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C9D10E19E33C9600DF8BC1 /* MessageUI.framework */; };
+		83A210931A373C180036516D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 836D06F2188EF45D005BD8C7 /* CoreGraphics.framework */; };
+		83A210941A373C180036516D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 836D06F4188EF45D005BD8C7 /* UIKit.framework */; };
+		83A210951A373C180036516D /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F77A2E1A0C174600E7132F /* HockeySDK.framework */; };
+		83A210961A373C180036516D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 836D06F0188EF45D005BD8C7 /* Foundation.framework */; };
+		83A210981A373C180036516D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 836D070B188EF45D005BD8C7 /* Images.xcassets */; };
+		83A210991A373C180036516D /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 83F77A311A0C174600E7132F /* HockeySDKResources.bundle */; };
+		83A2109A1A373C180036516D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 836D06F9188EF45D005BD8C7 /* InfoPlist.strings */; };
+		83A2109B1A373C180036516D /* nav_bg_ios7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8356EB1B19F19AD4000C70AB /* nav_bg_ios7@2x.png */; };
+		83A2109C1A373C180036516D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836D0702188EF45D005BD8C7 /* Main.storyboard */; };
+		83A2109D1A373C180036516D /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83F7799A1A01781E00E7132F /* Launch Screen.xib */; };
 		83BAF4301A13EEEF00D8082F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 836D06FC188EF45D005BD8C7 /* main.m */; };
 		83BAF4311A13EEEF00D8082F /* MD1AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 836D0700188EF45D005BD8C7 /* MD1AppDelegate.m */; };
 		83BAF4321A13EEEF00D8082F /* RGOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833D871E19F69407001A4C26 /* RGOTableViewController.m */; };
@@ -142,6 +184,8 @@
 		836D071E188EF45D005BD8C7 /* MasterDetail_1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterDetail_1Tests.m; sourceTree = "<group>"; };
 		836D074E18916195005BD8C7 /* MD1LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD1LoginViewController.h; sourceTree = "<group>"; };
 		836D074F18916195005BD8C7 /* MD1LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD1LoginViewController.m; sourceTree = "<group>"; };
+		83A210A21A373C180036516D /* groupstatus-uat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "groupstatus-uat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		83A210A31A373C190036516D /* Group Status UAT copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Group Status UAT copy-Info.plist"; path = "/Users/sydgdxo/Desktop/MD1/MasterDetail_1/Group Status UAT copy-Info.plist"; sourceTree = "<absolute>"; };
 		83BAC28418A32BA30088BF29 /* MD1PlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD1PlanViewController.h; sourceTree = "<group>"; };
 		83BAC28518A32BA30088BF29 /* MD1PlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD1PlanViewController.m; sourceTree = "<group>"; };
 		83BAC28718A339840088BF29 /* MD1PlanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD1PlanCell.h; sourceTree = "<group>"; };
@@ -187,6 +231,24 @@
 				836D0713188EF45D005BD8C7 /* XCTest.framework in Frameworks */,
 				836D0715188EF45D005BD8C7 /* UIKit.framework in Frameworks */,
 				836D0714188EF45D005BD8C7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83A2108B1A373C180036516D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83A2108C1A373C180036516D /* QuickLook.framework in Frameworks */,
+				83A2108D1A373C180036516D /* QuartzCore.framework in Frameworks */,
+				83A2108E1A373C180036516D /* MobileCoreServices.framework in Frameworks */,
+				83A2108F1A373C180036516D /* SystemConfiguration.framework in Frameworks */,
+				83A210901A373C180036516D /* CoreText.framework in Frameworks */,
+				83A210911A373C180036516D /* AssetsLibrary.framework in Frameworks */,
+				83A210921A373C180036516D /* MessageUI.framework in Frameworks */,
+				83A210931A373C180036516D /* CoreGraphics.framework in Frameworks */,
+				83A210941A373C180036516D /* UIKit.framework in Frameworks */,
+				83A210951A373C180036516D /* HockeySDK.framework in Frameworks */,
+				83A210961A373C180036516D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +310,7 @@
 				836D06EE188EF45D005BD8C7 /* Products */,
 				83F77A1F1A0BFA3000E7132F /* Group Status UAT.plist */,
 				83BAF4621A13EEEF00D8082F /* Group Status inHouse-Info.plist */,
+				83A210A31A373C190036516D /* Group Status UAT copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -257,6 +320,7 @@
 				836D0711188EF45D005BD8C7 /* WorkflowTests.xctest */,
 				83F77A1E1A0BFA3000E7132F /* groupstatus-uat.app */,
 				83BAF4611A13EEEF00D8082F /* groupstatus.app */,
+				83A210A21A373C180036516D /* groupstatus-uat.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -422,6 +486,24 @@
 			productReference = 836D0711188EF45D005BD8C7 /* WorkflowTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		83A210701A373C180036516D /* Group Status local */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83A2109F1A373C180036516D /* Build configuration list for PBXNativeTarget "Group Status local" */;
+			buildPhases = (
+				83A210711A373C180036516D /* Sources */,
+				83A2108B1A373C180036516D /* Frameworks */,
+				83A210971A373C180036516D /* Resources */,
+				83A2109E1A373C180036516D /* HockeyApp Checker */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Group Status local";
+			productName = MasterDetail_1;
+			productReference = 83A210A21A373C180036516D /* groupstatus-uat.app */;
+			productType = "com.apple.product-type.application";
+		};
 		83BAF42E1A13EEEF00D8082F /* Group Status */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 83BAF45E1A13EEEF00D8082F /* Build configuration list for PBXNativeTarget "Group Status" */;
@@ -471,6 +553,9 @@
 					836D0710188EF45D005BD8C7 = {
 						TestTargetID = 836D06EC188EF45D005BD8C7;
 					};
+					83A210701A373C180036516D = {
+						DevelopmentTeam = X5MTNLFDFD;
+					};
 					83BAF42E1A13EEEF00D8082F = {
 						DevelopmentTeam = X5MTNLFDFD;
 					};
@@ -495,6 +580,7 @@
 				836D0710188EF45D005BD8C7 /* WorkflowTests */,
 				83F779F41A0BFA3000E7132F /* Group Status UAT */,
 				83BAF42E1A13EEEF00D8082F /* Group Status */,
+				83A210701A373C180036516D /* Group Status local */,
 			);
 		};
 /* End PBXProject section */
@@ -505,6 +591,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				836D071D188EF45D005BD8C7 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83A210971A373C180036516D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83A210981A373C180036516D /* Images.xcassets in Resources */,
+				83A210991A373C180036516D /* HockeySDKResources.bundle in Resources */,
+				83A2109A1A373C180036516D /* InfoPlist.strings in Resources */,
+				83A2109B1A373C180036516D /* nav_bg_ios7@2x.png in Resources */,
+				83A2109C1A373C180036516D /* Main.storyboard in Resources */,
+				83A2109D1A373C180036516D /* Launch Screen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,6 +636,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		83A2109E1A373C180036516D /* HockeyApp Checker */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "HockeyApp Checker";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi";
+		};
 		83BAF45D1A13EEEF00D8082F /* HockeyApp Checker */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -573,6 +686,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				836D071F188EF45D005BD8C7 /* MasterDetail_1Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83A210711A373C180036516D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83A210721A373C180036516D /* main.m in Sources */,
+				83A210731A373C180036516D /* MD1AppDelegate.m in Sources */,
+				83A210741A373C180036516D /* RGOTableViewController.m in Sources */,
+				83A210751A373C180036516D /* LegalViewController.m in Sources */,
+				83A210761A373C180036516D /* MD1SimonSessionHelper.m in Sources */,
+				83A210771A373C180036516D /* MD1PlansCell.m in Sources */,
+				83A210781A373C180036516D /* MD1LoginViewController.m in Sources */,
+				83A210791A373C180036516D /* SRTableViewController.m in Sources */,
+				83A2107A1A373C180036516D /* MD1SimonResponse.m in Sources */,
+				83A2107B1A373C180036516D /* MD1NavigationController.m in Sources */,
+				83A2107C1A373C180036516D /* SalesRep.m in Sources */,
+				83A2107D1A373C180036516D /* GCPlaceholderTextView.m in Sources */,
+				83A2107E1A373C180036516D /* RGO.m in Sources */,
+				83A2107F1A373C180036516D /* MD1SimonTaskHelper.m in Sources */,
+				83A210801A373C180036516D /* MD1ProcessCell.m in Sources */,
+				83A210811A373C180036516D /* SRTableCell.m in Sources */,
+				83A210821A373C180036516D /* MD1SearchViewController.m in Sources */,
+				83A210831A373C180036516D /* MD1PlansViewController.m in Sources */,
+				83A210841A373C180036516D /* MD1ProcessesCell.m in Sources */,
+				83A210851A373C180036516D /* MD1CaseSearchData.m in Sources */,
+				83A210861A373C180036516D /* MD1PlanViewController.m in Sources */,
+				83A210871A373C180036516D /* MD1EMailViewController.m in Sources */,
+				83A210881A373C180036516D /* RGOTableCell.m in Sources */,
+				83A210891A373C180036516D /* MBProgressHUD.m in Sources */,
+				83A2108A1A373C180036516D /* MD1PlanCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,6 +925,57 @@
 			};
 			name = Release;
 		};
+		83A210A01A373C180036516D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HockeySDK-iOS/HockeySDK.embeddedframework",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MasterDetail_1/Workflow-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"GGS_ENV=3",
+					"GGS_HOCKEY=1",
+				);
+				INFOPLIST_FILE = "Group Status UAT copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "groupstatus-uat";
+				PROVISIONING_PROFILE = "a76648be-c4cb-4a34-8319-cebed4469b13";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		83A210A11A373C180036516D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HockeySDK-iOS/HockeySDK.embeddedframework",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MasterDetail_1/Workflow-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"GGS_ENV=3",
+					"GGS_HOCKEY=1",
+				);
+				INFOPLIST_FILE = "Group Status UAT copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "groupstatus-uat";
+				PROVISIONING_PROFILE = "fc4af7ef-1297-4313-8cfd-38691538745f";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		83BAF45F1A13EEEF00D8082F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -787,7 +983,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 19;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HockeySDK-iOS/HockeySDK.embeddedframework",
@@ -815,7 +1011,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 19;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HockeySDK-iOS/HockeySDK.embeddedframework",
@@ -856,7 +1052,7 @@
 				INFOPLIST_FILE = "Group Status UAT.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "groupstatus-uat";
-				PROVISIONING_PROFILE = "6934bb6c-1c41-4e12-ac59-bd2247735c7a";
+				PROVISIONING_PROFILE = "a76648be-c4cb-4a34-8319-cebed4469b13";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -903,6 +1099,15 @@
 			buildConfigurations = (
 				836D0726188EF45D005BD8C7 /* Debug */,
 				836D0727188EF45D005BD8C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83A2109F1A373C180036516D /* Build configuration list for PBXNativeTarget "Group Status local" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83A210A01A373C180036516D /* Debug */,
+				83A210A11A373C180036516D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

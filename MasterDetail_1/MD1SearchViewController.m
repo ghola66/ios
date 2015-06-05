@@ -145,7 +145,9 @@ MD1SimonSessionHelper *g_SimonSession;
         
         NSMutableDictionary *jsonIn = [[NSMutableDictionary alloc] init];
         if([self.planNumber.text length] > 0) {
-            NSString *plnNr = self.planNumber.text;
+            NSString *toTrim = self.planNumber.text;
+            NSString *plnNr = [toTrim stringByTrimmingCharactersInSet:
+                                       [NSCharacterSet whitespaceAndNewlineCharacterSet]];
             if([plnNr length] < 8) {
                 NSString *padding = [@"" stringByPaddingToLength:8 - [plnNr length]  withString:@"0" startingAtIndex:0];
                 plnNr = [padding stringByAppendingString:plnNr];
@@ -153,7 +155,10 @@ MD1SimonSessionHelper *g_SimonSession;
             jsonIn[CSD_PLN_NR] = plnNr;
         }
         if([self.planholder.text length] > 0) {
-            jsonIn[CSD_PHD_NM] = self.planholder.text;
+            NSString *toTrim = self.planholder.text;
+            NSString *trimmed = [toTrim stringByTrimmingCharactersInSet:
+                               [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            jsonIn[CSD_PHD_NM] = trimmed;
         }
         if(self.matchAnywhere.on) {
             jsonIn[@"isPHMatch"] = @"true";

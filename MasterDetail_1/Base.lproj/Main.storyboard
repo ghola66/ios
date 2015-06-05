@@ -129,7 +129,7 @@
                         <outlet property="password" destination="V1x-Cp-U7F" id="WHl-ZT-SAB"/>
                         <outlet property="showFeedbackB" destination="JQ7-uF-z9Y" id="MCA-4r-qJW"/>
                         <outlet property="userid" destination="6a7-te-XU0" id="aeC-T7-PXA"/>
-                        <segue destination="igP-4P-a3F" kind="modal" identifier="showbrokernoplansID" id="mW8-L9-Ppk"/>
+                        <segue destination="igP-4P-a3F" kind="push" identifier="showbrokernoplansID" id="mW8-L9-Ppk"/>
                         <segue destination="CEC-i7-ouC" kind="push" identifier="showbrokerplansID" id="5xj-UW-VOz"/>
                         <segue destination="3xv-MS-24A" kind="modal" identifier="showlegal" animates="NO" id="E6J-xs-9hx"/>
                     </connections>
@@ -206,7 +206,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No customer applications currently found" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvj-tq-I5f">
-                                <rect key="frame" x="16" y="273" width="288" height="42"/>
+                                <rect key="frame" x="16" y="233" width="288" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -214,6 +214,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="SOZ-dK-hj4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9iT-jq-iG8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -122,7 +122,8 @@ BOOL isFirstAppearance;
 }
 
 - (IBAction)legal:(id)sender {
-    NSString* launchUrl = @"https://www.guardiananytime.com/fpapp/FPWeb/disclaimers.jsp";
+    //NSString* launchUrl = @"https://www.guardiananytime.com/fpapp/FPWeb/disclaimers.jsp";
+    NSString* launchUrl = @"https://www.guardiananytime.com/gafd/wps/portal/fdhome/brokers/guardian-group-status";
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
 }
 

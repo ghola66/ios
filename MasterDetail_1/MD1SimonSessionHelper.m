@@ -415,6 +415,11 @@ BOOL isValid;
                 }
                 break;
             }
+            case 403:
+            {
+                retval.error = @"403 You do not have access to Simon application.";
+                break;
+            }
             case 500:
             {
                 retval.error = @"500 Internal Server Error";

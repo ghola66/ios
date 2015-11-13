@@ -653,7 +653,7 @@
 						};
 					};
 					83F779F41A0BFA3000E7132F = {
-						DevelopmentTeam = X5MTNLFDFD;
+						DevelopmentTeam = 3N5T7U8877;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
 								enabled = 0;

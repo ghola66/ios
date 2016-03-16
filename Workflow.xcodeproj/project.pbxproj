@@ -627,7 +627,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = GGS;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "The Guardian Life Insurance Company";
 				TargetAttributes = {
 					836D0710188EF45D005BD8C7 = {
@@ -989,8 +989,10 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1027,6 +1029,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1059,6 +1062,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "MasterDetail_1Tests/WorkflowTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.glic.com.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = WorkflowTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -1077,6 +1081,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MasterDetail_1/MasterDetail_1-Prefix.pch";
 				INFOPLIST_FILE = "MasterDetail_1Tests/WorkflowTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.glic.com.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = WorkflowTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -1103,6 +1108,7 @@
 				);
 				INFOPLIST_FILE = "Group Status UAT copy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.guardianlife.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "groupstatus-uat";
 				PROVISIONING_PROFILE = "a76648be-c4cb-4a34-8319-cebed4469b13";
 				WRAPPER_EXTENSION = app;
@@ -1128,6 +1134,7 @@
 				);
 				INFOPLIST_FILE = "Group Status UAT copy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.guardianlife.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "groupstatus-uat";
 				PROVISIONING_PROFILE = "fc4af7ef-1297-4313-8cfd-38691538745f";
 				WRAPPER_EXTENSION = app;
@@ -1154,6 +1161,7 @@
 				);
 				INFOPLIST_FILE = "Group Status App Store.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.glic.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = groupstatus;
 				PROVISIONING_PROFILE = "10ac444c-9f30-4636-adbf-fe3197d07825";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1178,6 +1186,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "GGS_ENV=1";
 				INFOPLIST_FILE = "Group Status App Store.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.glic.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = groupstatus;
 				PROVISIONING_PROFILE = "10ac444c-9f30-4636-adbf-fe3197d07825";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1206,6 +1215,7 @@
 				);
 				INFOPLIST_FILE = "Group Status inHouse-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.guardianlife.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = groupstatus;
 				PROVISIONING_PROFILE = "e6005183-e09f-4307-8c73-70bbaac7cdeb";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1233,6 +1243,7 @@
 				);
 				INFOPLIST_FILE = "Group Status inHouse-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.guardianlife.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = groupstatus;
 				PROVISIONING_PROFILE = "dcbd313e-b198-4df4-8914-0a81309e162f";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1260,8 +1271,9 @@
 				);
 				INFOPLIST_FILE = "Group Status UAT.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.guardianlife.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "groupstatus-uat";
-				PROVISIONING_PROFILE = "a76648be-c4cb-4a34-8319-cebed4469b13";
+				PROVISIONING_PROFILE = "c74723bd-0034-4824-8b01-2ec902d46bcd";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1285,8 +1297,9 @@
 				);
 				INFOPLIST_FILE = "Group Status UAT.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.guardianlife.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "groupstatus-uat";
-				PROVISIONING_PROFILE = "fc4af7ef-1297-4313-8cfd-38691538745f";
+				PROVISIONING_PROFILE = "c74723bd-0034-4824-8b01-2ec902d46bcd";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

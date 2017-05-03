@@ -14,10 +14,10 @@
 #import "MD1PlanViewController.h"
 
 #ifdef GGS_HOCKEY
-#import <HockeySDK/HockeySDK.h>
+//#import <HockeySDK/HockeySDK.h>
 #endif
 
-MD1SimonSessionHelper *g_SimonSession;
+extern MD1SimonSessionHelper *g_SimonSession;
 
 @interface MD1PlansViewController ()
 

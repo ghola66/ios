@@ -10,7 +10,7 @@
 #import "MD1SimonSessionHelper.h"
 
 #ifdef GGS_HOCKEY
-#import <HockeySDK/HockeySDK.h>
+//#import <HockeySDK/HockeySDK.h>
 
 
 #if GGS_ENV==GGS_ENV_PROD
@@ -31,9 +31,9 @@ MD1SimonSessionHelper *g_SimonSession;
 {
     // Override point for customization after application launch.
 #ifdef GGS_HOCKEY
-    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:GGS_HOCKEY_ID];
-    [[BITHockeyManager sharedHockeyManager] startManager];
-    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
+//    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:GGS_HOCKEY_ID];
+//    [[BITHockeyManager sharedHockeyManager] startManager];
+//    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
 #endif
     
     //[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_bg_ios7@2x.png"]   forBarMetrics:UIBarMetricsDefault];

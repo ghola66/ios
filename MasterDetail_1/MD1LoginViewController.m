@@ -15,10 +15,10 @@
 #import "MD1PlansViewController.h"
 
 #ifdef GGS_HOCKEY
-#import <HockeySDK/HockeySDK.h>
+//#import <HockeySDK/HockeySDK.h>
 #endif
 
-MD1SimonSessionHelper *g_SimonSession;
+extern MD1SimonSessionHelper *g_SimonSession;
 
 @interface MD1LoginViewController ()
 
@@ -466,13 +466,13 @@ BOOL isFirstAppearance;
 
 - (IBAction)feedback:(id)sender {
 #ifdef GGS_HOCKEY
-    [[[BITHockeyManager sharedHockeyManager] feedbackManager] showFeedbackComposeView];
+//    [[[BITHockeyManager sharedHockeyManager] feedbackManager] showFeedbackComposeView];
 #endif
 }
 
 - (IBAction)listFeedback:(id)sender {
 #ifdef GGS_HOCKEY
-    [[[BITHockeyManager sharedHockeyManager] feedbackManager] showFeedbackListView];
+//    [[[BITHockeyManager sharedHockeyManager] feedbackManager] showFeedbackListView];
 #endif
 }
 + (void)keyChainSaveKey:(NSString *)key data:(id)data

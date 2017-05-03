@@ -15,7 +15,7 @@
 #import "SRTableViewController.h"
 
 
-MD1SimonSessionHelper *g_SimonSession;
+extern MD1SimonSessionHelper *g_SimonSession;
 
 
 @interface MD1SearchViewController ()
